@@ -59,13 +59,11 @@ function App() {
       <h2>you have {format(s)} S.</h2>
     </div>
 
-    <div className="tabs">
-      {
+    <div className="tabs"> {
         [...Array(tabs.length).keys()].map((i) => {
           return <button className={`s${i+1}`} onClick={() => switchTab(tabs[i])}>{tabs[i]}</button>
         })
-      }
-    </div>
+    } </div>
     
     {[...Array(renderDim).keys()].map(i =>{
       return <Dimension type="S" num={i+1} tickspeed={tickspeed} />
