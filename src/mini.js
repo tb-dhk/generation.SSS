@@ -1,4 +1,4 @@
-import { story } from './lines';
+import Dimension from './Dimension'
 
 export function format(num) {
   num = Math.round(num * 1000)/1000
@@ -25,23 +25,6 @@ export function maxdim() {
   }
 }
 
-export function autostory() {
-  const conds = [
-    true,
-    maxdim() === 1, 
-    maxdim() === 2,
-    maxdim() === 8,
-  ]
-   
-  for (let i = 0; i < conds.length; i++) {
-    if (!conds[i + 1]) {
-      return story[i]
-    }
-  }
-
-  return story.slice(-1)
-}
-
 export function tick(tickspeed) {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
   const currency = JSON.parse(localStorage.getItem('currency'));
@@ -49,7 +32,7 @@ export function tick(tickspeed) {
   for (const dim in dims) {
   
     const maxDim = maxdim()
-    const boosts = (24 ** maxDim) * (maxDim ** maxDim)
+    const boosts = (maxDim ** maxDim)
     currency[dim] += Number(dims[dim]["1"].total) * boosts / 1000 * tickspeed
 
     for (const gen in dims[dim]) {
@@ -66,6 +49,13 @@ export function tick(tickspeed) {
   return currency.S
 }
 
-export function switchTab(tab) {
-   
+export function renderTab(tab, renderDim) {
+  const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
+
+  switch(tab) {
+    case "dimensions":
+      return [...Array(renderDim).keys()].map(i =>{
+        return <Dimension type="S" key={i+1} num={i+1} tickspeed={tickspeed} />
+      })
+  }
 }

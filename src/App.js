@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import Dimension from './Dimension'
-import { format, tick, maxdim, switchTab } from './mini'
+import { format, tick, maxdim, renderTab } from './mini'
+import { StoryPopup } from './StoryPopup'
 
 function reset() {
   const types = ["S", "como", "sigma"]
@@ -32,7 +32,10 @@ function App() {
 
   const [s, setS] = useState(2)
   const [renderDim, setRenderDim] = useState(2)
+  const [currentTab, setCurrentTab] = useState("dimensions")
+
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
+  const tabs = ["dimensions", "challenges", "story", "settings"]
 
   /* ticks */
   useEffect(() => {
@@ -44,9 +47,7 @@ function App() {
     return () => {
       clearInterval(intervalId);
     };
-  }) 
-
-  const tabs = ["dimensions", "challenges", "story", "settings"]
+  })
 
   /* remove this when presitge is implemented*/
   
@@ -60,14 +61,16 @@ function App() {
     </div>
 
     <div className="tabs"> {
-        [...Array(tabs.length).keys()].map((i) => {
-          return <button className={`s${i+1}`} onClick={() => switchTab(tabs[i])}>{tabs[i]}</button>
-        })
+      [...Array(tabs.length).keys()].map((i) => {
+        return <button className={`s${i+1}`} onClick={() => setCurrentTab(tabs[i])}>{tabs[i]}</button>
+      })
     } </div>
+
+    <StoryPopup />
     
-    {[...Array(renderDim).keys()].map(i =>{
-      return <Dimension type="S" num={i+1} tickspeed={tickspeed} />
-    })}
+    <div id="main">
+      {renderTab(currentTab, renderDim)}
+    </div>
 
   </div>)
 }
