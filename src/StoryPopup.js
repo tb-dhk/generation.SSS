@@ -37,10 +37,10 @@ export function StoryPopup() {
   if (chapter <= autostory()[0]) {
     return (
       <div id="story" className="popup">
-        <ReactMarkdown children={story} id="storytext" />
         <button className="close" onClick={() => erasePopup("story")}>
           <img className="icon" src={close} />
         </button>
+        <ReactMarkdown children={story} id="storytext" />
       </div>
     )
   }
