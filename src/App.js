@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import { format, tick, maxdim, renderTab } from './mini'
+import { format, tick, maxdim, renderTab, getSubTabs } from './mini'
 import { StoryPopup } from './StoryPopup'
 
 function reset() {
@@ -32,10 +32,11 @@ function App() {
 
   const [s, setS] = useState(2)
   const [renderDim, setRenderDim] = useState(2)
-  const [currentTab, setCurrentTab] = useState("dimensions")
+  const [currentTab, setCurrentTab] = useState(0)
+  const [subTab, setSubTab] = useState(0)
 
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
-  const tabs = ["dimensions", "challenges", "story", "settings"]
+  const tabs = ["dimensions", "challenges", "story", "settings", "about"]
 
   /* ticks */
   useEffect(() => {
@@ -60,16 +61,22 @@ function App() {
       <h2>you have {format(s)} S.</h2>
     </div>
 
+    <StoryPopup />
+
     <div className="tabs"> {
       [...Array(tabs.length).keys()].map((i) => {
-        return <button className={`s${i+1}`} onClick={() => setCurrentTab(tabs[i])}>{tabs[i]}</button>
+        return <button className={`s${i+1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
       })
     } </div>
 
-    <StoryPopup />
-    
+    <div className="subtabs"> {
+      [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
+        return <button className={`s${i+6}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+      })
+    } </div>
+
     <div id="main">
-      {renderTab(currentTab, renderDim)}
+      {renderTab(currentTab, subTab, renderDim)}
     </div>
 
   </div>)

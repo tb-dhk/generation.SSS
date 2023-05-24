@@ -7,15 +7,30 @@ function Dimension({ type, num, tickspeed }) {
   const [total, setTotal] = useState(thisDim.total)
   const [bought, setBought] = useState(thisDim.bought)
   
-  function buyDim() {
+  function buyDim(max) {
     const currencies = JSON.parse(localStorage.getItem('currency'))
-    if (currencies[type] >= price(type, num)) {
+
+    function buyone() {
       thisDim.bought += 1
       thisDim.total += 1
       dims[type][num.toString()] = thisDim
       currencies[type] -= price(type, num)
       localStorage.setItem('dimensions', JSON.stringify(dims))
       localStorage.setItem('currency', JSON.stringify(currencies))
+    }
+
+    if (max) {
+      while(true) {
+        if (currencies[type] >= price(type, num)) {
+          buyone()
+        } else {
+          break;
+        }
+      }
+    } else {
+      if (currencies[type] >= price(type, num)) {
+          buyone()
+      }
     }
   }
 
@@ -37,7 +52,8 @@ function Dimension({ type, num, tickspeed }) {
       <div className={`s${num} name`}>S{num}</div>
       <div className={`s${num} bonus`}>× {format((25/24) ** bought)}</div>
       <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
-      <button type="button" className={`s${num} price`} onClick={buyDim}>{format(price(type, num))} S</button>
+      <button type="button" className={`s${num} max`} onClick={() => buyDim(true)}>max</button>
+      <button type="button" className={`s${num} price`} onClick={() => buyDim(false)}>{format(price(type, num))} S</button>
     </div>
   )
 }

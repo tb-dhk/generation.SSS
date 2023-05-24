@@ -1,4 +1,6 @@
 import Dimension from './Dimension'
+import Challenge from './Challenge'
+import Story from './Story'
 
 export function format(num) {
   num = Math.round(num * 1000)/1000
@@ -49,13 +51,40 @@ export function tick(tickspeed) {
   return currency.S
 }
 
-export function renderTab(tab, renderDim) {
+export function getSubTabs(tab) {
+  switch(tab) {
+    case 0:
+      return ["S", "como"]
+    case 1:
+      return ["grand gravity"]
+    case 2:
+      return ["part 1"]
+    case 3:
+      return ["keybinds", "colors", "misc"]
+    case 4:
+      return ["credits", "about tripleS", "cast"]
+    default:
+      return
+  }
+}
+
+export function renderTab(tab, subtab, renderDim) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
 
   switch(tab) {
-    case "dimensions":
+    case 0:
       return [...Array(renderDim).keys()].map(i =>{
-        return <Dimension type="S" key={i+1} num={i+1} tickspeed={tickspeed} />
+        return <Dimension type={getSubTabs(tab)[subtab]} num={i+1} tickspeed={tickspeed} />
       })
+    case 1:
+      return <div class="grid"> {
+        [...Array(8).keys()].map(i =>{
+          return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
+        })
+      } </div>
+    case 2:
+      return
+    default:
+      return
   }
 }
