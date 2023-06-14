@@ -58,7 +58,7 @@ function reset() {
     }
   }
   for (var i = 1; i <= 8; i++) {
-    objekts["atom"]["first class"][i] = []
+    objekts["first class"][i] = []
   }
   localStorage.setItem("objekts", JSON.stringify(objekts))
 

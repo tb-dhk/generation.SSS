@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { maxdim } from './mini'
 import close from './close.png'
@@ -32,13 +31,13 @@ export function autostory() {
 
 export function StoryPopup() {
   const chapter = localStorage.getItem('story')
-  const [story, setStory] = useState(autostory()[1])
+  const story = autostory()[1]
 
   if (chapter <= autostory()[0]) {
     return (
       <div id="story" className="popup">
         <button className="close" onClick={() => erasePopup("story")}>
-          <img className="icon" src={close} />
+          <img className="icon" src={close} alt="close"/>
         </button>
         <ReactMarkdown children={story} id="storytext" />
       </div>
