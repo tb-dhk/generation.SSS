@@ -118,7 +118,7 @@ function App() {
       localStorage.setItem("last played", Date.now())
 
       autobuy()
-    }, 100)
+    }, 1000)
 
     return () => {
       clearInterval(intervalId);
