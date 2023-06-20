@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown'
-import { story } from './lines'
+import { story } from '../../extra/lines'
 
 function openPanel(num) {
   const panel = document.getElementById(`ch${num}`)

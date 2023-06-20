@@ -1,10 +1,10 @@
 import "./App.css"
 import React, { useState, useEffect } from "react"
 import { HotKeys } from "react-hotkeys";
-import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./mini"
-import { StoryPopup } from "./StoryPopup"
-import { buyDim } from "./Dimension"
-import { message } from "./Challenge"
+import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./extra/mini"
+import { StoryPopup } from "./extra/StoryPopup"
+import { buyDim } from "./tabs/dimensions/Dimension"
+import { message } from "./tabs/challenges/Challenge"
 
 function reset() {
   const types = ["S", "como", "comoDust", "sigma"]
@@ -71,7 +71,7 @@ function reset() {
   let autobuyers = {
     S: {} 
   }
-  for (var i = 1; i <= 8; i++) {
+  for (i = 1; i <= 8; i++) {
     autobuyers.S[i] = Date.now()
   }
   localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
@@ -118,12 +118,12 @@ function App() {
       localStorage.setItem("last played", Date.now())
 
       autobuy()
-    }, 1000)
+    })
 
     return () => {
       clearInterval(intervalId);
     };
-  })
+  }, [])
 
   /* keybinds */
   const keyMap = {
@@ -166,7 +166,7 @@ function App() {
     handlers[j + 1 + "max"] = () => {buyDim("S", j + 1, true)}
   }
  
-  let currencyString = <h2></h2>
+  let currencyString = <h2> </h2>
   if (!currentTab && subTab === 1) {
     currencyString = <h2 className="top">you have {format(como)} como and {format(comoDust)} comodust.</h2>
   } else {
@@ -182,7 +182,7 @@ function App() {
     }
   }
 
-  let inChallengesString = <h3></h3>
+  let inChallengesString = <h3> </h3>
   if (inChallengesList.length) {
     inChallengesString = <h3>you are in {inChallengesList.join(" and ")}.</h3>
   } else {

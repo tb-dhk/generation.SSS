@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { format, price } from './mini'
+import { format, price } from '../../extra/mini'
 
 export function buyDim(type, num, max) {
   const dims = JSON.parse(localStorage.getItem('dimensions'))

@@ -1,4 +1,4 @@
-import { format } from "./mini"
+import { format } from "../../extra/mini"
 
 const challenges = {
   "grand gravity": [

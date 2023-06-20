@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import { maxdim } from './mini'
-import close from './close.png'
+import close from '../images/close.png'
 import { story } from './lines'
 
 function erasePopup(id) {

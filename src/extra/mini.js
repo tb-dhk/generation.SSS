@@ -1,10 +1,10 @@
-import Dimension from './Dimension'
-import Challenge from './Challenge'
-import Story from './Story'
-import ColorInput from './ColorInput'
-import { buyDim } from "./Dimension"
-import { autostory } from './StoryPopup'
-import { grandGravity } from './prestige'
+import Dimension from '../tabs/dimensions/Dimension'
+import Challenge from '../tabs/challenges/Challenge'
+import Story from '../tabs/story/Story'
+import ColorInput from '../tabs/settings/ColorInput'
+import { buyDim } from '../tabs/dimensions/Dimension'
+import { autostory } from '../extra/StoryPopup'
+import { grandGravity } from '../extra/prestige'
 
 export function format(num) {
   num = Math.round(num * 1000)/1000
@@ -99,7 +99,7 @@ export function autobuy() {
   let dims = ["S", "como"]
   let clss = ["first class"]
 
-  for (var j = 0; j < 1; i++) {
+  for (var j = 0; j < 1; j++) {
     for (var i in objekts["atom"][clss[j]]) {
       if (Date.now() - autobuyers[dims[j]][i] >= 2 ** (9 - objekts["atom"][clss[j]][i].length)) {
         buyDim(dims[j], i, true)

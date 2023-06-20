@@ -1,5 +1,5 @@
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
-  return (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0'); 
+  return [Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin, clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
 } 
 
 export function grandGravity() {
