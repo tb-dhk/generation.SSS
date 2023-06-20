@@ -5,7 +5,6 @@ import { HotKeys } from "react-hotkeys";
 import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./extra/mini"
 import { StoryPopup } from "./extra/StoryPopup"
 import { updateCurrencySlice } from "./slices/currency"
-import { updateInChallengeSlice } from "./slices/inchallenge"
 import { buyDim } from "./tabs/dimensions/Dimension"
 import { message } from "./tabs/challenges/Challenge"
 
@@ -90,6 +89,7 @@ function App() {
   const [s, setS] = useState(2)
   const [como, setComo] = useState(0)
   const [comoDust, setComoDust] = useState(0)
+  const [inChallenge, setInChallenge] = useState(JSON.parse(localStorage.getItem('inchallenge')))
   const [renderDim, setRenderDim] = useState(2)
   const [currentTab, setCurrentTab] = useState(0)
   const [subTab, setSubTab] = useState(0)
@@ -104,7 +104,6 @@ function App() {
   }
 
   const currency = useSelector((state) => state.counter.value)
-  const inChallenge = useSelector((state) => state.counter.value)
   const dispatch = useDispatch()
 
   /* ticks */
@@ -112,7 +111,7 @@ function App() {
     const intervalId = setInterval(() => {
       dispatch(updateCurrencySlice(JSON.parse(localStorage.getItem('currency'))))
       tick(tickspeed)
-      dispatch(updateInChallengeSlice(JSON.parse(localStorage.getItem('inchallenge'))))
+      setInChallenge(JSON.parse(localStorage.getItem('inchallenge')))
       setRenderDim(Math.min(maxdim(), 8))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
