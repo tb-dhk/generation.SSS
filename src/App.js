@@ -1,11 +1,13 @@
 import "./App.css"
 import React, { useState, useEffect } from "react"
-import { useSelector, useDispatch } from 'react-redux'
+import store from './app/store'
+import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./extra/mini"
 import { StoryPopup } from "./extra/StoryPopup"
-import { updateCurrencySlice } from "./slices/currency"
-import { updateInChallengeSlice } from "./slices/inchallenge"
+import { updateCurrency } from "./slices/currency"
+import { updateInChallenge } from "./slices/inchallenge"
+import { updateMaxDim } from "./slices/maxdim"
 import { buyDim } from "./tabs/dimensions/Dimension"
 import { message } from "./tabs/challenges/Challenge"
 
@@ -87,33 +89,24 @@ function App() {
     reset() 
   }
 
-  const [s, setS] = useState(2)
-  const [como, setComo] = useState(0)
-  const [comoDust, setComoDust] = useState(0)
-  const [renderDim, setRenderDim] = useState(2)
   const [currentTab, setCurrentTab] = useState(0)
   const [subTab, setSubTab] = useState(0)
 
   const tickspeed = JSON.parse(localStorage.getItem("tickspeed"))
   const tabs = ["dimensions", "challenges", "objekts", "story", "settings", "help", "about"]
 
-  let lastPlayed = parseInt(localStorage.getItem("last played"))
-  let ticksPending = Math.floor((Date.now() - lastPlayed)/tickspeed)
-  for (var i = 0; i < ticksPending; i++) {
-    tick(tickspeed)
-  }
-
-  const currency = useSelector((state) => state.counter.value)
-  const inChallenge = useSelector((state) => state.counter.value)
+  const currency = useSelector((state) => state.currency.value)
+  const inChallenge = useSelector((state) => state.inChallenge.value)
+  const renderDim = useSelector((state) => state.maxDim.value)
   const dispatch = useDispatch()
 
   /* ticks */
   useEffect(() => {
     const intervalId = setInterval(() => {
-      dispatch(updateCurrencySlice(JSON.parse(localStorage.getItem('currency'))))
+      dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
       tick(tickspeed)
-      dispatch(updateInChallengeSlice(JSON.parse(localStorage.getItem('inchallenge'))))
-      setRenderDim(Math.min(maxdim(), 8))
+      dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
+      dispatch(updateMaxDim(maxdim()))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
         changeColor(color, colors[color])
@@ -121,11 +114,7 @@ function App() {
       localStorage.setItem("last played", Date.now())
 
       autobuy()
-    })
-
-    setS(currency.S)
-    setComo(currency.como)
-    setComoDust(currency.comoDust)
+    }, 100)
 
     return () => {
       clearInterval(intervalId);
@@ -176,9 +165,9 @@ function App() {
  
   let currencyString = <h2> </h2>
   if (!currentTab && subTab === 1) {
-    currencyString = <h2 className="top">you have {format(como)} como and {format(comoDust)} comodust.</h2>
+    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust.</h2>
   } else {
-    currencyString = <h2 className="top">you have {format(s)} S.</h2>
+    currencyString = <h2 className="top">you have {format(currency.S)} S.</h2>
   }
 
   let inChallengesList = []
@@ -230,4 +219,12 @@ function App() {
   </HotKeys>)
 }
 
-export default App
+const AppWrapper = () => {
+  return (
+    <Provider store={store}> 
+      <App /> 
+    </Provider>
+  )
+}
+
+export default AppWrapper

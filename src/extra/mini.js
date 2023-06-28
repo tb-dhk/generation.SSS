@@ -63,7 +63,7 @@ export function tick(tickspeed) {
     }
     
     for (const gen in dims[dim]) {
-      if (gen < 24) {
+      if (gen < 24 && gen <= maxdim()) {
         const boosts = (25/24) ** dims[dim][Number(gen).toString()].bought
         let next = Number(gen) + 1
         switch (inChallenge["grand gravity"]) {

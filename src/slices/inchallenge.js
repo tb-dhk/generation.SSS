@@ -1,17 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const inChallengeSlice = createSlice({
-  name: 'challenge',
+export let inChallengeSlice = createSlice({
+  name: 'inChallenge',
   initialState: {
-    value: {},
+    value: 1,
   },
   reducers: {
-    update: (state) => {
-      state.value = JSON.parse(localStorage.getItem('challenge'))
+    updateInChallenge(state, action) {
+      state.value = action.payload;
     }
   },
-})
+});
 
-export const { updateInChallengeSlice } = inChallengeSlice.actions
-
-export default inChallengeSlice.reducer
+export let { updateInChallenge }  = inChallengeSlice.actions;
+export default inChallengeSlice.reducer;
