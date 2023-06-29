@@ -1,9 +1,10 @@
 import Dimension from '../tabs/dimensions/Dimension'
 import Challenge from '../tabs/challenges/Challenge'
 import Story from '../tabs/story/Story'
+import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
 import { buyDim } from '../tabs/dimensions/Dimension'
-import { autostory } from '../extra/StoryPopup'
+import { autostory } from '../tabs/story/StoryPopup'
 import { grandGravity } from '../extra/prestige'
 
 export function format(num) {
@@ -88,6 +89,8 @@ export function tick(tickspeed) {
     }
   }
 
+  autobuy()
+
   localStorage.setItem('dimensions', JSON.stringify(dims))
   localStorage.setItem('currency', JSON.stringify(currency))
 }
@@ -97,15 +100,21 @@ export function autobuy() {
   const objekts = JSON.parse(localStorage.getItem('objekts'))
 
   let dims = ["S", "como"]
-  let clss = ["first class"]
 
   for (var j = 0; j < 1; j++) {
-    for (var i in objekts["atom"][clss[j]]) {
-      if (Date.now() - autobuyers[dims[j]][i] >= 2 ** (9 - objekts["atom"][clss[j]][i].length)) {
+    for (var i in objekts.Atom01) {
+      console.log(dims[j], i)
+      let objs = Array(objekts.Atom01[i]).filter(c => c.toString()[0] === "1")
+      console.log(objs)
+      if (Date.now() - autobuyers[dims[j]][i] >= 2 ** (9 - objs.length)) {
+        console.log("activated")
         buyDim(dims[j], i, true)
+        autobuyers[dims[j]][i] = Date.now()
       }
     }
   }
+  
+  localStorage.setItem('autobuyers', JSON.stringify(autobuyers))
 }
 
 export function getSubTabs(tab) {
@@ -166,6 +175,10 @@ export function renderTab(tab, subtab, renderDim) {
             return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
           })
         } </div>
+      case 2:
+        return <div>
+          <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
+        </div>
       case 3:
         return [...Array(autostory()[0]+1).keys()].map(i => {
           return <Story num={i} />

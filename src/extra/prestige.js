@@ -1,6 +1,16 @@
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
-  return [Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin, clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
+  return ["S" + Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin, clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
 } 
+
+function arrayIsEmpty(array) {
+    if (!Array.isArray(array)) {
+        return false;
+    }
+    if (array.length === 0) {
+        return true;
+    }
+    return false;
+}
 
 export function grandGravity() {
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
@@ -13,18 +23,26 @@ export function grandGravity() {
   let objekts = JSON.parse(localStorage.getItem('objekts'))
 
   let no100 = []
-  for (const member in objekts) {
-    if (objekts[member] === []) {
-      no100.append(member)
+  for (const member in objekts.Atom01) {
+    if (arrayIsEmpty(objekts.Atom01[member])) {
+      no100.push(member)
+    } else {
+      console.log(objekts.Atom01[member])
     }
   }
 
   if (no100 === []) {
-    let [member, serial] = objekt(1, 1, 8, 1, 8)
-    objekts[member].append(serial)
-    objekts[member].sort()
+    while (true) {
+      let [member, serial] = objekt(1, 1, 8, 1, 8)
+      if (!Array(objekts.Atom01[member]).includes(serial)) {
+        objekts.Atom01[member].push(serial)
+        objekts.Atom01[member].sort()
+        break
+      }
+    }
   } else {
-    objekts[no100[Math.floor(Math.random()*no100.length)]] = [100]
+    console.log(no100[Math.floor(Math.random()*no100.length)], Math.floor(Math.random()*no100.length))
+    objekts.Atom01[no100[Math.floor(Math.random()*no100.length)]] = [100]
   }
   localStorage.setItem('objekts', JSON.stringify(objekts))
 

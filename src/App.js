@@ -4,7 +4,7 @@ import store from './app/store'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./extra/mini"
-import { StoryPopup } from "./extra/StoryPopup"
+import { StoryPopup } from "./tabs/story/StoryPopup"
 import { updateCurrency } from "./slices/currency"
 import { updateInChallenge } from "./slices/inchallenge"
 import { updateMaxDim } from "./slices/maxdim"
@@ -58,12 +58,10 @@ function reset() {
   localStorage.setItem("prestige", JSON.stringify(prestige))
 
   let objekts = {
-    atom: {
-      "first class": {}
-    }
+    Atom01: {}
   }
   for (var i = 1; i <= 8; i++) {
-    objekts["atom"]["first class"][i] = []
+    objekts.Atom01["S"+i] = []
   }
   localStorage.setItem("objekts", JSON.stringify(objekts))
 
@@ -104,7 +102,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
-      tick(tickspeed)
+      tick(1000)
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       dispatch(updateMaxDim(maxdim()))
       let colors = JSON.parse(localStorage.getItem("colors"))
@@ -113,8 +111,7 @@ function App() {
       }
       localStorage.setItem("last played", Date.now())
 
-      autobuy()
-    }, 100)
+    }, 50)
 
     return () => {
       clearInterval(intervalId);

@@ -53,16 +53,11 @@ function Dimension({ type, num, tickspeed }) {
     };
   })
 
-  const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
-  const objekts = JSON.parse(localStorage.getItem('objekts'))
-  const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
-
   return (
     <div className={`s${num} dimension`}>
       <div className={`s${num} name`}>S{num}</div>
       <div className={`s${num} bonus`}>× {format((25/24) ** bought)}</div>
       <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
-      <div className={`s${num} autobuy`}>{2 ** (9 - objs.length) - Date.now() + autobuyers[type][num]}</div>
       <button type="button" className={`s${num} max`} onClick={() => buyDim(type, num, true)}>max</button>
       <button type="button" className={`s${num} price`} onClick={() => buyDim(type, num, false)}>{format(price(type, num))} {type}</button>
     </div>
