@@ -13,6 +13,8 @@ jobs:
 
       - name: install
         run: npm install
+      
+      - name: install again
         run: npm install -g create-react-app
 
       - name: pre-deploy
