@@ -51,6 +51,7 @@
 button {
   border: none;
   font-size: 20px;
+  margin: none;
 }
 
 HotKeys {
