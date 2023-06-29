@@ -1,0 +1,27 @@
+name: deploy to github pages
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ $default-branch ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: install
+        run: npm install
+      
+      - name: install again
+        run: npm install -g create-react-app
+
+      - name: pre-deploy
+        run: npm run build
+        
+      - name: build
+        run: react-scripts build
+
+      - name: deploy
+        run: gh-pages -d build
