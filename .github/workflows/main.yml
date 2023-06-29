@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: install
+        run: npm install -g create-react-app
 
       - name: deploy
         run: npm run deploy
