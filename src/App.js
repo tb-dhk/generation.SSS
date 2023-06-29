@@ -188,14 +188,6 @@ function App() {
   /* main structure */
   return (
   <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true}>
-    <title>generation.SSS</title>
-    <meta content="generation.SSS" property="og:title" />
-    <meta content="a tripleS-inspired incremental game" property="og:description" />
-    <meta content="shuu-wasseo.github.io/generation.SSS" property="og:url" />
-    <meta content="./src/images/embed.png" property="og:image" />
-    <meta content="#000000" data-react-helmet="true" name="theme-color" />
-
-    <div className="marquee"></div>
     <div className="top">
       <h1>generation.SSS</h1>
       { currencyString }
