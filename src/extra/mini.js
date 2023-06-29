@@ -5,6 +5,7 @@ import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
 import { buyDim } from '../tabs/dimensions/Dimension'
 import { autostory } from '../tabs/story/StoryPopup'
+import { updateMaxDim } from "../slices/maxdim"
 import { grandGravity } from '../extra/prestige'
 
 export function format(num) {
@@ -18,7 +19,13 @@ export function format(num) {
 }
 export function price(type, num) {
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'));
-  const bought = JSON.parse(localStorage.getItem('dimensions'))[type][num].bought
+  const dims = JSON.parse(localStorage.getItem('dimensions'))[type]
+  let index = num.toString()
+  if (num[0] !== "S") {
+    index = "S" + index
+  }
+  const thisDim = dims[index]
+  const bought = thisDim.bought
   const base = (inChallenge["grand gravity"] === 5 && type === "S") ? 3 : 2
   return base ** ((num * (num + bought)))
 }
@@ -28,7 +35,7 @@ export function maxdim() {
 
   /* number of dimensions to render */
   for (let d = 1; d <= 24; d++) {
-    if (!dims["S"][d.toString()].total) {
+    if (!dims.S["S"+d].total) {
       return d
     }
   }
@@ -49,7 +56,7 @@ export function tick(tickspeed) {
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
     const boosts = (maxDim ** maxDim)
-    let defCurrencyGain = Number(dims[dim][1].total) * boosts / 1000 * tickspeed
+    let defCurrencyGain = Number(dims[dim]["S1"].total) * boosts / 1000 * tickspeed
     if (currency.comoDust) {
       defCurrencyGain *= (currency.comoDust ** (1/24))
     }
@@ -63,27 +70,28 @@ export function tick(tickspeed) {
       currency[generatedCurrency[dim]] = 24**24
     }
     
-    for (const gen in dims[dim]) {
+    for (const genName in dims[dim]) {
+      const gen = parseInt(genName.slice(1))
       if (gen < 24 && gen <= maxdim()) {
-        const boosts = (25/24) ** dims[dim][Number(gen).toString()].bought
-        let next = Number(gen) + 1
+        const boosts = (25/24) ** dims[dim][genName].bought
+        let next = gen + 1
         switch (inChallenge["grand gravity"]) {
           case 7:
-            next = Number(gen) + 2
+            next = "S" + (gen + 2)
             break
           case 8:
             let list = [3, 5, 4, 6, 7, 0, 8, 0]
-            next = list[gen - 1]
+            next = "S" + list[gen - 1]
             break
           default:
-            next = Number(gen) + 1
+            next = "S" + (gen + 1)
         }
         if (next) {
-          let defGain = Number(dims[dim][(next).toString()].total) * boosts / 1000 * tickspeed
+          let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
           if (inChallenge["grand gravity"] === 6) {
             defCurrencyGain *= ggc6[gen]
           }
-          dims[dim][gen].total += defGain
+          dims[dim][genName].total += defGain
         }
       }
     }
@@ -103,12 +111,10 @@ export function autobuy() {
 
   for (var j = 0; j < 1; j++) {
     for (var i in objekts.Atom01) {
-      console.log(dims[j], i)
-      let objs = Array(objekts.Atom01[i]).filter(c => c.toString()[0] === "1")
-      console.log(objs)
-      if (Date.now() - autobuyers[dims[j]][i] >= 2 ** (9 - objs.length)) {
-        console.log("activated")
-        buyDim(dims[j], i, true)
+      let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
+      const remaining = (Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[dims[j]][i]) / 1000))
+      if (objekts.Atom01[i].includes(100) && (remaining < 0)) {
+        buyDim(dims[j], i.slice(1), true)
         autobuyers[dims[j]][i] = Date.now()
       }
     }

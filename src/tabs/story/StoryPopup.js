@@ -15,7 +15,7 @@ export function autostory() {
   
   const conds = [
     true,
-    md >= 1 && dims.S["1"].total > 0, 
+    md >= 1 && dims.S["S1"].total > 0, 
     md >= 2,
     md >= 8,
   ]

@@ -3,19 +3,19 @@ import { format, price } from '../../extra/mini'
 
 export function buyDim(type, num, max) {
   const dims = JSON.parse(localStorage.getItem('dimensions'))
-  const thisDim = dims[type][num.toString()]
+  const thisDim = dims[type]["S" + num.toString()]
   const currencies = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
 
   function buyone() {
     thisDim.bought += 1
     thisDim.total += 1
-    dims[type][num.toString()] = thisDim
+    dims[type]["S" + num.toString()] = thisDim
     currencies[type] -= price(type, num)
     
     if (inChallenge["grand gravity"] === 3) {
       for (var i = 1; i < num; i++) {
-        dims[type][i.toString()].total = 0
+        dims[type]["S" + i].total = 0
       }
     }
 
@@ -36,14 +36,21 @@ export function buyDim(type, num, max) {
 
 function Dimension({ type, num, tickspeed }) {
   const dims = JSON.parse(localStorage.getItem('dimensions'))
-  const thisDim = dims[type][num.toString()]
+  const thisDim = dims[type]["S" + num.toString()]
+  const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
+  const objekts = JSON.parse(localStorage.getItem('objekts'))
+  const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
+
   const [total, setTotal] = useState(thisDim.total)
   const [bought, setBought] = useState(thisDim.bought) 
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       const dims = JSON.parse(localStorage.getItem('dimensions'));
-      const thisDim = dims[type][num.toString()];
+      const thisDim = dims[type]["S" + num.toString()];
+      const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
+      const objekts = JSON.parse(localStorage.getItem('objekts'))
+      const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
       setTotal(thisDim.total);
       setBought(thisDim.bought);
     }, tickspeed);
@@ -53,16 +60,21 @@ function Dimension({ type, num, tickspeed }) {
     };
   })
 
-  const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
-  const objekts = JSON.parse(localStorage.getItem('objekts'))
-  const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
+  let autobuyer = "locked"
+  if (objekts.Atom01["S"+num].includes(100)) {
+    try {
+      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S"+num]) / 1000)+"s"
+    } catch {
+      autobuyer = ""
+    }
+  }
 
   return (
     <div className={`s${num} dimension`}>
       <div className={`s${num} name`}>S{num}</div>
       <div className={`s${num} bonus`}>× {format((25/24) ** bought)}</div>
       <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
-      <div className={`s${num} autobuy`}>{2 ** (9 - objs.length) - Date.now() + autobuyers[type][num]}</div>
+      <div className={`s${num} autobuy`}>{autobuyer}</div>
       <button type="button" className={`s${num} max`} onClick={() => buyDim(type, num, true)}>max</button>
       <button type="button" className={`s${num} price`} onClick={() => buyDim(type, num, false)}>{format(price(type, num))} {type}</button>
     </div>

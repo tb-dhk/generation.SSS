@@ -15,7 +15,7 @@ function reset() {
   const types = ["S", "como", "comoDust", "sigma"]
 
   const dims = Object.fromEntries(
-    [...Array(24).keys()].map(x => [x+1, {bought: 0, total: 0}])
+    [...Array(24).keys()].map(x => ["S"+(x+1), {bought: 0, total: 0}])
   )
   const dimObj = Object.fromEntries(
     types.map(x => [x, dims])
@@ -75,7 +75,7 @@ function reset() {
     S: {} 
   }
   for (i = 1; i <= 8; i++) {
-    autobuyers.S[i] = Date.now()
+    autobuyers.S["S" + i] = Date.now()
   }
   localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
 }
@@ -102,7 +102,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
-      tick(1000)
+      tick(tickspeed)
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       dispatch(updateMaxDim(maxdim()))
       let colors = JSON.parse(localStorage.getItem("colors"))
@@ -111,7 +111,7 @@ function App() {
       }
       localStorage.setItem("last played", Date.now())
 
-    }, 50)
+    }, tickspeed)
 
     return () => {
       clearInterval(intervalId);
@@ -146,8 +146,9 @@ function App() {
       if (inChallenge["grand gravity"] === 4) {
         limit = 6
       }
+      let dims = ["S", "como"]
       for (var i = limit; i > 0; i--) {
-        buyDim("S", i, true)
+        buyDim(dims[subTab], i, true)
       }
     }
   }

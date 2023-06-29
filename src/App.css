@@ -96,13 +96,13 @@ HotKeys {
 
 .max {
   position: absolute;
-  left: 85%;
+  left: 80%;
   transform: translateX(-80%);
 }
 
 .autobuy {
   position: absolute;
-  left: 75%;
+  left: 70%;
   transform: translateX(-80%);
 }
 
