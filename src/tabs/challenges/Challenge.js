@@ -25,7 +25,7 @@ function enterChallenge(type, num) {
 
     let dimObj = JSON.parse(localStorage.getItem('dimensions'))
     const dims = Object.fromEntries(
-      [...Array(24).keys()].map(x => [x+1, {bought: 0, total: 0}])
+      [...Array(24).keys()].map(x => ["S"+(x+1), {bought: 0, total: 0}])
     )
     dimObj.S = dims
     localStorage.setItem('dimensions', JSON.stringify(dimObj))
@@ -48,12 +48,35 @@ function enterChallenge(type, num) {
   }
 }
 
+function handleChallenge(type, num) {
+  let inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  console.log(type, inChallenge, inChallenge[type])
+  if (inChallenge[type] === num) {
+    enterChallenge(type, 0)
+  } else {
+    enterChallenge(type, num)
+  }
+}
+
 function Challenge({ type, num }) {
+  const challengeDic = {
+    "grand gravity": "grandGravity"
+  }
+
+  let completedChallenges = JSON.parse(localStorage.getItem('prestige'))[challengeDic[type]].challenges
+  let isChallengeCompleted = completedChallenges.includes(num)
+
+  let inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  let buttontext = isChallengeCompleted ? "finished" : "start"
+  if (inChallenge[type] === num) {
+    buttontext = "exit"
+  }
+
   return (
     <div className={`s${num} challenge ${type}`}>
       <h3 className={`s${num}`}>{challenges[type][num-1][0]}</h3>
       <h4 className={`s${num}`}>{challenges[type][num-1][1]}</h4>
-      <button className="challengebutton" onClick={() => enterChallenge(type, num)}>start!</button>
+      <button className={`challengebutton ${isChallengeCompleted ? "s" + num : ""}`} onClick={() => handleChallenge(type, num)}>{buttontext}</button>
     </div>
   )
 }

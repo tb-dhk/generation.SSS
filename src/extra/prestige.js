@@ -1,3 +1,5 @@
+import { addAlert } from "../slices/alerts"
+
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
   return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
 } 
@@ -29,17 +31,22 @@ export function grandGravity() {
     }
   }
 
+  let gainedObjekt = ""
+
   if (arrayIsEmpty(no100)) {
     while (true) {
-      let [member, serial] = objekt(1, 1, 8, 1, 8)
+      const [member, serial] = objekt(1, 1, 8, 1, 8)
       if (!Array(objekts.Atom01[member]).includes(serial)) {
+        gainedObjekt = member + " " + serial
         objekts.Atom01[member].push(parseInt(serial))
         objekts.Atom01[member].sort()
         break
       }
     }
   } else {
-    objekts.Atom01[no100[Math.floor(Math.random()*no100.length)]] = [100]
+    const member = no100[Math.floor(Math.random()*no100.length)]
+    objekts.Atom01[member] = [100]
+    gainedObjekt = member + " 100"
   }
   localStorage.setItem('objekts', JSON.stringify(objekts))
 
@@ -62,4 +69,10 @@ export function grandGravity() {
   let times = JSON.parse(localStorage.getItem('times'))
   times["grand gravity"] = Date.now()
   localStorage.setItem('times', JSON.stringify(times))
+
+  console.log("adding alert")
+  addAlert({
+    id: prestige.grandGravity.count,
+    message: `you got ${2 ** prestige.grandGravity.count} como and a ${gainedObjekt} objekt.`
+  })
 }

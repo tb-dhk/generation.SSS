@@ -59,6 +59,19 @@ HotKeys {
   width: 100%;
 }
 
+Alert {
+  height: auto;
+  width: 10%;
+  text-align: justify;
+  padding: 10px 20px 20px 20px;
+  position: fixed;
+  border-radius: 5px;
+  background-color: red;
+  top: 5%;
+  right: 5%;
+  z-index: 1
+}
+
 .top {
   text-align: center;
   width: 100%
@@ -157,7 +170,6 @@ HotKeys {
   z-index: 1
 }
 
-
 .close {
   position: sticky;
   top: 10px;
@@ -242,7 +254,7 @@ HotKeys {
   margin: 0 auto;
 }
 
-.grandgrav {
+.grandgrav, .locked {
   text-align: center;
   font-size: 30px;
   height: max;

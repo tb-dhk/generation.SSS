@@ -1,15 +1,36 @@
 import "./App.css"
-import React, { useState, useEffect } from "react"
 import store from './app/store'
+
+import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
-import { format, tick, maxdim, renderTab, getSubTabs, changeColor, autobuy } from "./extra/mini"
+
+import { format, tick, renderTab, getSubTabs, changeColor } from "./extra/mini"
+
 import { StoryPopup } from "./tabs/story/StoryPopup"
-import { updateCurrency } from "./slices/currency"
-import { updateInChallenge } from "./slices/inchallenge"
-import { updateMaxDim } from "./slices/maxdim"
+import { Alert } from "./tabs/misc/Alert"
 import { buyDim } from "./tabs/dimensions/Dimension"
 import { message } from "./tabs/challenges/Challenge"
+
+import { updateCurrency } from "./slices/currency"
+import { updateInChallenge } from "./slices/inchallenge"
+
+const colors = {
+  s1 : "#22aeff",
+  s2 : "#9200ff",
+  s3 : "#fff800",
+  s4 : "#98f21d",
+  s5 : "#d80d76",
+  s6 : "#ff7fa4",
+  s7 : "#729ba1",
+  s8 : "#ffe3e2",
+  s9 : "#ffc931",
+  s10 : "#fb98dc",
+  s11 : "#ffe000",
+  s12 : "#5975fd",
+  s13 : "#ff953f",
+  s14 : "#1222b5"
+}
 
 function reset() {
   const types = ["S", "como", "comoDust", "sigma"]
@@ -31,22 +52,6 @@ function reset() {
   localStorage.setItem("story", 0)
   localStorage.setItem("inchallenge", JSON.stringify({"grand gravity": 1}))
 
-  const colors = {
-    s1 : "#22aeff",
-    s2 : "#9200ff",
-    s3 : "#fff800",
-    s4 : "#98f21d",
-    s5 : "#d80d76",
-    s6 : "#ff7fa4",
-    s7 : "#729ba1",
-    s8 : "#ffe3e2",
-    s9 : "#ffc931",
-    s10 : "#fb98dc",
-    s11 : "#ffe000",
-    s12 : "#5975fd",
-    s13 : "#ff953f",
-    s14 : "#1222b5"
-  }
   localStorage.setItem("colors", JSON.stringify(colors))
 
   const prestige = {
@@ -95,7 +100,7 @@ function App() {
 
   const currency = useSelector((state) => state.currency.value)
   const inChallenge = useSelector((state) => state.inChallenge.value)
-  const renderDim = useSelector((state) => state.maxDim.value)
+  const alerts = useSelector((state) => state.alerts.value)
   const dispatch = useDispatch()
 
   /* ticks */
@@ -104,20 +109,19 @@ function App() {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
       tick(tickspeed)
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
-      dispatch(updateMaxDim(maxdim()))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
-        changeColor(color, colors[color])
+        changeColor(color, colors[color], currentTab, tabs.length+subTab)
       }
       localStorage.setItem("last played", Date.now())
-
+      console.log(alerts)
     }, tickspeed)
 
     return () => {
       clearInterval(intervalId);
     };
   
-  }, [currency, dispatch, tickspeed])
+  }, [currency, dispatch, tickspeed, alerts, currentTab, subTab, tabs.length])
 
   /* keybinds */
   const keyMap = {
@@ -163,7 +167,7 @@ function App() {
  
   let currencyString = <h2> </h2>
   if (!currentTab && subTab === 1) {
-    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust.</h2>
+    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust, boosting S production by {format(currency.comoDust ** (1/24))}</h2>
   } else {
     currencyString = <h2 className="top">you have {format(currency.S)} S.</h2>
   }
@@ -195,22 +199,28 @@ function App() {
       { challengeMessages ? challengeMessages : "" }
     </div>
 
+    {
+      [...Array(alerts)].map((a) => {
+        return <Alert message={a.message} />
+      })
+    }
+
     <StoryPopup />
 
     <div className="tabs"> {
       [...Array(tabs.length).keys()].map((i) => {
-        return <button className={`s${i+1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
+        return <button className={`tab s${i+1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
       })
     } </div>
 
     <div className="subtabs"> {
       [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-        return <button className={`s${i+tabs.length+1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+        return <button className={`subtab s${i+tabs.length+1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
       })
     } </div>
 
     <div id="main">
-      {renderTab(currentTab, subTab, renderDim)}
+      {renderTab(currentTab, subTab)}
     </div>
 
   </HotKeys>)

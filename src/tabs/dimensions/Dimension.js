@@ -15,7 +15,8 @@ export function buyDim(type, num, max) {
     
     if (inChallenge["grand gravity"] === 3) {
       for (var i = 1; i < num; i++) {
-        dims[type]["S" + i].total = 0
+        let dim = dims[type]["S" + i]
+        dim.total = dim.bought
       }
     }
 
@@ -48,9 +49,6 @@ function Dimension({ type, num, tickspeed }) {
     const intervalId = setInterval(() => {
       const dims = JSON.parse(localStorage.getItem('dimensions'));
       const thisDim = dims[type]["S" + num.toString()];
-      const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
-      const objekts = JSON.parse(localStorage.getItem('objekts'))
-      const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
       setTotal(thisDim.total);
       setBought(thisDim.bought);
     }, tickspeed);

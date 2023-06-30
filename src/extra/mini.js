@@ -5,7 +5,6 @@ import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
 import { buyDim } from '../tabs/dimensions/Dimension'
 import { autostory } from '../tabs/story/StoryPopup'
-import { updateMaxDim } from "../slices/maxdim"
 import { grandGravity } from '../extra/prestige'
 
 export function format(num) {
@@ -30,12 +29,12 @@ export function price(type, num) {
   return base ** ((num * (num + bought)))
 }
 
-export function maxdim() {
+export function maxdim(currency="S") {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
 
   /* number of dimensions to render */
   for (let d = 1; d <= 24; d++) {
-    if (!dims.S["S"+d].total) {
+    if (!dims[currency]["S"+d].total) {
       return d
     }
   }
@@ -114,7 +113,7 @@ export function autobuy() {
       let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
       const remaining = (Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[dims[j]][i]) / 1000))
       if (objekts.Atom01[i].includes(100) && (remaining < 0)) {
-        buyDim(dims[j], i.slice(1), true)
+        buyDim(dims[j], parseInt(i.slice(1)), true)
         autobuyers[dims[j]][i] = Date.now()
       }
     }
@@ -136,10 +135,31 @@ export function getSubTabs(tab) {
   return subTabs[tab]
 }
 
-export function renderTab(tab, subtab, renderDim) {
+function lock(div) {
+  let prestige = JSON.parse(localStorage.getItem('prestige'))
+  let grandGravityCount = prestige.grandGravity.count
+  if (grandGravityCount) {
+    return div
+  } else {
+    return (
+      <div class="locked">
+        <h3>oops!</h3>
+        <h4>this area is locked.</h4>
+        <p>get 24^24 S and perform a grand gravity to unlock this section!</p>
+      </div>
+    )
+  }
+}
+
+export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+
+  let renderDim = 8
+  if (tab === 0) {
+    renderDim = maxdim(getSubTabs(tab)[subtab])
+  }
 
   function reset_colors() {
       const colors = {
@@ -176,15 +196,19 @@ export function renderTab(tab, subtab, renderDim) {
           </div>
         )
       case 1:
-        return <div className="challenge-grid"> {
-          [...Array(8).keys()].map(i => {
-            return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
-          })
-        } </div>
+        return lock(
+          <div className="challenge-grid"> {
+            [...Array(8).keys()].map(i => {
+              return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
+            })
+          } </div>
+        )
       case 2:
-        return <div>
-          <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
-        </div>
+        return lock(
+          <div>
+            <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
+          </div>
+        )
       case 3:
         return [...Array(autostory()[0]+1).keys()].map(i => {
           return <Story num={i} />
@@ -212,18 +236,18 @@ export function renderTab(tab, subtab, renderDim) {
   } else {
     return (
       <div className="grandgrav">
-        <h1>boom!</h1>
-        <h2>too much S!</h2>
+        <h3>boom!</h3>
+        <h4>too much S!</h4>
         <button onClick={grandGravity}>grand gravity!</button>
       </div>
     )
   }
 }
 
-export function changeColor(className, color) {
-  const items = document.querySelectorAll("." + className)
-
+export function changeColor(className, color, currentTab, subTab) {
   if (/^#[0-9A-F]{6}$/i.test(color) || /^#([0-9A-F]{3}){1,2}$/i.test(color)) {
+    const items = document.querySelectorAll("." + className)
+
     const int = (color.length - 1) / 3
     const sep = [...Array(3).keys()].map((i) => {
       let val = parseInt(color.slice(i*int+1, i*int+int+1), 16)
@@ -232,15 +256,27 @@ export function changeColor(className, color) {
       }
       return val
     })
-    const avg = sep.reduce( ( p, c ) => p + c, 0 ) / sep.length
+    const avg = sep.reduce(( p, c ) => p + c, 0) / sep.length
 
     items.forEach(item => {
       item.style.backgroundColor = color
-      if (avg >= 8) {
-        item.style.color = "black"
-      } else {
-        item.style.color = "white"
-      }
+      item.style.color = avg >= 8 ? "black" : "white"
     })
-  }
+
+    try {
+      if (parseInt(className.slice(1)) === currentTab + 1) {
+        const currentTabDiv = document.querySelectorAll(`button.tab.${className}`)[0]
+        currentTabDiv.style.backgroundColor = "black" 
+        currentTabDiv.style.color = color
+      }
+    } catch {}
+
+    try {
+      if (parseInt(className.slice(1)) === subTab + 1) {
+        const subTabDiv = document.querySelectorAll(`button.subtab.${className}`)[0]
+        subTabDiv.style.backgroundColor = "black"
+        subTabDiv.style.color = color
+      }
+    } catch {}
+  }  
 }
