@@ -1,6 +1,6 @@
 {
   "name": "generation.sss",
-  "version": "0.1.0-a",
+  "version": "v0.1.0-alpha",
   "homepage": "https://shuu-wasseo.github.io/generation.SSS",
   "private": true,
   "dependencies": {
