@@ -1,12 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-class Alert {
-  constructor(message) {
-    this.message = message
-    this.time = Date.now()
-  }
-}
-
 export let alertsSlice = createSlice({
   name: 'alerts',
   initialState: {
@@ -15,8 +8,9 @@ export let alertsSlice = createSlice({
   reducers: {
     addAlert(state, action) {
       const payload = action.payload
-      state.value[payload.id] = Alert(payload.message);
-      console.log("added")
+      console.log(payload)
+      state.value[payload.id] = payload.message;
+      console.log(state.value, "added")
     },
     closeAlert(state, action) {
       const payload = action.payload

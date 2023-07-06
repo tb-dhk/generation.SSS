@@ -5,6 +5,7 @@ import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
 import Accordion from '../tabs/misc/Accordion'
 import { help, about } from './lines'
+import { impt, expt } from './save'
 import { buyDim } from '../tabs/dimensions/Dimension'
 import { autostory } from '../tabs/story/StoryPopup'
 import { grandGravity } from '../extra/prestige'
@@ -130,7 +131,7 @@ export function getSubTabs(tab) {
     ["grand gravity"],
     ["single class", "double class"],
     ["part 1"],
-    ["colors"],
+    ["colors", "save"],
     Object.keys(help),
     Object.keys(about)
   ]
@@ -181,7 +182,8 @@ export function renderTab(tab, subtab) {
         s11 : "#ffe000",
         s12 : "#5975fd",
         s13 : "#ff953f",
-        s14 : "#1222b5"
+        s14 : "#1222b5",
+        s15 : "#d51312"
       }
       localStorage.setItem('colors', JSON.stringify(colors))
   }
@@ -202,7 +204,7 @@ export function renderTab(tab, subtab) {
         )
       case 1:
         return lock(
-          <div className="challenge-grid"> {
+          <div className="big-grid"> {
             [...Array(8).keys()].map(i => {
               return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
             })
@@ -229,6 +231,13 @@ export function renderTab(tab, subtab) {
                   )
                 })}
                 <button onClick={reset_colors} className="center">reset</button>
+              </div>
+            )
+          case 1:
+            return (
+              <div className="big-grid">
+                <button className="s1 big" onClick={impt}>import</button>
+                <button className="s2 big" onClick={expt}>export</button>
               </div>
             )
           default:

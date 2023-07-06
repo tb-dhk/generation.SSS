@@ -73,7 +73,7 @@ function Challenge({ type, num }) {
   }
 
   return (
-    <div className={`s${num} challenge ${type}`}>
+    <div className={`s${num} big ${type}`}>
       <h3 className={`s${num}`}>{challenges[type][num-1][0]}</h3>
       <h4 className={`s${num}`}>{challenges[type][num-1][1]}</h4>
       <button className={`challengebutton ${isChallengeCompleted ? "s" + num : ""}`} onClick={() => handleChallenge(type, num)}>{buttontext}</button>

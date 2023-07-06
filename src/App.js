@@ -29,7 +29,8 @@ const colors = {
   s11 : "#ffe000",
   s12 : "#5975fd",
   s13 : "#ff953f",
-  s14 : "#1222b5"
+  s14 : "#1222b5", 
+  s15 : "#d51312"
 }
 
 function reset() {
@@ -107,7 +108,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
-      tick(tickspeed)
+      tick(10000)
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
