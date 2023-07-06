@@ -235,12 +235,12 @@ export function renderTab(tab, subtab) {
         }
         break 
       case 5: 
-        return help.keys().map(i => {
+        return Object.keys(help).map(i => {
           count++
           return <Accordion num={count} head={i} body={help[i]} />
         })
       case 6: 
-        return about.keys().map(i => {
+        return Object.keys(about).map(i => {
           count++
           return <Accordion num={count} head={i} body={about[i]} />
         })
