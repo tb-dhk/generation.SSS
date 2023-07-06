@@ -256,7 +256,8 @@ Alert {
 }
 
 .center {
-  margin: 0 auto;
+  margin: auto;
+  width: 100%;
 }
 
 .grandgrav, .locked {
