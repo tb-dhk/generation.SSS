@@ -212,7 +212,7 @@ Alert {
   padding-right: 20px;
 }
 
-.accordion, .story {
+.accordion {
   height: auto;
   font-size: 20px;
 }
