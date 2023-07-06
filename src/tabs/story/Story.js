@@ -1,4 +1,3 @@
-import ReactMarkdown from 'react-markdown'
 import { story } from '../../extra/lines'
 import Accordion from '../misc/Accordion'
 
