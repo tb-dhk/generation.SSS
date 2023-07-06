@@ -6,22 +6,24 @@ import { story } from '../../extra/lines'
 function erasePopup(id) {
   document.getElementById(id).style.display = "none"
   const chapter = localStorage.getItem('story')
-  localStorage.setItem('story', chapter + 1)
+  localStorage.setItem('story', parseInt(chapter) + 1)
 }
 
 export function autostory() {
   const md = maxdim()
   const dims = JSON.parse(localStorage.getItem('dimensions'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
   
   const conds = [
     true,
     md >= 1 && dims.S["S1"].total > 0, 
     md >= 2,
-    md >= 8,
+    parseInt(dims.S.S8.total) > 0,
+    parseInt(prestige.grandGravity.count) > 0
   ]
    
-  for (let i = 0; i < conds.length; i++) {
-    if (!conds[i + 1]) {
+  for (let i = conds.length - 1; i >= 0; i--) {
+    if (conds[i]) {
       return [i, story[i]]
     }
   }
@@ -30,8 +32,9 @@ export function autostory() {
 }
 
 export function StoryPopup() {
-  const chapter = localStorage.getItem('story')
+  const chapter = parseInt(localStorage.getItem('story'))
   const story = autostory()[1]
+  console.log(chapter, autostory()[0])
 
   if (chapter <= autostory()[0]) {
     return (
@@ -43,4 +46,5 @@ export function StoryPopup() {
       </div>
     )
   }
+  return <div>nostory, {maxdim()}</div>
 }
