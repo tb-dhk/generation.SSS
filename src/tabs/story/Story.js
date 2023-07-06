@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import { story } from '../../extra/lines'
+import Accordion from ../misc/Accordion
 
 function openPanel(num) {
   const panel = document.getElementById(`ch${num}`)
@@ -10,14 +11,7 @@ function openPanel(num) {
   }}
 
 function Story({ num }) {
-  return (
-    <div className="chapter">
-      <button className={`accordion s${num + 1}`} onClick={() => {openPanel(num)}}>chapter {num}</button>
-      <div className="story panel" id={`ch${num}`}>
-        <ReactMarkdown className={`s${num + 1}`} children={story[num]} id="storytext" />
-      </div>
-    </div>
-  )
+  return <Accordion num={num} head={"chapter " + num} body={story[num]} />
 }
 
 export default Story 
