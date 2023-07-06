@@ -145,7 +145,7 @@ export const help = {
 
 export const about = {
   credits: {
-    "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"],join("\n"),
+    "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"].join("\n"),
     "people": ["- [canaris](https://github.com/DET171) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"]
   },
   tripleS: {
