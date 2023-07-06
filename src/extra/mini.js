@@ -235,13 +235,13 @@ export function renderTab(tab, subtab) {
         }
         break 
       case 5: 
-        subobj = help[Object.keys(help)[subtab]]
+        const subobj = help[Object.keys(help)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
           return <Accordion num={count} head={i} body={help[subobj][i]} />
         })
       case 6: 
-        subobj = help[Object.keys(help)[subtab]]
+        const subobj = help[Object.keys(help)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
           return <Accordion num={count} head={i} body={help[subobj][i]} />
