@@ -1,5 +1,14 @@
 import ReactMarkdown from 'react-markdown'
 
+function openPanel(num) {
+  const panel = document.getElementById(`ch${num}`)
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
+}
+
 function Accordion({ num, head, body }) {
   return (
     <div className="chapter">
