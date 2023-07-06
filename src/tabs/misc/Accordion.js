@@ -1,3 +1,5 @@
+import ReactMarkdown from 'react-markdown'
+
 function Accordion({ num, head, body }) {
   return (
     <div className="chapter">
@@ -6,4 +8,7 @@ function Accordion({ num, head, body }) {
         <ReactMarkdown className={`s${num + 1}`} children={body} id="accordion" />
       </div>
     </div>
-  )}
+  )
+}
+
+export default Accordion
