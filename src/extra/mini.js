@@ -163,6 +163,8 @@ export function renderTab(tab, subtab) {
     renderDim = maxdim(getSubTabs(tab)[subtab])
   }
 
+  let count = 0
+
   function reset_colors() {
       const colors = {
         s1 : "#22aeff",
@@ -233,13 +235,11 @@ export function renderTab(tab, subtab) {
         }
         break 
       case 5: 
-        let count = 0
         return help.keys().map(i => {
           count++
           return <Accordion num={count} head={i} body={help[i]} />
         })
       case 6: 
-        let count = 0
         return about.keys().map(i => {
           count++
           return <Accordion num={count} head={i} body={about[i]} />
