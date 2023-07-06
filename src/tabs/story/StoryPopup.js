@@ -46,5 +46,4 @@ export function StoryPopup() {
       </div>
     )
   }
-  return <div>nostory, {maxdim()}</div>
 }
