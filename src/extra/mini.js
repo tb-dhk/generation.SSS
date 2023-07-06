@@ -131,8 +131,8 @@ export function getSubTabs(tab) {
     ["single class", "double class"],
     ["part 1"],
     ["colors"],
-    help.keys(),
-    about.keys()
+    Object.keys(help),
+    Object.keys(about)
   ]
   return subTabs[tab]
 }
