@@ -130,8 +130,8 @@ export function getSubTabs(tab) {
     ["single class", "double class"],
     ["part 1"],
     ["colors"],
-    ["credits", "about tripleS", "cast"],
-    []
+    help.keys(),
+    about.keys()
   ]
   return subTabs[tab]
 }
