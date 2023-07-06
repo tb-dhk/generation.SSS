@@ -164,7 +164,7 @@ export function renderTab(tab, subtab) {
   }
 
   let count = 0
-  const subobj = help[Object.keys(help)[subtab]]
+  let subobj = {}
 
   function reset_colors() {
       const colors = {
@@ -236,14 +236,16 @@ export function renderTab(tab, subtab) {
         }
         break 
       case 5: 
+        subobj = help[Object.keys(help)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
-          return <Accordion num={count} head={i} body={help[subobj][i]} />
+          return <Accordion num={count} head={i} body={subobj[i]} />
         })
-      case 6: 
+      case 6:
+        subobj = about[Object.keys(about)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
-          return <Accordion num={count} head={i} body={help[subobj][i]} />
+          return <Accordion num={count} head={i} body={subobj[i]} />
         })
       default:
         return
