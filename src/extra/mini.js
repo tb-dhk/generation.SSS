@@ -99,10 +99,10 @@ export function tick(tickspeed) {
     }
   }
 
-  autobuy()
-
   localStorage.setItem('dimensions', JSON.stringify(dims))
   localStorage.setItem('currency', JSON.stringify(currency))
+
+  autobuy()
 }
 
 export function autobuy() {
@@ -230,7 +230,7 @@ export function renderTab(tab, subtab) {
                     <ColorInput s={i+1} />
                   )
                 })}
-                <button onClick={reset_colors} className="center">reset</button>
+                <button onClick={reset_colors} className="big center">reset</button>
               </div>
             )
           case 1:
@@ -248,13 +248,13 @@ export function renderTab(tab, subtab) {
         subobj = help[Object.keys(help)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
-          return <Accordion num={count} head={i} body={subobj[i]} />
+          return <Accordion num={count-1} head={i} body={subobj[i]} />
         })
       case 6:
         subobj = about[Object.keys(about)[subtab]]
         return Object.keys(subobj).map(i => {
           count++
-          return <Accordion num={count} head={i} body={subobj[i]} />
+          return <Accordion num={count-1} head={i} body={subobj[i]} />
         })
       default:
         return

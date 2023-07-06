@@ -138,7 +138,7 @@ export const help = {
     challenges: "at the moment, there is only one category of challenges, grand gravity challenges (gdgcs). these challenges require you to start from the beginning and cause a grand gravity but under limited circumstances. see `/challenges` for more."
   },
   faq: {
-    "how does saving work?": "your data will be automatically saved every 30 seconds. offline progress is not supported.",
+    "how does saving work?": "your data will be automatically saved. offline progress is not supported.",
     "what are some future plans for the next minor/major update?": ['- second prestige layer (event gravity)', '- kaede and dahyun will be added', '- 10 event gravity challenges', '- sigma dimensions'].join("\n")
   }
 }
@@ -146,7 +146,7 @@ export const help = {
 export const about = {
   credits: {
     "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"].join("\n"),
-    "people": ["- [canaris](https://github.com/DET171) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"].join("\n")
+    "people": ["- [canaris](https://github.com/DET171) and [ltrltrltr1234](https://github.com/Ltrltrltr1234) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"].join("\n")
   },
   tripleS: {
     general: "tripleS is a South Korean girl group formed by MODHAUS. the group is currently being introduced to the public through a pre-debut project that began in May 2022, where each of the 24 members are revealed periodically.",

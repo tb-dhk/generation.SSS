@@ -17,11 +17,14 @@ export function buyDim(type, num, max) {
       for (var i = 1; i < num; i++) {
         let dim = dims[type]["S" + i]
         dim.total = dim.bought
+        dims[type]["S" + i] = dim
       }
     }
 
     localStorage.setItem('dimensions', JSON.stringify(dims))
     localStorage.setItem('currency', JSON.stringify(currencies))
+
+    console.log(type, "S" + num, dims[type]["S" + num.toString()].bought, thisDim.bought)
   }
 
   if (max) {
