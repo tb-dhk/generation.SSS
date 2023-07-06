@@ -19,7 +19,7 @@ function ObjektGrid({ season, clss, startNumber, stopNumber }) {
             let number = clss + formatNumber(n + startNumber)
             let obtained = objekts[season]["S" + (m + 1)].includes(parseInt(number))
             let style = {visibility: obtained ? "visible" : "hidden"}
-            return <img className="objekt" src={objektDic[season]["S" + (m + 1)][number + "Z"]} style={style} />
+            return <img className="objekt" src={objektDic[season]["S" + (m + 1)][number + "Z"]} alt="objekt" style={style} />
           })}
         </div>
       })}
