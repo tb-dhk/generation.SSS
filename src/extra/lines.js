@@ -125,3 +125,36 @@ the objekt was a very smooth laminated piece of paper, and felt like a trading c
     `
 ]
 
+export const help = {
+  basics: {
+    concept: "the concept of this game was based on antimatter dimensions, a game where each dimension creates the previous dimension. i wanted to make a tripleS parody so here it is! for credits, see `/credits`.",
+    generators: "most generators usually produce the generator one tier below them (S3 generators produce S2 generators, etc.) but S1 generators produce S, a special kind of energy with supernatural properties. buying a generator also multiplies the generator's overall production by 25/24.",
+    multipliers: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 generators)."
+  },
+  gravity: {
+    "grand gravity": "the first prestige layer. S is limted at 24^24, at which a grand gravity will occur. all gravity will be reset and one objekt and 2^(number of grand gravities including this one) como will be given.",
+    objekts: "objekt either unlock (100) or boost (101-108) your autobuyers. your autobuyer interval starts at 256s, before halving with every objekt (other than 100). with all objekts, your autobuyer interval should be 1s. see `/objekts` to view all your objekts.",
+    como: "como generators work like S generators, but they produce como power, not como (which is only obtainable from grand gravity). como power is used to boost S1's overall production by (como power)^0.125.",
+    challenges: "at the moment, there is only one category of challenges, grand gravity challenges (gdgcs). these challenges require you to start from the beginning and cause a grand gravity but under limited circumstances. see `/challenges` for more."
+  },
+  faq: {
+    "how does saving work?": "your data will be automatically saved every 30 seconds. offline progress is not supported.",
+    "what are some future plans for the next minor/major update?": ['- second prestige layer (event gravity)', '- kaede and dahyun will be added', '- 10 event gravity challenges', '- sigma dimensions'].join("\n")
+  }
+}
+
+export const about = {
+  credits: {
+    "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"],join("\n"),
+    "people": ["- [canaris](https://github.com/DET171) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"]
+  },
+  tripleS: {
+    general: "tripleS is a South Korean girl group formed by MODHAUS. the group is currently being introduced to the public through a pre-debut project that began in May 2022, where each of the 24 members are revealed periodically.",
+    concept: "they aim to be the world's first decentralized K-pop idol group, “the idol all possibilities” with members rotating between the group, sub-unit, and solo activities, as chosen by fans.",
+    "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
+  },
+  source: {
+    "source code": "https://github.com/shuu-wasseo/generation.SSS",
+    "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
+  }
+}
