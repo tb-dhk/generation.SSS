@@ -237,12 +237,12 @@ export function renderTab(tab, subtab) {
       case 5: 
         return Object.keys(help).map(i => {
           count++
-          return <Accordion num={count} head={i} body={help[i]} />
+          return <Accordion num={count} head={i} body={help[Object.keys(help)[subTab]][i]} />
         })
       case 6: 
         return Object.keys(about).map(i => {
           count++
-          return <Accordion num={count} head={i} body={about[i]} />
+          return <Accordion num={count} head={i} body={about[Object.keys(about)[subTab]][i]} />
         })
       default:
         return
