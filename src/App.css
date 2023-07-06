@@ -132,7 +132,7 @@ Alert {
   display: flex;
   flex-direction: row;
   align-content: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
   width: auto;
   height: auto;
@@ -148,7 +148,7 @@ Alert {
   display: flex;
   flex-direction: row;
   align-content: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
   width: auto;
   height: auto;
