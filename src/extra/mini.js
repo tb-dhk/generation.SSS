@@ -3,6 +3,7 @@ import Challenge from '../tabs/challenges/Challenge'
 import Story from '../tabs/story/Story'
 import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
+import Accordion from '../tabs/misc/Accordion'
 import { help, about } from './lines'
 import { buyDim } from '../tabs/dimensions/Dimension'
 import { autostory } from '../tabs/story/StoryPopup'
@@ -230,7 +231,19 @@ export function renderTab(tab, subtab) {
           default:
             break
         }
-        break
+        break 
+      case 5: 
+        let count = 0
+        return help.keys().map(i => {
+          count++
+          return <Accordion num={count} head={i} body={help[i]}>
+        })
+      case 6: 
+        let count = 0
+        return about.keys().map(i => {
+          count++
+          return <Accordion num={count} head={i} body={about[i]}>
+        })
       default:
         return
     }
