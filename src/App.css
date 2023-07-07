@@ -63,6 +63,11 @@ p, .icon {
   width: 100%;
 }
 
+.title {
+  width: 20%;
+  padding: 20px 20px 0 20px;
+}
+
 .alerts {
   height: auto;
   width: 10%;

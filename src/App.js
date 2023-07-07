@@ -1,5 +1,6 @@
 import "./App.css"
 import store from './app/store'
+import genSSS from './images/generation-sss.jpeg'
 
 import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
@@ -203,7 +204,7 @@ function App() {
     </div>
 
     <div className="top">
-      <h1>generation.SSS</h1>
+      <img className="title" alt="main logo" src={genSSS} />
       { currencyString }
       { inChallengesString }
       { challengeMessages ? challengeMessages : "" }
