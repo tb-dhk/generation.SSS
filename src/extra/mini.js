@@ -200,9 +200,9 @@ export function renderTab(tab, subtab) {
       localStorage.setItem('colors', JSON.stringify(colors))
   }
 
-  if (currency.S < 24**24) {
-    switch(tab) {
-      case 0:
+  switch(tab) {
+    case 0:
+      if (currency.S < 24**24) {
         let limit = 8
         if (inChallenge["grand gravity"] === 4) {
           limit = 6
@@ -214,71 +214,71 @@ export function renderTab(tab, subtab) {
             })}
           </div>
         )
-      case 1:
-        return lock(
-          <div className="big-grid"> {
-            [...Array(8).keys()].map(i => {
-              return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
-            })
-          } </div>
-        )
-      case 2:
-        return lock(
-          <div>
-            <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
+      } else {
+        return (
+          <div className="grandgrav invert">
+            <h3 className="invert">boom!</h3>
+            <h4 className="invert">too much S!</h4>
+            <button className="invert" onClick={grandGravity}>grand gravity!</button>
           </div>
         )
-      case 3:
-        return [...Array(autostory()[0]+1).keys()].map(i => {
-          return <Story num={i} />
-        }) 
-      case 4:
-        switch (subtab) {
-          case 0:
-            return (
-              <div>
-                {[...Array(24).keys()].map(i => {
-                  return (
-                    <ColorInput s={i+1} />
-                  )
-                })}
-                <button onClick={reset_colors} className="big center">reset</button>
-              </div>
-            )
-          case 1:
-            return (
-              <div className="big-grid">
-                <button className="s1 big" onClick={impt}>import</button>
-                <button className="s2 big" onClick={expt}>export</button>
-              </div>
-            )
-          default:
-            break
-        }
-        break 
-      case 5: 
-        subobj = help[Object.keys(help)[subtab]]
-        return Object.keys(subobj).map(i => {
-          count++
-          return <Accordion num={count-1} head={i} body={subobj[i]} />
-        })
-      case 6:
-        subobj = about[Object.keys(about)[subtab]]
-        return Object.keys(subobj).map(i => {
-          count++
-          return <Accordion num={count-1} head={i} body={subobj[i]} />
-        })
-      default:
-        return
-    }
-  } else {
-    return (
-      <div className="grandgrav invert">
-        <h3 className="invert">boom!</h3>
-        <h4 className="invert">too much S!</h4>
-        <button className="invert" onClick={grandGravity}>grand gravity!</button>
-      </div>
-    )
+      }
+    case 1:
+      return lock(
+        <div className="big-grid"> {
+          [...Array(8).keys()].map(i => {
+            return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
+          })
+        } </div>
+      )
+    case 2:
+      return lock(
+        <div>
+          <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
+        </div>
+      )
+    case 3:
+      return [...Array(autostory()[0]+1).keys()].map(i => {
+        return <Story num={i} />
+      }) 
+    case 4:
+      switch (subtab) {
+        case 0:
+          return (
+            <div>
+              {[...Array(24).keys()].map(i => {
+                return (
+                  <ColorInput s={i+1} />
+                )
+              })}
+              <button onClick={reset_colors} className="big center">reset</button>
+            </div>
+          )
+        case 1:
+          return (
+            <div className="big-grid">
+              <button className="s1 big" onClick={impt}>import</button>
+              <button className="s2 big" onClick={expt}>export</button>
+            </div>
+          )
+        default:
+          break
+      }
+      break 
+    case 5: 
+      subobj = help[Object.keys(help)[subtab]]
+      return Object.keys(subobj).map(i => {
+        count++
+        return <Accordion num={count-1} head={i} body={subobj[i]} />
+      })
+    case 6:
+      subobj = about[Object.keys(about)[subtab]]
+      return Object.keys(subobj).map(i => {
+        count++
+        return <Accordion num={count-1} head={i} body={subobj[i]} />
+      })
+    default:
+      return
   }
 }
 

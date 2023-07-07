@@ -110,7 +110,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
-      tick(10000)
+      tick(tickspeed)
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
