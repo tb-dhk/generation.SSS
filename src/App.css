@@ -71,7 +71,7 @@ HotKeys {
   z-index: 1
 }
 
-Alert {
+.alert {
   background-color: red;
   border-radius: 5px;
 }

@@ -9,7 +9,7 @@ function erasePopup(id) {
 
 export function Alert({ alertId, message }) {
   return (
-    <div id={"alert-" + alertId}>
+    <div id={"alert-" + alertId} className="alert">
       <button className="close" onClick={() => {erasePopup(alertId)}}>
         <img className="icon" src={close} alt="close"/>
       </button>
