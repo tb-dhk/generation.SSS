@@ -154,7 +154,7 @@ export const about = {
     "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
   },
   source: {
-    "info": "generation.SSS v0.1.0-alpha, released 2023.07.07",
+    "info": "generation.SSS v0.1.0-beta, released 2023.07.07",
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
