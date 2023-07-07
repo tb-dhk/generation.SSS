@@ -1,3 +1,5 @@
+import { format } from './mini'
+
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
   return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
 } 
@@ -70,7 +72,7 @@ export function grandGravity() {
 
   let alerts = JSON.parse(localStorage.getItem('alerts'))
   alerts['grand-gravity-' + prestige.grandGravity.count] = {
-    message: `you got ${2 ** prestige.grandGravity.count} como and a ${gainedObjekt} objekt.`,
+    message: `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`,
     time: Date.now()
   }
   localStorage.setItem('alerts', JSON.stringify(alerts))

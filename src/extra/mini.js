@@ -273,10 +273,10 @@ export function renderTab(tab, subtab) {
     }
   } else {
     return (
-      <div className="grandgrav">
-        <h3>boom!</h3>
-        <h4>too much S!</h4>
-        <button onClick={grandGravity}>grand gravity!</button>
+      <div className="grandgrav invert">
+        <h3 className="invert">boom!</h3>
+        <h4 className="invert">too much S!</h4>
+        <button className="invert" onClick={grandGravity}>grand gravity!</button>
       </div>
     )
   }

@@ -54,7 +54,11 @@ button {
   margin: none;
 }
 
-HotKeys {
+p, .icon {
+  background-color: transparent
+}
+
+#hotkeys {
   height: 100%;
   width: 100%;
 }
@@ -72,8 +76,15 @@ HotKeys {
 }
 
 .alert {
-  background-color: red;
-  border-radius: 5px;
+  background-color: black !important;
+  border: red 2px solid;
+  border-radius: 10px;
+  padding: 10px 20px 20px 20px;
+}
+
+.invert {
+  background-color: white !important;
+  color: black;
 }
 
 .top {
@@ -199,6 +210,7 @@ HotKeys {
   min-height: 200px;
   text-align: center;
   border-radius: 10px;
+  padding: 20px;
 }
 
 .challengebutton {
@@ -261,10 +273,12 @@ HotKeys {
 }
 
 .grandgrav, .locked {
+  margin: auto;
   text-align: center;
   font-size: 30px;
   height: max;
-  width: max;
+  width: 25%;
+  border-radius: 10px;
 }
 
 .objekt {
