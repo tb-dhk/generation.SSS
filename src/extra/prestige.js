@@ -1,5 +1,3 @@
-import { addAlert } from "../slices/alerts"
-
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
   return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
 } 
@@ -70,9 +68,10 @@ export function grandGravity() {
   times["grand gravity"] = Date.now()
   localStorage.setItem('times', JSON.stringify(times))
 
-  console.log("adding alert")
-  addAlert({
-    id: prestige.grandGravity.count,
-    message: `you got ${2 ** prestige.grandGravity.count} como and a ${gainedObjekt} objekt.`
-  })
+  let alerts = JSON.parse(localStorage.getItem('alerts'))
+  alerts['grand-gravity-' + prestige.grandGravity.count] = {
+    message: `you got ${2 ** prestige.grandGravity.count} como and a ${gainedObjekt} objekt.`,
+    time: Date.now()
+  }
+  localStorage.setItem('alerts', JSON.stringify(alerts))
 }

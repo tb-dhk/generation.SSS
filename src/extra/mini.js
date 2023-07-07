@@ -125,6 +125,18 @@ export function autobuy() {
   localStorage.setItem('autobuyers', JSON.stringify(autobuyers))
 }
 
+export function clearAlerts() {
+  const alerts = JSON.parse(localStorage.getItem('alerts'))
+
+  for (let id in alerts) {
+    if (Date.now() - parseInt(alerts[id].time) >= 15000) {
+      delete alerts[id]
+    }
+  }
+  
+  localStorage.setItem('alerts', JSON.stringify(alerts))
+}
+
 export function getSubTabs(tab) {
   const subTabs = [
     ["S", "como"],

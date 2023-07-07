@@ -53,27 +53,23 @@ button {
   font-size: 20px;
   margin: none;
 }
-
+what wasnt 
 HotKeys {
   height: 100%;
   width: 100%;
 }
 
-Alert {
+alerts {
   height: auto;
   width: 10%;
   text-align: justify;
   padding: 10px 20px 20px 20px;
-  position: fixed;
+  position: absolute;
   border-radius: 5px;
   background-color: red;
   top: 5%;
   right: 5%;
   z-index: 1
-}
-
-.save {
-  
 }
 
 .top {

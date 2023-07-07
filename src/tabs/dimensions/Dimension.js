@@ -24,7 +24,6 @@ export function buyDim(type, num, max) {
     localStorage.setItem('dimensions', JSON.stringify(dims))
     localStorage.setItem('currency', JSON.stringify(currencies))
 
-    console.log(type, "S" + num, dims[type]["S" + num.toString()].bought, thisDim.bought)
   }
 
   if (max) {

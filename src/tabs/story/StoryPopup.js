@@ -34,7 +34,6 @@ export function autostory() {
 export function StoryPopup() {
   const chapter = parseInt(localStorage.getItem('story'))
   const story = autostory()[1]
-  console.log(chapter, autostory()[0])
 
   if (chapter <= autostory()[0]) {
     return (

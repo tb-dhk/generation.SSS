@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 
-import { format, tick, renderTab, getSubTabs, changeColor } from "./extra/mini"
+import { format, tick, renderTab, getSubTabs, changeColor, clearAlerts } from "./extra/mini"
 
 import { StoryPopup } from "./tabs/story/StoryPopup"
 import { Alert } from "./tabs/misc/Alert"
@@ -84,6 +84,8 @@ function reset() {
     autobuyers.S["S" + i] = Date.now()
   }
   localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
+
+  localStorage.setItem("alerts", JSON.stringify({}))
 }
 
 function App() {
@@ -101,8 +103,8 @@ function App() {
 
   const currency = useSelector((state) => state.currency.value)
   const inChallenge = useSelector((state) => state.inChallenge.value)
-  const alerts = useSelector((state) => state.alerts.value)
   const dispatch = useDispatch()
+  const alerts = JSON.parse(localStorage.getItem("alerts"))
 
   /* ticks */
   useEffect(() => {
@@ -115,7 +117,7 @@ function App() {
         changeColor(color, colors[color], currentTab, tabs.length+subTab)
       }
       localStorage.setItem("last played", Date.now())
-      console.log(alerts)
+      clearAlerts()
     }, tickspeed)
 
     return () => {
@@ -188,23 +190,24 @@ function App() {
   } else {
     inChallengesString = <h3>you are not in any challenges.</h3>
   }
-  
 
   /* main structure */
   return (
   <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true}>
+    <div className="alerts">
+    {
+      Object.keys(alerts).map(a => {
+        return <Alert alertId={a} message={alerts[a].message} />
+      })
+    }
+    </div>
+
     <div className="top">
       <h1>generation.SSS</h1>
       { currencyString }
       { inChallengesString }
       { challengeMessages ? challengeMessages : "" }
     </div>
-
-    {
-      [...Array(alerts)].map((a) => {
-        return <Alert message={a.message} />
-      })
-    }
 
     <StoryPopup />
 
