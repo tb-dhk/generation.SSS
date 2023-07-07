@@ -65,11 +65,15 @@ HotKeys {
   text-align: justify;
   padding: 10px 20px 20px 20px;
   position: absolute;
-  border-radius: 5px;
-  background-color: red;
+  background-color: transparent;
   top: 5%;
   right: 5%;
   z-index: 1
+}
+
+Alert {
+  background-color: red;
+  border-radius: 5px;
 }
 
 .top {
