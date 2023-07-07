@@ -194,7 +194,7 @@ function App() {
   /* main structure */
   return (
   <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true}>
-    <div className={alerts.length ? "alerts" : ""}>
+    <div className={Object.keys(alerts).length ? "alerts" : ""}>
     {
       Object.keys(alerts).map(a => {
         return <Alert alertId={a} message={alerts[a].message} />
