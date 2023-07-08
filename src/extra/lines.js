@@ -143,6 +143,8 @@ export const help = {
   }
 }
 
+const version = JSON.parse(localStorage.getItem('version'))
+
 export const about = {
   credits: {
     "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"].join("\n"),
@@ -154,7 +156,7 @@ export const about = {
     "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
   },
   source: {
-    "info": "generation.SSS v0.1.0-beta, released 2023.07.07",
+    "info": `generation.SSS ${version.name}, released ${version.published.slice(0, 10)}`,
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
