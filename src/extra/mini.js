@@ -81,7 +81,6 @@ export function tick(tickspeed) {
         let boosts = (25/24) ** dims[dim][genName].bought
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {
-            console.log(c, gen)
             boosts **= 9/8 
           }
         }
