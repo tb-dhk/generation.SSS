@@ -109,15 +109,6 @@ function App() {
 
   /* ticks */
   useEffect(() => {
-    fetch('https://api.github.com/repos/shuu-wasseo/generation.SSS/releases/latest')
-    .then((res) => res.json())
-    .then((data) => {
-      localStorage.setItem("version", JSON.stringify({
-        name: data.name,
-        published: data.published_at
-      }))
-    })
-    
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
       tick(tickspeed)

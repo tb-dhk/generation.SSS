@@ -143,7 +143,6 @@ export const help = {
   }
 }
 
-const version = JSON.parse(localStorage.getItem('version'))
 
 export const about = {
   credits: {
@@ -156,7 +155,7 @@ export const about = {
     "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
   },
   source: {
-    "info": `generation.SSS ${version.name}, released ${version.published.slice(0, 10)}`,
+    "info": `generation.SSS v0.1.0-beta.1, released 2023-07-08`,
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
