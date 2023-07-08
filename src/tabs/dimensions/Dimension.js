@@ -38,6 +38,7 @@ export function buyDim(type, num, max) {
 }
 
 function Dimension({ type, num, tickspeed }) {
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
   const dims = JSON.parse(localStorage.getItem('dimensions'))
   const thisDim = dims[type]["S" + num.toString()]
   const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
@@ -60,6 +61,15 @@ function Dimension({ type, num, tickspeed }) {
     };
   })
 
+  let boosts = (25/24) ** bought
+
+  for (let c in prestige) {
+    if (prestige[c].challenges.includes(num)) {
+      console.log(c, num)
+      boosts **= 25/24
+    }
+  }
+
   let autobuyer = "locked"
   if (objekts.Atom01["S"+num].includes(100)) {
     try {
@@ -72,7 +82,7 @@ function Dimension({ type, num, tickspeed }) {
   return (
     <div className={`s${num} dimension`}>
       <div className={`s${num} name`}>S{num}</div>
-      <div className={`s${num} bonus`}>× {format((25/24) ** bought)}</div>
+      <div className={`s${num} bonus`}>× {format(boosts)}</div>
       <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
       <div className={`s${num} autobuy`}>{autobuyer}</div>
       <button type="button" className={`s${num} max`} onClick={() => buyDim(type, num, true)}>max</button>

@@ -14,7 +14,9 @@ export function format(num) {
   num = Math.round(num * 1000)/1000
   const str = num.toString()
   if (num >= 1000) {
-    return num.toExponential(3).replace("+", "")
+    let sciNot = num.toExponential(3).replace("+", "").split("e")
+    sciNot[-1] = format(parseInt(sciNot[-1]))
+    return sciNot.join("e") 
   } else {
     return str
   }
@@ -46,6 +48,7 @@ export function maxdim(currency="S") {
 export function tick(tickspeed) {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
   const currency = JSON.parse(localStorage.getItem('currency'));
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'));
   const times = JSON.parse(localStorage.getItem('times'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'));
@@ -75,7 +78,13 @@ export function tick(tickspeed) {
     for (const genName in dims[dim]) {
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && gen <= maxdim()) {
-        const boosts = (25/24) ** dims[dim][genName].bought
+        let boosts = (25/24) ** dims[dim][genName].bought
+        for (let c in prestige) {
+          if (prestige[c].challenges.includes(gen)) {
+            console.log(c, gen)
+            boosts **= 25/24
+          }
+        }
         let next = gen + 1
         switch (inChallenge["grand gravity"]) {
           case 7:
