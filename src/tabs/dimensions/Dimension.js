@@ -44,6 +44,8 @@ function Dimension({ type, num, tickspeed }) {
   const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
   const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
+  const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
 
   const [total, setTotal] = useState(thisDim.total)
   const [bought, setBought] = useState(thisDim.bought) 
@@ -68,6 +70,10 @@ function Dimension({ type, num, tickspeed }) {
       console.log(c, num)
       boosts **= 9/8 
     }
+  }
+
+  if (inChallenge.grandGravity === 6) {
+    boosts *= Number(ggc6[num-1])
   }
 
   let autobuyer = "locked"
