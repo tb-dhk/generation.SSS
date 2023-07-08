@@ -66,7 +66,7 @@ function Dimension({ type, num, tickspeed }) {
   for (let c in prestige) {
     if (prestige[c].challenges.includes(num)) {
       console.log(c, num)
-      boosts **= 25/24
+      boosts **= 9/8 
     }
   }
 

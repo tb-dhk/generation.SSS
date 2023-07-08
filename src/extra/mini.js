@@ -82,7 +82,7 @@ export function tick(tickspeed) {
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {
             console.log(c, gen)
-            boosts **= 25/24
+            boosts **= 9/8 
           }
         }
         let next = gen + 1
