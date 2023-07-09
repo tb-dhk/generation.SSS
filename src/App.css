@@ -50,7 +50,7 @@
 
 button {
   border: none;
-  font-size: 1.5vw;
+  font-size: 1.5vh;
   margin: none;
 }
 
@@ -103,12 +103,12 @@ p, .icon {
   align-content: flex-end;
   justify-content: space-between;
   position: relative;
-  width: 50%;
+  width: 100vw;
+  max-width: 1024px;
   height: auto;
-  font-size: 1.5vw;
+  font-size: 1.5vh;
+  margin: 0 auto 20px auto;
   margin-bottom: 20px;
-  margin-left: 25%;
-  margin-right: 25%;
 }
 
 .name {
@@ -116,7 +116,7 @@ p, .icon {
 }
 
 .bonus {
-  font-size: 0.75vw;
+  font-size: 0.75vh;
   position: absolute;
   left: 10%;
   transform: translateY(80%);
@@ -152,7 +152,7 @@ p, .icon {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 1.5vw !important;
+  font-size: 1.5vh !important;
   margin: 2vh auto 1vh auto;
   padding-left: min(30%);
   padding-right: min(30%);
@@ -166,7 +166,7 @@ p, .icon {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 0.75vw !important;
+  font-size: 0.75vh !important;
   margin-bottom: 1vh;
   margin-left: auto;
   margin-right: auto;
@@ -234,7 +234,7 @@ p, .icon {
 
 .accordion {
   height: auto;
-  font-size: 1.5vw;
+  font-size: 1.5vh;
 }
 
 .panel {
@@ -278,7 +278,7 @@ p, .icon {
 .grandgrav, .locked {
   margin: auto;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 1.5vh;
   height: max;
   width: 25%;
   border: solid white 2px;
