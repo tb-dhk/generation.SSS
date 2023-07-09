@@ -11,12 +11,12 @@ import { autostory } from '../tabs/story/StoryPopup'
 import { grandGravity } from '../extra/prestige'
 
 export function format(num) {
-  num = Math.round(num * 1000)/1000
+  num = Math.round(num * 1000) / 1000
   const str = num.toString()
   if (num >= 1000) {
     let sciNot = num.toExponential(3).replace("+", "").split("e")
     sciNot[-1] = format(parseInt(sciNot[-1]))
-    return sciNot.join("e") 
+    return sciNot.join("e")
   } else {
     return str
   }
@@ -34,12 +34,12 @@ export function price(type, num) {
   return base ** ((num * (num + bought)))
 }
 
-export function maxdim(currency="S") {
+export function maxdim(currency = "S") {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
 
   /* number of dimensions to render */
   for (let d = 1; d <= 24; d++) {
-    if (!dims[currency]["S"+d].total) {
+    if (!dims[currency]["S" + d].total) {
       return d
     }
   }
@@ -63,25 +63,25 @@ export function tick(tickspeed) {
     const boosts = (maxDim ** maxDim)
     let defCurrencyGain = Number(dims[dim]["S1"].total) * boosts / 1000 * tickspeed
     if (currency.comoDust) {
-      defCurrencyGain *= (currency.comoDust ** (1/24))
+      defCurrencyGain *= (currency.comoDust ** (1 / 24))
     }
     if (inChallenge["grand gravity"] === 2) {
-      defCurrencyGain *= (24 ** ((Date.now() - times["grand gravity"])/1000000)) * 1/24
+      defCurrencyGain *= (24 ** ((Date.now() - times["grand gravity"]) / 1000000)) * 1 / 24
     } else if (inChallenge["grand gravity"] === 6) {
       defCurrencyGain *= ggc6[0]
     }
     currency[generatedCurrency[dim]] += defCurrencyGain
-    if (currency[generatedCurrency[dim]] > 24**24 && dim === "S") {
-      currency[generatedCurrency[dim]] = 24**24
+    if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
+      currency[generatedCurrency[dim]] = 24 ** 24
     }
-    
+
     for (const genName in dims[dim]) {
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && gen <= maxdim()) {
-        let boosts = (25/24) ** dims[dim][genName].bought
+        let boosts = (25 / 24) ** dims[dim][genName].bought
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {
-            boosts **= 9/8 
+            boosts **= 9 / 8
           }
         }
         let next = gen + 1
@@ -96,7 +96,7 @@ export function tick(tickspeed) {
           default:
             next = "S" + (gen + 1)
         }
-        if (next) {
+        if (next !== "S0") {
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
           if (inChallenge["grand gravity"] === 6) {
             defCurrencyGain *= ggc6[gen]
@@ -129,7 +129,7 @@ export function autobuy() {
       }
     }
   }
-  
+
   localStorage.setItem('autobuyers', JSON.stringify(autobuyers))
 }
 
@@ -141,7 +141,7 @@ export function clearAlerts() {
       delete alerts[id]
     }
   }
-  
+
   localStorage.setItem('alerts', JSON.stringify(alerts))
 }
 
@@ -188,29 +188,29 @@ export function renderTab(tab, subtab) {
   let subobj = {}
 
   function reset_colors() {
-      const colors = {
-        s1 : "#22aeff",
-        s2 : "#9200ff",
-        s3 : "#fff800",
-        s4 : "#98f21d",
-        s5 : "#d80d76",
-        s6 : "#ff7fa4",
-        s7 : "#729ba1",
-        s8 : "#ffe3e2",
-        s9 : "#ffc931",
-        s10 : "#fb98dc",
-        s11 : "#ffe000",
-        s12 : "#5975fd",
-        s13 : "#ff953f",
-        s14 : "#1222b5",
-        s15 : "#d51312"
-      }
-      localStorage.setItem('colors', JSON.stringify(colors))
+    const colors = {
+      s1: "#22aeff",
+      s2: "#9200ff",
+      s3: "#fff800",
+      s4: "#98f21d",
+      s5: "#d80d76",
+      s6: "#ff7fa4",
+      s7: "#729ba1",
+      s8: "#ffe3e2",
+      s9: "#ffc931",
+      s10: "#fb98dc",
+      s11: "#ffe000",
+      s12: "#5975fd",
+      s13: "#ff953f",
+      s14: "#1222b5",
+      s15: "#d51312"
+    }
+    localStorage.setItem('colors', JSON.stringify(colors))
   }
 
-  switch(tab) {
+  switch (tab) {
     case 0:
-      if (currency.S < 24**24) {
+      if (currency.S < 24 ** 24) {
         let limit = 8
         if (inChallenge["grand gravity"] === 4) {
           limit = 6
@@ -218,7 +218,7 @@ export function renderTab(tab, subtab) {
         return (
           <div>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
-              return <Dimension type={getSubTabs(tab)[subtab]} num={i+1} tickspeed={tickspeed} />
+              return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
           </div>
         )
@@ -235,20 +235,20 @@ export function renderTab(tab, subtab) {
       return lock(
         <div className="big-grid"> {
           [...Array(8).keys()].map(i => {
-            return <Challenge type={getSubTabs(tab)[subtab]} num={i+1} />
+            return <Challenge type={getSubTabs(tab)[subtab]} num={i + 1} />
           })
         } </div>
       )
     case 2:
       return lock(
         <div>
-          <ObjektGrid season="Atom01" clss={subtab+1} startNumber={0} stopNumber={8} />
+          <ObjektGrid season="Atom01" clss={subtab + 1} startNumber={0} stopNumber={8} />
         </div>
       )
     case 3:
-      return [...Array(autostory()[0]+1).keys()].map(i => {
+      return [...Array(autostory()[0] + 1).keys()].map(i => {
         return <Story num={i} />
-      }) 
+      })
     case 4:
       switch (subtab) {
         case 0:
@@ -256,7 +256,7 @@ export function renderTab(tab, subtab) {
             <div>
               {[...Array(24).keys()].map(i => {
                 return (
-                  <ColorInput s={i+1} />
+                  <ColorInput s={i + 1} />
                 )
               })}
               <button onClick={reset_colors} className="big center">reset</button>
@@ -272,18 +272,18 @@ export function renderTab(tab, subtab) {
         default:
           break
       }
-      break 
-    case 5: 
+      break
+    case 5:
       subobj = help[Object.keys(help)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
-        return <Accordion num={count-1} head={i} body={subobj[i]} />
+        return <Accordion num={count - 1} head={i} body={subobj[i]} />
       })
     case 6:
       subobj = about[Object.keys(about)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
-        return <Accordion num={count-1} head={i} body={subobj[i]} />
+        return <Accordion num={count - 1} head={i} body={subobj[i]} />
       })
     default:
       return
@@ -296,13 +296,13 @@ export function changeColor(className, color, currentTab, subTab) {
 
     const int = (color.length - 1) / 3
     const sep = [...Array(3).keys()].map((i) => {
-      let val = parseInt(color.slice(i*int+1, i*int+int+1), 16)
+      let val = parseInt(color.slice(i * int + 1, i * int + int + 1), 16)
       if (int === 2) {
         val /= 16
       }
       return val
     })
-    const avg = sep.reduce(( p, c ) => p + c, 0) / sep.length
+    const avg = sep.reduce((p, c) => p + c, 0) / sep.length
 
     items.forEach(item => {
       item.style.backgroundColor = color
@@ -312,10 +312,10 @@ export function changeColor(className, color, currentTab, subTab) {
     try {
       if (parseInt(className.slice(1)) === currentTab + 1) {
         const currentTabDiv = document.querySelectorAll(`button.tab.${className}`)[0]
-        currentTabDiv.style.backgroundColor = "black" 
+        currentTabDiv.style.backgroundColor = "black"
         currentTabDiv.style.color = color
       }
-    } catch {}
+    } catch { }
 
     try {
       if (parseInt(className.slice(1)) === subTab + 1) {
@@ -323,6 +323,6 @@ export function changeColor(className, color, currentTab, subTab) {
         subTabDiv.style.backgroundColor = "black"
         subTabDiv.style.color = color
       }
-    } catch {}
-  }  
+    } catch { }
+  }
 }

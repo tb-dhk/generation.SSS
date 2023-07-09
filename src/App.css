@@ -50,7 +50,7 @@
 
 button {
   border: none;
-  font-size: 20px;
+  font-size: 1vw;
   margin: none;
 }
 
@@ -70,7 +70,7 @@ p, .icon {
 
 .alerts {
   height: auto;
-  width: 10%;
+  width: 20%;
   text-align: justify;
   padding: 10px 20px 20px 20px;
   position: absolute;
@@ -105,7 +105,7 @@ p, .icon {
   position: relative;
   width: 50%;
   height: auto;
-  font-size: 20px;
+  font-size: 1vw;
   margin-bottom: 20px;
   margin-left: 25%;
   margin-right: 25%;
@@ -116,7 +116,7 @@ p, .icon {
 }
 
 .bonus {
-  font-size: 10px;
+  font-size: 0.5vw;
   position: absolute;
   left: 10%;
   transform: translateY(80%);
@@ -152,7 +152,7 @@ p, .icon {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 20px !important;
+  font-size: 1vw !important;
   margin: 50px auto 25px auto;
   padding-left: min(30%);
   padding-right: min(30%);
@@ -166,7 +166,7 @@ p, .icon {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 15px !important;
+  font-size: 0.75vw !important;
   margin-bottom: 25px;
   margin-left: auto;
   margin-right: auto;
@@ -234,7 +234,7 @@ p, .icon {
 
 .accordion {
   height: auto;
-  font-size: 20px;
+  font-size: 1vw;
 }
 
 .panel {
@@ -278,7 +278,7 @@ p, .icon {
 .grandgrav, .locked {
   margin: auto;
   text-align: center;
-  font-size: 30px;
+  font-size: 1.5vw;
   height: max;
   width: 25%;
   border: solid white 2px;
