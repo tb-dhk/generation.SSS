@@ -84,7 +84,7 @@ export function tick(tickspeed) {
             boosts **= 9 / 8
           }
         }
-        let next = gen + 1
+        let next = "S" + (gen + 1)
         switch (inChallenge["grand gravity"]) {
           case 7:
             next = "S" + (gen + 2)
