@@ -25,7 +25,7 @@ function enterChallenge(type, num) {
 
     let dimObj = JSON.parse(localStorage.getItem('dimensions'))
     const dims = Object.fromEntries(
-      [...Array(24).keys()].map(x => ["S"+(x+1), {bought: 0, total: 0}])
+      [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
     )
     dimObj.S = dims
     localStorage.setItem('dimensions', JSON.stringify(dimObj))
@@ -41,7 +41,7 @@ function enterChallenge(type, num) {
     if (type === "grand gravity" && num === 6) {
       let ggc6 = []
       for (var i = 0; i < 8; i++) {
-        ggc6.push(0.24 * ((100/3) ** Math.random()))
+        ggc6.push(0.24 * ((100 / 3) ** Math.random()))
       }
       localStorage.setItem('ggc6', JSON.stringify(ggc6))
     }
@@ -63,6 +63,8 @@ function Challenge({ type, num }) {
     "grand gravity": "grandGravity"
   }
 
+  console.log(type)
+
   let completedChallenges = JSON.parse(localStorage.getItem('prestige'))[challengeDic[type]].challenges
   let isChallengeCompleted = completedChallenges.includes(num)
 
@@ -74,8 +76,8 @@ function Challenge({ type, num }) {
 
   return (
     <div className={`s${num} big ${type}`}>
-      <h3 className={`s${num}`}>{challenges[type][num-1][0]}</h3>
-      <h4 className={`s${num}`}>{challenges[type][num-1][1]}</h4>
+      <h3 className={`s${num}`}>{challenges[type][num - 1][0]}</h3>
+      <h4 className={`s${num}`}>{challenges[type][num - 1][1]}</h4>
       <button className={`challengebutton ${isChallengeCompleted ? "s" + num : ""}`} onClick={() => handleChallenge(type, num)}>{buttontext}</button>
     </div>
   )
@@ -88,7 +90,7 @@ export function message(type, num) {
     case "grand gravity":
       switch (num) {
         case 2:
-          let mult = (24 ** ((Date.now() - times["grand gravity"])/1000000)) * 1/24
+          let mult = (24 ** ((Date.now() - times["grand gravity"]) / 1000000)) * 1 / 24
           return `S production x${format(mult)}`
         default:
           return ""

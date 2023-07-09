@@ -3,11 +3,15 @@ export function impt() {
   str = Array.prototype.filter.call(str, n => n !== "\\")
   if (str !== null) {
     try {
-      const object = JSON.parse(atob(str))
+      let decoded = window.atob(str)
+      console.log(decoded)
+      const object = JSON.parse(decoded)
       for (let key in object) {
+        console.log(key)
+        console.log(object[key])
         localStorage.setItem(key, JSON.stringify(object[key]))
       }
-    } catch {}
+    } catch { }
   }
 }
 

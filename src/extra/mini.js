@@ -91,12 +91,15 @@ export function tick(tickspeed) {
             break
           case 8:
             let list = [3, 5, 4, 6, 7, 0, 8, 0]
-            next = "S" + list[gen - 1]
+            if (gen <= 8) {
+              next = "S" + list[gen - 1]
+            }
             break
           default:
             next = "S" + (gen + 1)
         }
         if (next !== "S0") {
+          console.log(gen, next)
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
           if (inChallenge["grand gravity"] === 6) {
             defCurrencyGain *= ggc6[gen]
