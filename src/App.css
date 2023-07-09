@@ -50,7 +50,7 @@
 
 button {
   border: none;
-  font-size: 1vw;
+  font-size: 1.5vw;
   margin: none;
 }
 
@@ -105,7 +105,7 @@ p, .icon {
   position: relative;
   width: 50%;
   height: auto;
-  font-size: 1vw;
+  font-size: 1.5vw;
   margin-bottom: 20px;
   margin-left: 25%;
   margin-right: 25%;
@@ -116,7 +116,7 @@ p, .icon {
 }
 
 .bonus {
-  font-size: 0.5vw;
+  font-size: 0.75vw;
   position: absolute;
   left: 10%;
   transform: translateY(80%);
@@ -152,8 +152,8 @@ p, .icon {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 1vw !important;
-  margin: 50px auto 25px auto;
+  font-size: 1.5vw !important;
+  margin: 2vh auto 1vh auto;
   padding-left: min(30%);
   padding-right: min(30%);
 }
@@ -167,7 +167,7 @@ p, .icon {
   width: auto;
   height: auto;
   font-size: 0.75vw !important;
-  margin-bottom: 25px;
+  margin-bottom: 1vh;
   margin-left: auto;
   margin-right: auto;
   padding-left: min(40%);
@@ -234,7 +234,7 @@ p, .icon {
 
 .accordion {
   height: auto;
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
 
 .panel {
