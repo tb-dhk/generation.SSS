@@ -12,7 +12,7 @@ slowly, you get up and approach the screen as it flickers to life.
 
 and with that, you start your "adventure" as yoon seoyeon, stuck in a small room producing S until you can get the fuck out.
     `,
-    `
+  `
 apprehensively, you press the button. suddenly, a machine appears in front of you.
 
 > each S1 generator allows you to produce 0.001 S per millisecond. this number may increase over time, but what's important now is that you get as many generators as possible to produce S.
@@ -27,7 +27,7 @@ apprehensively, you press the button. suddenly, a machine appears in front of yo
 > 
 > keep generating stars until you are able to unlock more members.
     `,
-    `
+  `
 you press the "S2" button. suddenly, another girl appears next to you. the screen then lights up again.
 
 > jeong hyerin, you have been chosen to become the second big S, or S2. out of many small s in the world, you are the second girl we discovered with the special ability to make S.
@@ -44,7 +44,7 @@ you press the "S2" button. suddenly, another girl appears next to you. the scree
 
 and with that, the screen goes blank again.
     `,
-    `
+  `
 after a few minutes of grinding, you finally have enough S to introduce S8 into the room, which the 7 of you have affectionately nicknamed the HAUS, despite it being a "room" and not a "house". 
 
 at this point, five other members have been revealed. 
@@ -96,7 +96,7 @@ the 7 of you have been hard at work, and have produced S in a rather short amoun
 
 "ALRIGHT EVERYONE!" seoyeon clapped her hands to gather everyone's attention, exasperated. "we need to stay here and finish all of this so we can get out. we're going to have to trust SUAH and MODHAUS on this one. now everyone get back to work!"
     `,
-    `
+  `
 the smoke clears. the 8 of you emerge coughing, while the screen lights up again.
 
 > congratulations on your first grand gravity. you have now unlocked multiple different things to boost your S production.
@@ -155,7 +155,7 @@ export const about = {
     "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
   },
   source: {
-    "info": `generation.SSS v0.1.0-beta.1, released 2023-07-08`,
+    "info": `generation.SSS v0.1.0-beta.2, released 2023-07-09`,
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
