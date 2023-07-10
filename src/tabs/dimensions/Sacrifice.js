@@ -25,7 +25,7 @@ function Sacrifice() {
       <h3 className={`s${maxdim()}`}>you can now sacrifice!</h3>
       <h4 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h4>
       <h4 className={`s${maxdim()}`}>when you sacrifice, you will have a sacrifice bonus of {format(newBonus)} (increase of {format(newBonus / currentBonus)}).</h4>
-      <button className="round-corners" onClick={doSacrifice}>ass</button>
+      <button className="round-corners" onClick={doSacrifice}>sacrifice</button>
     </div>
   } else {
     return <div className={`big sacrifice s${maxdim()}`}>
