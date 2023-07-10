@@ -99,7 +99,6 @@ export function tick(tickspeed) {
             next = "S" + (gen + 1)
         }
         if (next !== "S0") {
-          console.log(gen, next)
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
           if (inChallenge["grand gravity"] === 6) {
             defCurrencyGain *= ggc6[gen]
