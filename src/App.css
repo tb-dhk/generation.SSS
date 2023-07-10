@@ -173,7 +173,7 @@ h6 {
 }
 
 .progress-bar {
-  width: 75vw;
+  width: 100vw;
   max-width: 1536px;
   margin: 50px auto;
 }
