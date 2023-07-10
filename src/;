@@ -225,9 +225,8 @@ export function renderTab(tab, subtab) {
         if (!subtab) {
           progressBar = <ProgressBar
             completed={Number((Math.log(currency.S) / Math.log(24 ** 24) * 100).toFixed(2))}
-            bgColor={colors["s" + (maxdim())]}
+            bgColor={colors[maxdim() - 1]}
             baseBgColor="white"
-            labelAlignment="center"
           />
         }
         return (

@@ -4,6 +4,7 @@
   "homepage": "https://shuu-wasseo.github.io/generation.SSS",
   "private": true,
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.0.3",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -15,6 +16,7 @@
     "react-dropdown": "^1.11.0",
     "react-hotkeys": "^2.0.0-pre9",
     "react-markdown": "^8.0.7",
+    "react-native-progress": "^5.0.0",
     "react-redux": "^8.1.1",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",

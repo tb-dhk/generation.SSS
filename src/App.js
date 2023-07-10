@@ -17,28 +17,28 @@ import { updateCurrency } from "./slices/currency"
 import { updateInChallenge } from "./slices/inchallenge"
 
 const colors = {
-  s1 : "#22aeff",
-  s2 : "#9200ff",
-  s3 : "#fff800",
-  s4 : "#98f21d",
-  s5 : "#d80d76",
-  s6 : "#ff7fa4",
-  s7 : "#729ba1",
-  s8 : "#ffe3e2",
-  s9 : "#ffc931",
-  s10 : "#fb98dc",
-  s11 : "#ffe000",
-  s12 : "#5975fd",
-  s13 : "#ff953f",
-  s14 : "#1222b5", 
-  s15 : "#d51312"
+  s1: "#22aeff",
+  s2: "#9200ff",
+  s3: "#fff800",
+  s4: "#98f21d",
+  s5: "#d80d76",
+  s6: "#ff7fa4",
+  s7: "#729ba1",
+  s8: "#ffe3e2",
+  s9: "#ffc931",
+  s10: "#fb98dc",
+  s11: "#ffe000",
+  s12: "#5975fd",
+  s13: "#ff953f",
+  s14: "#1222b5",
+  s15: "#d51312"
 }
 
 function reset() {
   const types = ["S", "como", "comoDust", "sigma"]
 
   const dims = Object.fromEntries(
-    [...Array(24).keys()].map(x => ["S"+(x+1), {bought: 0, total: 0}])
+    [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
   )
   const dimObj = Object.fromEntries(
     types.map(x => [x, dims])
@@ -52,7 +52,7 @@ function reset() {
   localStorage.setItem("started", true)
   localStorage.setItem("tickspeed", 50)
   localStorage.setItem("story", 0)
-  localStorage.setItem("inchallenge", JSON.stringify({"grand gravity": 1}))
+  localStorage.setItem("inchallenge", JSON.stringify({ "grand gravity": 1 }))
 
   localStorage.setItem("colors", JSON.stringify(colors))
 
@@ -60,7 +60,7 @@ function reset() {
     grandGravity: {
       count: 0,
       challenges: []
-    } 
+    }
   }
   localStorage.setItem("prestige", JSON.stringify(prestige))
 
@@ -68,7 +68,7 @@ function reset() {
     Atom01: {}
   }
   for (var i = 1; i <= 8; i++) {
-    objekts.Atom01["S"+i] = []
+    objekts.Atom01["S" + i] = []
   }
   localStorage.setItem("objekts", JSON.stringify(objekts))
 
@@ -79,7 +79,7 @@ function reset() {
   localStorage.setItem("times", JSON.stringify(timesObj))
 
   let autobuyers = {
-    S: {} 
+    S: {}
   }
   for (i = 1; i <= 8; i++) {
     autobuyers.S["S" + i] = Date.now()
@@ -93,7 +93,7 @@ function App() {
   /* initialising */
   let started = localStorage.getItem("started")
   if (started === null) {
-    reset() 
+    reset()
   }
 
   const [currentTab, setCurrentTab] = useState(0)
@@ -115,7 +115,7 @@ function App() {
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
-        changeColor(color, colors[color], currentTab, tabs.length+subTab)
+        changeColor(color, colors[color], currentTab, tabs.length + subTab)
       }
       localStorage.setItem("last played", Date.now())
       clearAlerts()
@@ -124,7 +124,7 @@ function App() {
     return () => {
       clearInterval(intervalId);
     };
-  
+
   }, [currency, dispatch, tickspeed, alerts, currentTab, subTab, tabs.length])
 
   /* keybinds */
@@ -164,14 +164,14 @@ function App() {
   for (let i = 0; i < 24; i++) {
     let j = structuredClone(i)
     keyMap[j + 1 + "one"] = "1234567890-=qwertyuiop[]"[j]
-    keyMap[j + 1 + "max"] = "shift+"+"1234567890-=qwertyuiop[]"[j]
-    handlers[j + 1 + "one"] = () => {buyDim("S", j + 1, false)}
-    handlers[j + 1 + "max"] = () => {buyDim("S", j + 1, true)}
+    keyMap[j + 1 + "max"] = "shift+" + "1234567890-=qwertyuiop[]"[j]
+    handlers[j + 1 + "one"] = () => { buyDim("S", j + 1, false) }
+    handlers[j + 1 + "max"] = () => { buyDim("S", j + 1, true) }
   }
- 
+
   let currencyString = <h2> </h2>
   if (!currentTab && subTab === 1) {
-    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust, boosting S production by {format(currency.comoDust ** (1/24))}</h2>
+    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust, boosting S production by {format(currency.comoDust ** (1 / 24))}</h2>
   } else {
     currencyString = <h2 className="top">you have {format(currency.S)} S.</h2>
   }
@@ -194,47 +194,47 @@ function App() {
 
   /* main structure */
   return (
-  <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true} id="hotkeys">
-    <div className={Object.keys(alerts).length ? "alerts" : ""}>
-    {
-      Object.keys(alerts).map(a => {
-        return <Alert alertId={a} message={alerts[a].message} />
-      })
-    }
-    </div>
+    <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true} id="hotkeys">
+      <div className={Object.keys(alerts).length ? "alerts" : ""}>
+        {
+          Object.keys(alerts).map(a => {
+            return <Alert alertId={a} message={alerts[a].message} />
+          })
+        }
+      </div>
 
-    <div className="top">
-      <img className="title" alt="main logo" src={genSSS} />
-      { currencyString }
-      { inChallengesString }
-      { challengeMessages ? challengeMessages : "" }
-    </div>
+      <div className="top">
+        <img className="title" alt="main logo" src={genSSS} />
+        {currencyString}
+        {inChallengesString}
+        {challengeMessages ? challengeMessages : ""}
+      </div>
 
-    <StoryPopup />
+      <StoryPopup />
 
-    <div className="tabs"> {
-      [...Array(tabs.length).keys()].map((i) => {
-        return <button className={`tab s${i+1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
-      })
-    } </div>
+      <div className="tabs"> {
+        [...Array(tabs.length).keys()].map((i) => {
+          return <button className={`tab s${i + 1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
+        })
+      } </div>
 
-    <div className="subtabs"> {
-      [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-        return <button className={`subtab s${i+tabs.length+1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
-      })
-    } </div>
+      <div className="subtabs"> {
+        [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
+          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+        })
+      } </div>
 
-    <div id="main">
-      {renderTab(currentTab, subTab)}
-    </div>
+      <div id="main">
+        {renderTab(currentTab, subTab)}
+      </div>
 
-  </HotKeys>)
+    </HotKeys>)
 }
 
 const AppWrapper = () => {
   return (
-    <Provider store={store}> 
-      <App /> 
+    <Provider store={store}>
+      <App />
     </Provider>
   )
 }
