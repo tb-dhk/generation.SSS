@@ -172,6 +172,11 @@ h6 {
   margin-right: 5px;
 }
 
+.progress-bar {
+  width: 75vw;
+  margin: 50px auto;
+}
+
 .tabs {
   display: flex;
   flex-direction: row;
@@ -235,7 +240,7 @@ h6 {
 
 .sacrifice {
   width: 25vw;
-  margin: 20px auto;
+  margin: 50px auto;
   padding: 20px
 }
 

@@ -85,8 +85,8 @@ export function tick(tickspeed) {
       if (gen < 24 && gen <= maxdim()) {
         let boosts = (25 / 24) ** dims[dim][genName].bought
         if (dim === "S") {
-          boosts *= (sacrifice ** (1 / 8))
-          console.log((sacrifice ** (1 / 8)))
+          boosts *= (sacrifice ** (1 / 24))
+          console.log((sacrifice ** (1 / 24)))
         }
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {
@@ -230,6 +230,7 @@ export function renderTab(tab, subtab) {
         let progressBar = <div></div>
         if (!subtab) {
           progressBar = <ProgressBar
+            className="progress-bar"
             completed={Number((Math.log(currency.S) / Math.log(24 ** 24) * 100).toFixed(2))}
             bgColor={colors["s" + (maxdim())]}
             baseBgColor="white"

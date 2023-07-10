@@ -66,8 +66,6 @@ function Challenge({ type, num }) {
     "grand gravity": "grandGravity"
   }
 
-  console.log(type)
-
   let completedChallenges = JSON.parse(localStorage.getItem('prestige'))[challengeDic[type]].challenges
   let isChallengeCompleted = completedChallenges.includes(num)
 
