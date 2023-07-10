@@ -1,6 +1,7 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import Dimension from '../tabs/dimensions/Dimension'
+import Sacrifice from '../tabs/dimensions/Sacrifice'
 import Challenge from '../tabs/challenges/Challenge'
 import Story from '../tabs/story/Story'
 import ObjektGrid from '../tabs/objekt/ObjektGrid'
@@ -51,7 +52,8 @@ export function maxdim(currency = "S") {
 export function tick(tickspeed) {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
   const currency = JSON.parse(localStorage.getItem('currency'));
-  const prestige = JSON.parse(localStorage.getItem('prestige'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'));
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'));
   const times = JSON.parse(localStorage.getItem('times'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'));
@@ -82,6 +84,9 @@ export function tick(tickspeed) {
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && gen <= maxdim()) {
         let boosts = (25 / 24) ** dims[dim][genName].bought
+        if (dim === "S") {
+          boosts *= (25 / 24) ** (sacrifice ** (1 / 24))
+        }
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {
             boosts **= 9 / 8
@@ -228,6 +233,7 @@ export function renderTab(tab, subtab) {
             bgColor={colors["s" + (maxdim())]}
             baseBgColor="white"
             labelAlignment="center"
+            transitionDuration="0.5s"
           />
         }
         return (
@@ -235,6 +241,7 @@ export function renderTab(tab, subtab) {
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
+            <Sacrifice />
             {progressBar}
           </div>
         )

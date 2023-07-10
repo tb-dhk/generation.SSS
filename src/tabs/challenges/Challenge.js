@@ -1,4 +1,5 @@
 import { format } from "../../extra/mini"
+import { grandGravity } from "../../extra/prestige"
 
 const challenges = {
   "grand gravity": [
@@ -14,6 +15,8 @@ const challenges = {
 }
 
 function enterChallenge(type, num) {
+  grandGravity()
+
   if (!(type === "grand gravity" && num === 1)) {
     let currency = JSON.parse(localStorage.getItem('currency'))
     currency.S = 2

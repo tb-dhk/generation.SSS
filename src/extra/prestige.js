@@ -1,8 +1,8 @@
 import { format } from './mini'
 
 function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
-  return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')]; 
-} 
+  return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')];
+}
 
 function arrayIsEmpty(array) {
   if (!Array.isArray(array)) {
@@ -15,9 +15,11 @@ function arrayIsEmpty(array) {
 }
 
 export function grandGravity() {
+  localStorage.setItem('sacrifice', JSON.stringify(1))
+
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
   const dims = Object.fromEntries(
-    [...Array(24).keys()].map(x => ["S"+(x+1), {bought: 0, total: 0}])
+    [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
   )
   dimObj.S = dims
   localStorage.setItem('dimensions', JSON.stringify(dimObj))
@@ -44,7 +46,7 @@ export function grandGravity() {
       }
     }
   } else {
-    const member = no100[Math.floor(Math.random()*no100.length)]
+    const member = no100[Math.floor(Math.random() * no100.length)]
     objekts.Atom01[member] = [100]
     gainedObjekt = member + " 100"
   }
@@ -71,6 +73,7 @@ export function grandGravity() {
   localStorage.setItem('times', JSON.stringify(times))
 
   let alerts = JSON.parse(localStorage.getItem('alerts'))
+  console.log(alerts)
   alerts['grand-gravity-' + prestige.grandGravity.count] = {
     message: `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`,
     time: Date.now()

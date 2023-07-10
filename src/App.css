@@ -58,6 +58,30 @@ p, .icon {
   background-color: transparent
 }
 
+h1 {
+  font-size: 3vh
+}
+
+h2 {
+  font-size: 2.5vh
+}
+
+h3 {
+  font-size: 2vh
+}
+
+h4 {
+  font-size: 1.5vh
+}
+
+h5 {
+  font-size: 1vh
+}
+
+h6 {
+  font-size: 0.5vh
+}
+
 #hotkeys {
   height: 100%;
   width: 100%;
@@ -66,6 +90,10 @@ p, .icon {
 .title {
   width: 20%;
   margin: 20px 20px 0 20px;
+}
+
+.round-corners {
+  border-radius: 5px;
 }
 
 .alerts {
@@ -199,6 +227,16 @@ p, .icon {
 .icon {
   height: 20px;
   width: 20px;
+}
+
+.grey {
+  background-color: #808080;
+}
+
+.sacrifice {
+  width: 25vw;
+  margin: 20px auto;
+  padding: 20px
 }
 
 .big-grid {
