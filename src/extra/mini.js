@@ -85,7 +85,8 @@ export function tick(tickspeed) {
       if (gen < 24 && gen <= maxdim()) {
         let boosts = (25 / 24) ** dims[dim][genName].bought
         if (dim === "S") {
-          boosts *= (25 / 24) ** (sacrifice ** (1 / 24))
+          boosts *= (sacrifice ** (1 / 8))
+          console.log((sacrifice ** (1 / 8)))
         }
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen)) {

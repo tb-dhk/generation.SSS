@@ -73,7 +73,6 @@ export function grandGravity() {
   localStorage.setItem('times', JSON.stringify(times))
 
   let alerts = JSON.parse(localStorage.getItem('alerts'))
-  console.log(alerts)
   alerts['grand-gravity-' + prestige.grandGravity.count] = {
     message: `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`,
     time: Date.now()
