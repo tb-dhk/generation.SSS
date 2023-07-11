@@ -84,7 +84,9 @@ function Dimension({ type, num, tickspeed }) {
 
   if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100)) {
     try {
-      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000) + "s"
+      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000)
+      autobuyer = autobuyer < 0 ? 0 : autobuyer
+      autobuyer += "s"
     } catch {
       autobuyer = ""
     }
