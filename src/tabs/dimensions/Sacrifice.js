@@ -34,7 +34,7 @@ function Sacrifice() {
     } else if (Number(dimensions.S.S8.total) <= 0) {
       message = "you need one S8 generator to sacrifice."
     }
-    return <div className={`big sacrifice s${maxdim()}`}>
+    return <div className={`sacrifice s${maxdim()}`}>
       <h3 className={`s${maxdim()}`}>{"you can't sacrifice yet."}</h3>
       <h4 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h4>
       <h4 className={`s${maxdim()}`}>{message}</h4>

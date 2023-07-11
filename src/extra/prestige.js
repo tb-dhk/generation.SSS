@@ -18,14 +18,14 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
   localStorage.setItem('sacrifice', JSON.stringify(1))
 
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
-  for (var s in dimObj.S) {
-    dimObj.S.s = {
+  for (let s in dimObj.S) {
+    dimObj.S[s] = {
       bought: 0,
       total: 0
     }
   }
-  for (var c in dimObj.como) {
-    dimObj.como.c.total = dimObj.como.c.bought
+  for (let c in dimObj.como) {
+    dimObj.como[c].total = dimObj.como[c].bought
   }
   localStorage.setItem('dimensions', JSON.stringify(dimObj))
 
