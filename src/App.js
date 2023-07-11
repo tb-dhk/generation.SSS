@@ -220,7 +220,7 @@ function App() {
 
       <div className="subtabs"> {
         [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => { setCurrentTab(0); setSubTab(i) }}>{getSubTabs(currentTab)[i]}</button>
         })
       } </div>
 

@@ -264,7 +264,7 @@ export function renderTab(tab, subtab) {
       return lock(
         <div className="big-grid"> {
           [...Array(8).keys()].map(i => {
-            return <Challenge type={getSubTabs(tab)[subtab]} num={i + 1} />
+            return <Challenge type="grand gravity" num={i + 1} />
           })
         } </div>
       )
