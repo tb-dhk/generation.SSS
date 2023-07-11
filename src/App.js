@@ -179,7 +179,11 @@ function App() {
   }
 
   let perSecond = JSON.parse(localStorage.getItem("perSecond"))
-  perSecond = currentTab === 0 ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
+  try {
+    perSecond = currentTab === 0 ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
+  } catch {
+    perSecond = ""
+  }
 
   let inChallengesList = []
   let challengeMessages = []

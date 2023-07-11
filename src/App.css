@@ -192,6 +192,11 @@ h6 {
   padding-right: min(30%);
 }
 
+.toggle-autobuy {
+  position: relative;
+  margin: 20px auto;
+}
+
 .subtabs {
   display: flex;
   flex-direction: row;

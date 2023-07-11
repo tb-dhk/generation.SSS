@@ -137,10 +137,15 @@ export function autobuy() {
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
 
+  let enableAutobuy = true
+  try {
+    enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+  } catch { }
+
   let dims = ["S", "como"]
 
   for (var j = 0; j < 1; j++) {
-    if (j === 0 && currency.S < 24 ** 24) {
+    if (j === 0 && currency.S < 24 ** 24 && enableAutobuy) {
       for (var i in objekts.Atom01) {
         if (!(inChallenge["grand gravity"] === 4 && parseInt(i.slice(1)) > 6)) {
           let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
@@ -198,6 +203,15 @@ function lock(div) {
   }
 }
 
+export function toggleAutobuy() {
+  let autobuy = true
+  try {
+    autobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+  } catch { }
+  localStorage.setItem("enableAutobuy", JSON.stringify(!autobuy))
+  console.log(!autobuy)
+}
+
 export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
@@ -250,8 +264,13 @@ export function renderTab(tab, subtab) {
             transitionDuration="0.5s"
           />
         }
+        let enableAutobuy = true
+        try {
+          enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+        } catch { }
         return (
           <div>
+            <button className="s10 toggle-autobuy" onClick={toggleAutobuy}>toggle autobuyers: {enableAutobuy ? "on" : "off"}</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}

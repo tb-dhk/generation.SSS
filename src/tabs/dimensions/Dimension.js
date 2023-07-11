@@ -80,9 +80,14 @@ function Dimension({ type, num, tickspeed }) {
     boosts *= Number(ggc6[num - 1])
   }
 
+  let enableAutobuy = true
+  try {
+    enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+  } catch { }
+
   let autobuyer = "locked"
 
-  if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100)) {
+  if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100) && enableAutobuy) {
     try {
       autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000)
       autobuyer = autobuyer < 0 ? 0 : autobuyer
