@@ -173,7 +173,7 @@ function App() {
   let comoDustMult = " "
   if (!currentTab && subTab === 1) {
     currencyString = `you have ${format(currency.como)} como and ${format(currency.comoDust)} comodust.`
-    comoDustMult = `your comodust is boosting S production by ${format(currency.comoDust ** (1 / 24))}.`
+    comoDustMult = `your comodust is boosting S production by ${format(currency.comoDust ** (1 / 8))}.`
   } else {
     currencyString = `you have ${format(currency.S)} S.`
   }
