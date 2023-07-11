@@ -242,7 +242,6 @@ export function renderTab(tab, subtab) {
             completed={Number((Math.log(currency.S) / Math.log(24 ** 24) * 100).toFixed(2))}
             bgColor={colors["s" + (maxdim())]}
             baseBgColor="white"
-            labelAlignment="center"
             transitionDuration="0.5s"
           />
         }
