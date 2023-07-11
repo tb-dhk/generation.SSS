@@ -78,7 +78,9 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
   let currency = JSON.parse(localStorage.getItem('currency'))
   currency.S = 2
   currency.como += 2 ** prestige.grandGravity.count
-  currency.comoDust = 0
+  if (finishChallenge) {
+    currency.comoDust = 0
+  }
   localStorage.setItem('currency', JSON.stringify(currency))
 
   let times = JSON.parse(localStorage.getItem('times'))
