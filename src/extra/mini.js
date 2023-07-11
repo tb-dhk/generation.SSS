@@ -76,9 +76,6 @@ export function tick(tickspeed) {
     } else if (inChallenge["grand gravity"] === 6) {
       defCurrencyGain *= ggc6[0]
     }
-    if (dim === "S") {
-      defCurrencyGain *= (sacrifice ** (1 / 24))
-    }
 
     currency[generatedCurrency[dim]] += defCurrencyGain
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
@@ -88,11 +85,14 @@ export function tick(tickspeed) {
     for (const genName in dims[dim]) {
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && gen <= maxdim()) {
-        let boosts = (25 / 24) ** dims[dim][genName].bought
+        let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
         for (let c in prestige) {
-          if (prestige[c].challenges.includes(gen)) {
+          if (prestige[c].challenges.includes(gen + 1)) {
             boosts **= 9 / 8
           }
+        }
+        if (dim === "S" && gen === 8 - 1) {
+          boosts *= (sacrifice ** (1 / 24))
         }
         let next = "S" + (gen + 1)
         switch (inChallenge["grand gravity"]) {

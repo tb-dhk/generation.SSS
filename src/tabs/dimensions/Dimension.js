@@ -12,7 +12,7 @@ export function buyDim(type, num, max) {
     thisDim.total += 1
     dims[type]["S" + num.toString()] = thisDim
     currencies[type] -= price(type, num)
-    
+
     if (inChallenge["grand gravity"] === 3) {
       for (var i = 1; i < num; i++) {
         let dim = dims[type]["S" + i]
@@ -43,12 +43,13 @@ function Dimension({ type, num, tickspeed }) {
   const thisDim = dims[type]["S" + num.toString()]
   const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
-  const objs = objekts.Atom01["S"+num].filter(c => {return c.toString()[0] === "1"})
+  const objs = objekts.Atom01["S" + num].filter(c => { return c.toString()[0] === "1" })
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
 
   const [total, setTotal] = useState(thisDim.total)
-  const [bought, setBought] = useState(thisDim.bought) 
+  const [bought, setBought] = useState(thisDim.bought)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -63,22 +64,26 @@ function Dimension({ type, num, tickspeed }) {
     };
   })
 
-  let boosts = (25/24) ** bought
+  let boosts = (25 / 24) ** bought
 
   for (let c in prestige) {
     if (prestige[c].challenges.includes(num)) {
-      boosts **= 9/8 
+      boosts **= 9 / 8
     }
   }
 
+  if (type === "S" && num === 8) {
+    boosts *= sacrifice ** (1 / 24)
+  }
+
   if (inChallenge.grandGravity === 6) {
-    boosts *= Number(ggc6[num-1])
+    boosts *= Number(ggc6[num - 1])
   }
 
   let autobuyer = "locked"
-  if (objekts.Atom01["S"+num].includes(100)) {
+  if (objekts.Atom01["S" + num].includes(100)) {
     try {
-      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S"+num]) / 1000)+"s"
+      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000) + "s"
     } catch {
       autobuyer = ""
     }
