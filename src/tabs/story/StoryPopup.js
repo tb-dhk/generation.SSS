@@ -13,15 +13,22 @@ export function autostory() {
   const md = maxdim()
   const dims = JSON.parse(localStorage.getItem('dimensions'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
-  
+  const objekt = JSON.parse(localStorage.getItem('objekt'))
+
+  const count = 0
+  for (let member in objekt) {
+    count += objekt[member].length
+  }
+
   const conds = [
     true,
-    md >= 1 && dims.S["S1"].total > 0, 
+    md >= 1 && dims.S["S1"].total > 0,
     md >= 2,
     parseInt(dims.S.S8.total) > 0,
-    parseInt(prestige.grandGravity.count) > 0
+    parseInt(prestige.grandGravity.count) > 0,
+    count >= 72
   ]
-   
+
   for (let i = conds.length - 1; i >= 0; i--) {
     if (conds[i]) {
       return [i, story[i]]
@@ -39,7 +46,7 @@ export function StoryPopup() {
     return (
       <div id="story" className="popup">
         <button className="close" onClick={() => erasePopup("story")}>
-          <img className="icon" src={close} alt="close"/>
+          <img className="icon" src={close} alt="close" />
         </button>
         <ReactMarkdown children={story} id="storytext" />
       </div>

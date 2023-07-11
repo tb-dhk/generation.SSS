@@ -122,7 +122,30 @@ a drawer popped out of the wall.
 the objekt was a very smooth laminated piece of paper, and felt like a trading card but slightly thicker. the como, meanwhile, were shiny purple tokens.
 
 "interesting..." seoyeon mused. "so we need to do another...71 grand gravities before suah meets us again! EVERYBODY BACK TO WORK!"
-    `
+    `,
+  `
+you finally have 72 objekts. the big screen lights up again, and everyone turns to the bright light emitting from it.
+
+> *sighs* unfortunately, we have hit a wall.
+
+"what?" yubin asked, "what do you mean, *a wall*?"
+
+> unfortunately, the ruler of this universe has not allowed us to proceed. this is the end of the road for now.
+> 
+> they will soon build the road ahead for you to proceed, but for now, all you can do is keep grinding for como.
+> 
+> however, to make your life a little bit easier, the owner has granted you a grand gravity autobuyer that you have unlocked at 72 objekts.
+
+"i dont like this guy," soomin pouted.
+
+"shush," jiwoo shushed soomin, "they might delete you."
+
+> regardless of your opinions, i will see you soon.
+
+and with that, the screen went blank for what would be a much longer time.
+
+*thank you for playing the beta version of generation.SSS.*
+  `
 ]
 
 export const help = {
