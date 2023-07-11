@@ -126,7 +126,9 @@ export function tick(tickspeed) {
   localStorage.setItem('currency', JSON.stringify(currency))
   localStorage.setItem('perSecond', JSON.stringify(perSecond))
 
-  autobuy()
+  if (inChallenge["grand gravity"] !== 3) {
+    autobuy()
+  }
 }
 
 export function autobuy() {

@@ -81,7 +81,8 @@ function Dimension({ type, num, tickspeed }) {
   }
 
   let autobuyer = "locked"
-  if (objekts.Atom01["S" + num].includes(100)) {
+
+  if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100)) {
     try {
       autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000) + "s"
     } catch {
