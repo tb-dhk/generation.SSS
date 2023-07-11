@@ -135,17 +135,20 @@ export function autobuy() {
   const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
   const currency = JSON.parse(localStorage.getItem('currency'))
+  const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
 
   let dims = ["S", "como"]
 
   for (var j = 0; j < 1; j++) {
     if (j === 0 && currency.S < 24 ** 24) {
       for (var i in objekts.Atom01) {
-        let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
-        const remaining = (Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[dims[j]][i]) / 1000))
-        if (objekts.Atom01[i].includes(100) && (remaining < 0)) {
-          buyDim(dims[j], parseInt(i.slice(1)), true)
-          autobuyers[dims[j]][i] = Date.now()
+        if (!(inChallenge["grand gravity"] === 4 && parseInt(i.slice(1)) > 6)) {
+          let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
+          const remaining = (Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[dims[j]][i]) / 1000))
+          if (objekts.Atom01[i].includes(100) && (remaining < 0)) {
+            buyDim(dims[j], parseInt(i.slice(1)), true)
+            autobuyers[dims[j]][i] = Date.now()
+          }
         }
       }
     }
