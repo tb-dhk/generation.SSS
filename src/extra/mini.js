@@ -63,6 +63,8 @@ export function tick(tickspeed) {
     como: "comoDust"
   }
 
+  let perSecond = {}
+
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
     const boosts = (maxDim ** maxDim)
@@ -77,6 +79,7 @@ export function tick(tickspeed) {
       defCurrencyGain *= ggc6[0]
     }
 
+    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed
     currency[generatedCurrency[dim]] += defCurrencyGain
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
@@ -121,6 +124,7 @@ export function tick(tickspeed) {
 
   localStorage.setItem('dimensions', JSON.stringify(dims))
   localStorage.setItem('currency', JSON.stringify(currency))
+  localStorage.setItem('perSecond', JSON.stringify(perSecond))
 
   autobuy()
 }

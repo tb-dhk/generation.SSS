@@ -169,12 +169,17 @@ function App() {
     handlers[j + 1 + "max"] = () => { buyDim("S", j + 1, true) }
   }
 
-  let currencyString = <h2> </h2>
+  let currencyString = " "
+  let comoDustMult = " "
   if (!currentTab && subTab === 1) {
-    currencyString = <h2 className="top">you have {format(currency.como)} como and {format(currency.comoDust)} comodust, boosting S production by {format(currency.comoDust ** (1 / 24))}</h2>
+    currencyString = `you have ${format(currency.como)} como and ${format(currency.comoDust)} comodust.`
+    comoDustMult = `your comodust is boosting S production by ${format(currency.comoDust ** (1 / 24))}.`
   } else {
-    currencyString = <h2 className="top">you have {format(currency.S)} S.</h2>
+    currencyString = `you have ${format(currency.S)} S.`
   }
+
+  let perSecond = JSON.parse(localStorage.getItem("perSecond"))
+  perSecond = currentTab === 0 ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
 
   let inChallengesList = []
   let challengeMessages = []
@@ -205,7 +210,8 @@ function App() {
 
       <div className="top">
         <img className="title" alt="main logo" src={genSSS} />
-        {currencyString}
+        <h2 className="top">{currencyString + perSecond}</h2>
+        <h3>{comoDustMult}</h3>
         {inChallengesString}
         {challengeMessages ? challengeMessages : ""}
       </div>
@@ -214,13 +220,13 @@ function App() {
 
       <div className="tabs"> {
         [...Array(tabs.length).keys()].map((i) => {
-          return <button className={`tab s${i + 1}`} onClick={() => setCurrentTab(i)}>{tabs[i]}</button>
+          return <button className={`tab s${i + 1}`} onClick={() => { setCurrentTab(i); setSubTab(0) }}>{tabs[i]}</button>
         })
       } </div>
 
       <div className="subtabs"> {
         [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => { setCurrentTab(0); setSubTab(i) }}>{getSubTabs(currentTab)[i]}</button>
+          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
         })
       } </div>
 
