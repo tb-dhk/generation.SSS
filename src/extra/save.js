@@ -11,6 +11,8 @@ export function impt() {
 }
 
 export function expt() {
+  let alerts = JSON.parse(localStorage.getItem("alerts"))
+
   let object = {}
   for (let key in localStorage) {
     if (typeof localStorage[key] !== "function") {
@@ -18,4 +20,10 @@ export function expt() {
     }
   }
   navigator.clipboard.writeText(btoa(JSON.stringify(object)))
+
+  alerts["export" + Date.now()] = {
+    message: "copied to clipboard",
+    time: Date.now()
+  }
+  localStorage.setItem("alerts", JSON.stringify(alerts))
 }
