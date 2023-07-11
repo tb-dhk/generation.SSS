@@ -15,7 +15,7 @@ export function autostory() {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   const objekt = JSON.parse(localStorage.getItem('objekt'))
 
-  const count = 0
+  let count = 0
   for (let member in objekt) {
     count += objekt[member].length
   }
