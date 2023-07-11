@@ -50,7 +50,7 @@
 
 button {
   border: none;
-  font-size: 1.5vh;
+  font-size: 3vmin;
   margin: none;
 }
 
@@ -63,23 +63,23 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5vh
+  font-size: 4vmin
 }
 
 h3 {
-  font-size: 2vh
+  font-size: 3.5vmin
 }
 
 h4 {
-  font-size: 1.5vh
+  font-size: 3vmin
 }
 
 h5 {
-  font-size: 1vh
+  font-size: 2vmin
 }
 
 h6 {
-  font-size: 0.5vh
+  font-size: 1vmin
 }
 
 #hotkeys {
@@ -131,10 +131,10 @@ h6 {
   align-content: flex-end;
   justify-content: space-between;
   position: relative;
-  width: 100vw;
+  width: 90vw;
   max-width: 1024px;
   height: auto;
-  font-size: 1.5vh;
+  font-size: 3vh;
   margin: 0 auto 20px auto;
   margin-bottom: 20px;
 }
@@ -144,7 +144,7 @@ h6 {
 }
 
 .bonus {
-  font-size: 0.75vh;
+  font-size: 1.5vmin;
   position: absolute;
   left: 10%;
   transform: translateY(80%);
@@ -173,7 +173,7 @@ h6 {
 }
 
 .progress-bar {
-  width: 100vw;
+  width: 90vw;
   max-width: 1536px;
   margin: 50px auto;
 }
@@ -186,7 +186,7 @@ h6 {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 1.5vh !important;
+  font-size: 2.5vmin !important;
   margin: 2vh auto 1vh auto;
   padding-left: min(30%);
   padding-right: min(30%);
@@ -195,6 +195,7 @@ h6 {
 .toggle-autobuy {
   position: flex;
   margin: 20px auto;
+  display: flex;
 }
 
 .subtabs {
@@ -205,7 +206,7 @@ h6 {
   position: relative;
   width: auto;
   height: auto;
-  font-size: 0.75vh !important;
+  font-size: 2.5vmin !important;
   margin-bottom: 1vh;
   margin-left: auto;
   margin-right: auto;
@@ -283,7 +284,7 @@ h6 {
 
 .accordion {
   height: auto;
-  font-size: 1.5vh;
+  font-size: 3vmin;
 }
 
 .panel {
@@ -324,12 +325,22 @@ h6 {
   width: 100%;
 }
 
-.grandgrav, .locked {
+.grandgrav{
   margin: auto;
   text-align: center;
-  font-size: 1.5vh;
+  font-size: 3vmin;
   height: max;
   width: 25%;
+  border: solid white 2px;
+  border-radius: 10px;
+}
+
+.locked{
+  margin: auto;
+  text-align: center;
+  font-size: 3vmin;
+  height: max;
+  width: 50vmin;
   border: solid white 2px;
   border-radius: 10px;
 }
