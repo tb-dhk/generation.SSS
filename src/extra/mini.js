@@ -87,7 +87,7 @@ export function tick(tickspeed) {
 
     for (const genName in dims[dim]) {
       const gen = parseInt(genName.slice(1))
-      if (gen < 24 && (gen <= maxdim() || dim === "S")) {
+      if (gen < 24 && (gen <= maxdim() || dim !== "S")) {
         let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen + 1)) {
