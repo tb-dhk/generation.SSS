@@ -18,10 +18,15 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
   localStorage.setItem('sacrifice', JSON.stringify(1))
 
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
-  const dims = Object.fromEntries(
-    [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
-  )
-  dimObj.S = dims
+  for (var s in dimObj.S) {
+    dimObj.S.s = {
+      bought: 0,
+      total: 0
+    }
+  }
+  for (var c in dimObj.como) {
+    dimObj.como.c.total = dimObj.como.c.bought
+  }
   localStorage.setItem('dimensions', JSON.stringify(dimObj))
 
   let prestige = JSON.parse(localStorage.getItem('prestige'))

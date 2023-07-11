@@ -269,7 +269,7 @@ export function renderTab(tab, subtab) {
           enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
         } catch { }
         return (
-          <div>
+          <div className="dimension-container">
             <button className="s10 toggle-autobuy" onClick={toggleAutobuy}>toggle autobuyers: {enableAutobuy ? "on" : "off"}</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />

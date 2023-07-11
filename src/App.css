@@ -192,13 +192,8 @@ h6 {
   padding-right: min(30%);
 }
 
-.dimension-container {
-  display: flex;
-  justify-content: center;
-}
-
 .toggle-autobuy {
-  position: relative;
+  position: flex;
   margin: 20px auto;
 }
 
