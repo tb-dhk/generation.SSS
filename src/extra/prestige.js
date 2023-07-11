@@ -14,7 +14,7 @@ function arrayIsEmpty(array) {
   return false;
 }
 
-export function grandGravity() {
+export function grandGravity(giveObjekt = true, finishChallenge = true, newMessage = "") {
   localStorage.setItem('sacrifice', JSON.stringify(1))
 
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
@@ -24,44 +24,51 @@ export function grandGravity() {
   dimObj.S = dims
   localStorage.setItem('dimensions', JSON.stringify(dimObj))
 
-  let objekts = JSON.parse(localStorage.getItem('objekts'))
+  let prestige = JSON.parse(localStorage.getItem('prestige'))
 
-  let no100 = []
-  for (const member in objekts.Atom01) {
-    if (arrayIsEmpty(objekts.Atom01[member])) {
-      no100.push(member)
-    }
-  }
+  if (giveObjekt) {
+    let objekts = JSON.parse(localStorage.getItem('objekts'))
 
-  let gainedObjekt = ""
-
-  if (arrayIsEmpty(no100)) {
-    while (true) {
-      const [member, serial] = objekt(1, 1, 8, 1, 8)
-      if (!Array(objekts.Atom01[member]).includes(serial)) {
-        gainedObjekt = member + " " + serial
-        objekts.Atom01[member].push(parseInt(serial))
-        objekts.Atom01[member].sort()
-        break
+    let no100 = []
+    for (const member in objekts.Atom01) {
+      if (arrayIsEmpty(objekts.Atom01[member])) {
+        no100.push(member)
       }
     }
-  } else {
-    const member = no100[Math.floor(Math.random() * no100.length)]
-    objekts.Atom01[member] = [100]
-    gainedObjekt = member + " 100"
-  }
-  localStorage.setItem('objekts', JSON.stringify(objekts))
 
-  let prestige = JSON.parse(localStorage.getItem('prestige'))
-  let inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
-  if (inChallenge["grand gravity"]) {
-    prestige.grandGravity.challenges.push(inChallenge["grand gravity"])
-  }
-  prestige.grandGravity.count += 1
-  localStorage.setItem('prestige', JSON.stringify(prestige))
+    let gainedObjekt = ""
 
-  inChallenge["grand gravity"] = 0
-  localStorage.setItem('inchallenge', JSON.stringify(inChallenge))
+    if (arrayIsEmpty(no100)) {
+      while (true) {
+        const [member, serial] = objekt(1, 1, 8, 1, 8)
+        if (!Array(objekts.Atom01[member]).includes(serial)) {
+          gainedObjekt = member + " " + serial
+          objekts.Atom01[member].push(parseInt(serial))
+          objekts.Atom01[member].sort()
+          break
+        }
+      }
+    } else {
+      const member = no100[Math.floor(Math.random() * no100.length)]
+      objekts.Atom01[member] = [100]
+      gainedObjekt = member + " 100"
+    }
+    localStorage.setItem('objekts', JSON.stringify(objekts))
+
+    newMessage = `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`
+  }
+
+  if (finishChallenge) {
+    let inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+    if (inChallenge["grand gravity"]) {
+      prestige.grandGravity.challenges.push(inChallenge["grand gravity"])
+    }
+    prestige.grandGravity.count += 1
+    localStorage.setItem('prestige', JSON.stringify(prestige))
+
+    inChallenge["grand gravity"] = 0
+    localStorage.setItem('inchallenge', JSON.stringify(inChallenge))
+  }
 
   let currency = JSON.parse(localStorage.getItem('currency'))
   currency.S = 2
@@ -74,7 +81,7 @@ export function grandGravity() {
 
   let alerts = JSON.parse(localStorage.getItem('alerts'))
   alerts['grand-gravity-' + prestige.grandGravity.count] = {
-    message: `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`,
+    message: newMessage,
     time: Date.now()
   }
   localStorage.setItem('alerts', JSON.stringify(alerts))

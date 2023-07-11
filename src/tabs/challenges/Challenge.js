@@ -15,7 +15,7 @@ const challenges = {
 }
 
 function enterChallenge(type, num) {
-  grandGravity()
+  grandGravity(false, false, num ? `you have entered challenge ${num}` : "you have exited the challenge")
 
   if (!(type === "grand gravity" && num === 1)) {
     let currency = JSON.parse(localStorage.getItem('currency'))
