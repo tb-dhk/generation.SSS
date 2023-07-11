@@ -35,9 +35,9 @@ function Sacrifice() {
       message = "you need one S8 generator to sacrifice."
     }
     return <div className={`sacrifice s${maxdim()}`}>
-      <h4 className={`s${maxdim()}`}>{"you can't sacrifice yet."}</h4>
-      <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
-      <h5 className={`s${maxdim()}`}>{message}</h5>
+      <h3 className={`s${maxdim()}`}>{"you can't sacrifice yet."}</h3>
+      <h4 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h4>
+      <h4 className={`s${maxdim()}`}>{message}</h4>
     </div>
   }
 }
