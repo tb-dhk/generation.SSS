@@ -22,8 +22,7 @@ export function buyDim(type, num, max) {
     }
 
     localStorage.setItem('dimensions', JSON.stringify(dims))
-    localStorage.setItem('currency', JSON.stringify(currencies))
-
+    localStorage.setItem('currency', JSON.stringify(currencies))  
   }
 
   if (max) {
@@ -35,6 +34,7 @@ export function buyDim(type, num, max) {
       buyone()
     }
   }
+
 }
 
 function Dimension({ type, num, tickspeed }) {
@@ -79,6 +79,8 @@ function Dimension({ type, num, tickspeed }) {
   if (inChallenge.grandGravity === 6) {
     boosts *= Number(ggc6[num - 1])
   }
+  
+  boosts = boosts > 1 ? boosts : 1 
 
   let enableAutobuy = true
   try {

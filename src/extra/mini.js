@@ -95,7 +95,8 @@ export function tick(tickspeed) {
           }
         }
         if (dim === "S" && gen === 8 - 1) {
-          boosts *= Math.log(sacrifice) / Math.log(24)
+          const sacrificeBonus = Math.log(sacrifice) / Math.log(24)
+          boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
         }
         let next = "S" + (gen + 1)
         switch (inChallenge["grand gravity"]) {
