@@ -170,12 +170,13 @@ export const help = {
 export const about = {
   credits: {
     "game ideas": ["- all of these concepts in general: antimatter dimensions and FE000000", "- gdgc 2: AD challenge 3", "- gdgc 3: AD challenge 4", "- gdgc 4: AD challenge 10", "- gdgc 5: FE000000 challenge 5", "- gdgc 6: AD challenge 7", "- gdgc 7, 8: AD challenge 12"].join("\n"),
-    "people": ["- [canaris](https://github.com/DET171) and [ltrltrltr1234](https://github.com/Ltrltrltr1234) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"].join("\n")
+    "people": ["- [canaris](https://github.com/DET171) and [ltrltrltr1234](https://github.com/Ltrltrltr1234) (thank you for helping me with my CSS)", "- hevipelle and all the other contributors to antimatter dimensions", "- dan simon (creator of FE000000)", "- the WAV community (that has supported me and my projects since the start)", "- tripleS (for inspiring me to make this parody)"].join("\n"),
+    "info on tripleS": "- [MODHAUS on medium](https://medium.com/@modhaus)"
   },
   tripleS: {
     general: "tripleS is a South Korean girl group formed by MODHAUS. the group is currently being introduced to the public through a pre-debut project that began in May 2022, where each of the 24 members are revealed periodically.",
-    concept: "they aim to be the world's first decentralized K-pop idol group, “the idol all possibilities” with members rotating between the group, sub-unit, and solo activities, as chosen by fans.",
-    "fan participation": "fans are given the opportunity to participate and communicate with the group by deciding the sub-units and the content through photocards called objekts and a currency called COMO."
+    concept: "each S, or member of the group, will be performing as a solo, as various subunits (DIMENSIONs), or as a team. each DIMENSION’s composition is determined through Gravity, or votes from fans.",
+    "fan participation": "modhaus has created a fan-participatory governance system using blockchain technology in order to bring fans into the decision-making process. fans are given the opportunity to participate and communicate with the group by deciding the DIMENSIONs and the content through photocards called objekts and a currency called COMO."
   },
   source: {
     "info": `generation.SSS v0.1.0-beta.4, released 2023-07-10`,
