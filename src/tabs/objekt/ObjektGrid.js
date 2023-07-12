@@ -9,12 +9,12 @@ function ObjektGrid({ season, clss, startNumber, stopNumber }) {
       <div style={{ display: "grid", gridTemplateColumns: `1fr repeat(${9}, 2fr)` }}>
         <p> </p>
         {[...Array(stopNumber - startNumber + 1).keys()].map(n => {
-          return <h2 className="objekt"><span className="label">{clss + formatNumber(n + startNumber)}</span></h2>
+          return <h4 className="objekt"><span className="label">{clss + formatNumber(n + startNumber)}</span></h4>
         })}
       </div>
       {[...Array(8).keys()].map(m => {
         return <div style={{ display: "grid", gridTemplateColumns: `1fr repeat(${9}, 2fr)` }}>
-          <h2 className="objekt">S{m + 1}</h2>
+          <h4 className="objekt">S{m + 1}</h4>
           {[...Array(stopNumber - startNumber + 1).keys()].map(n => {
             let number = clss + formatNumber(n + startNumber)
             let obtained = objekts[season]["S" + (m + 1)].includes(parseInt(number))
