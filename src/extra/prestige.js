@@ -39,6 +39,7 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
       if (arrayIsEmpty(objekts.Atom01[member])) {
         no100.push(member)
       }
+      objekts.Atom01[member] = [...new Set(objekts.Atom01[member])]
     }
 
     let gainedObjekt = ""
@@ -50,7 +51,6 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
           gainedObjekt = member + " " + serial
           objekts.Atom01[member].push(parseInt(serial))
           objekts.Atom01[member].sort()
-          objekts.Atom01[member] = [...new Set(objekts.Atom01[member])]
           break
         }
       }
