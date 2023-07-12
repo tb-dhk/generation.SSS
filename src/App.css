@@ -246,14 +246,13 @@ h6 {
 }
 
 .sacrifice {
-  width: 30vmin;
+  max-width: 35vw;
   margin: 50px auto;
   padding: 20px;
   min-height: 100px;
   text-align: center;
   border-radius: 10px;
   padding: 20px;
-  height: 25vmin
 }
 
 .big-grid {
