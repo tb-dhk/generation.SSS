@@ -180,7 +180,7 @@ function App() {
 
   let perSecond = JSON.parse(localStorage.getItem("perSecond"))
   try {
-    perSecond = currentTab === 0 ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
+    perSecond = (currentTab === 0 && currency.S < 24 ** 24) ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
   } catch {
     perSecond = ""
   }
