@@ -46,10 +46,11 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     if (arrayIsEmpty(no100)) {
       while (true) {
         const [member, serial] = objekt(1, 1, 8, 1, 8)
-        if (!Array(objekts.Atom01[member]).includes(serial)) {
+        if (!Array(objekts.Atom01[member]).includes(parseInt(serial))) {
           gainedObjekt = member + " " + serial
           objekts.Atom01[member].push(parseInt(serial))
           objekts.Atom01[member].sort()
+          objekts.Atom01[member] = [...new Set(objekts.Atom01[member])]
           break
         }
       }

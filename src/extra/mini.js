@@ -216,6 +216,7 @@ export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  const objekts = JSON.parse(localStorage.getItem('objekts'))
 
   let renderDim = 8
   if (tab === 0) {
@@ -269,8 +270,8 @@ export function renderTab(tab, subtab) {
           enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
         } catch { }
         return (
-          <div className="dimension-container">
-            <button className="s10 toggle-autobuy" onClick={toggleAutobuy}>toggle autobuyers: {enableAutobuy ? "on" : "off"}</button>
+          <div>
+            <button className="s10 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {enableAutobuy ? "on" : "off"}</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
@@ -296,8 +297,12 @@ export function renderTab(tab, subtab) {
         } </div>
       )
     case 2:
+      for (let x in objekts.Atom01) {
+        count += objekts.Atom01[x].length
+      }
       return lock(
         <div>
+          <h4 className="label"><span>you have {count} objekts.</span></h4>
           <ObjektGrid season="Atom01" clss={subtab + 1} startNumber={0} stopNumber={8} />
         </div>
       )

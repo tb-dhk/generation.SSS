@@ -192,10 +192,15 @@ h6 {
   padding-right: min(30%);
 }
 
-.toggle-autobuy {
+.sub-header {
   position: flex;
   margin: 20px auto;
   display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
 }
 
 .subtabs {
@@ -243,6 +248,11 @@ h6 {
 
 .grey {
   background-color: #808080;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
 }
 
 .sacrifice {
