@@ -95,6 +95,8 @@ function Dimension({ type, num, tickspeed }) {
     } catch {
       autobuyer = ""
     }
+  } else if (objekts.Atom01["S" + num].includes(100)) {
+    autobuyer = "off"
   }
 
   return (

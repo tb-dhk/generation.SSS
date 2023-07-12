@@ -250,6 +250,7 @@ export function renderTab(tab, subtab) {
 
   switch (tab) {
     case 0:
+      let finalDiv = <div></div>
       if (currency.S < 24 ** 24) {
         let limit = 8
         if (inChallenge["grand gravity"] === 4) {
@@ -269,7 +270,7 @@ export function renderTab(tab, subtab) {
         try {
           enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
         } catch { }
-        return (
+        finalDiv = (
           <div>
             <button className="s10 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {enableAutobuy ? "on" : "off"}</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
@@ -280,13 +281,18 @@ export function renderTab(tab, subtab) {
           </div>
         )
       } else {
-        return (
+        finalDiv = (
           <div className="invert grandgrav">
             <h3 className="invert">boom!</h3>
             <h4 className="invert">too much S!</h4>
             <button className="grandgrav-button" onClick={grandGravity}>grand gravity!</button>
           </div>
         )
+      }
+      if (subtab) {
+        return lock(finalDiv)
+      } else {
+        return finalDiv
       }
     case 1:
       return lock(
