@@ -71,7 +71,7 @@ export function tick(tickspeed) {
     let defCurrencyGain = Number(dims[dim]["S1"].total) + (inChallenge["grand gravity"] === 7 ? Number(dims[dim]["S2"].total) : 0)
     defCurrencyGain *= boosts / 1000 * tickspeed
     if (currency.comoDust) {
-      defCurrencyGain *= (currency.comoDust ** (1 / 8))
+      defCurrencyGain *= currency.comoDust ** (1 / 8)
     }
     if (inChallenge["grand gravity"] === 2) {
       defCurrencyGain *= (24 ** ((Date.now() - times["grand gravity"]) / 1000000)) * 1 / 24
@@ -95,7 +95,7 @@ export function tick(tickspeed) {
           }
         }
         if (dim === "S" && gen === 8 - 1) {
-          boosts *= (sacrifice ** (1 / 24))
+          boosts *= Math.log(sacrifice) / Math.log(24)
         }
         let next = "S" + (gen + 1)
         switch (inChallenge["grand gravity"]) {
@@ -370,6 +370,7 @@ export function changeColor(className, color, currentTab, subTab) {
         const currentTabDiv = document.querySelectorAll(`button.tab.${className}`)[0]
         currentTabDiv.style.backgroundColor = "black"
         currentTabDiv.style.color = color
+        currentTabDiv.style.border = `2px solid ${color}`
       }
     } catch { }
 
@@ -378,6 +379,7 @@ export function changeColor(className, color, currentTab, subTab) {
         const subTabDiv = document.querySelectorAll(`button.subtab.${className}`)[0]
         subTabDiv.style.backgroundColor = "black"
         subTabDiv.style.color = color
+        subTabDiv.style.border = `2px solid ${color}`
       }
     } catch { }
   }

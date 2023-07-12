@@ -73,7 +73,7 @@ function Dimension({ type, num, tickspeed }) {
   }
 
   if (type === "S" && num === 8) {
-    boosts *= sacrifice ** (1 / 24)
+    boosts *= Math.log(sacrifice) / Math.log(24)
   }
 
   if (inChallenge.grandGravity === 6) {
