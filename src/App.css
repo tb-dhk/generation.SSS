@@ -349,6 +349,7 @@ h6 {
 .objekt {
   width: 100%;
   vertical-align: middle;
+  margin: auto;
 }
 
 .objekt-grid {
