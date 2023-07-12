@@ -176,7 +176,7 @@ export const about = {
   tripleS: {
     general: "tripleS is a South Korean girl group formed by MODHAUS. the group is currently being introduced to the public through a pre-debut project that began in May 2022, where each of the 24 members are revealed periodically.",
     concept: "each S, or member of the group, will be performing as a solo, as various subunits (DIMENSIONs), or as a team. each DIMENSION’s composition is determined through Gravity, or votes from fans.",
-    "fan participation": "modhaus has created a fan-participatory governance system using blockchain technology in order to bring fans into the decision-making process. fans are given the opportunity to participate and communicate with the group by deciding the DIMENSIONs and the content through photocards called objekts and a currency called COMO."
+    "fan participation": "MODHAUS has created a fan-participatory governance system using blockchain technology in order to bring fans into the decision-making process. fans are given the opportunity to participate and communicate with the group by deciding the DIMENSIONs and the content through photocards called objekts and a currency called COMO."
   },
   source: {
     "info": `generation.SSS v0.1.0-beta.4, released 2023-07-10`,
