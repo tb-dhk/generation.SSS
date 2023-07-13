@@ -95,7 +95,7 @@ export function tick(tickspeed) {
           }
         }
         if (dim === "S" && gen === 8 - 1) {
-          const sacrificeBonus = Math.log(sacrifice) / Math.log(24)
+          const sacrificeBonus = Math.log(sacrifice) / Math.log(8)
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
         }
         let next = "S" + (gen + 1)
