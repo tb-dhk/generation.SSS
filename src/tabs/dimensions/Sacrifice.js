@@ -18,8 +18,9 @@ function Sacrifice() {
   }
   let dimensions = JSON.parse(localStorage.getItem("dimensions"))
   let currency = JSON.parse(localStorage.getItem("currency"))
-  const currentBonus = (sacrifice ** (1 / 24))
-  const newBonus = Number(currency.S) ** (1 / 24)
+  let currentBonus = Math.log(sacrifice) / Math.log(8)
+  currentBonus = currentBonus > 1 ? currentBonus : 1
+  const newBonus = Math.log(Number(currency.S)) / Math.log(8)
   if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice) {
     return <div className={`big sacrifice s${maxdim()}`}>
       <h3 className={`s${maxdim()}`}>you can now sacrifice!</h3>

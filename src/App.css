@@ -226,6 +226,7 @@ h6 {
   overflow: scroll;
   text-align: left;
   border: 2px solid white;
+  border-radius: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
