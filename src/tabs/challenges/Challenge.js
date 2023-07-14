@@ -53,10 +53,13 @@ function enterChallenge(type, num) {
 
 function handleChallenge(type, num) {
   let inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
-  console.log(type, inChallenge, inChallenge[type])
+  const challengeDic = {
+    "grand gravity": "grandGravity"
+  }
+  let completedChallenges = JSON.parse(localStorage.getItem('prestige'))[challengeDic[type]].challenges
   if (inChallenge[type] === num) {
     enterChallenge(type, 0)
-  } else {
+  } else if (!completedChallenges.includes(num)) {
     enterChallenge(type, num)
   }
 }
