@@ -181,7 +181,7 @@ export function getSubTabs(tab) {
     ["grand gravity"],
     ["single class", "double class"],
     ["part 1"],
-    ["colors", "save"],
+    ["save", "options", "colors"],
     Object.keys(help),
     Object.keys(about)
   ]
@@ -213,11 +213,27 @@ export function toggleAutobuy() {
   console.log(!autobuy)
 }
 
+function toggleSetting(k) {
+  const settings = JSON.parse(localStorage.getItem('settings'))
+  settings[k] = !settings[k]
+  localStorage.setItem('settings', JSON.stringify(settings))
+}
+
 export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
+  let settings = {}
+  
+  settings = JSON.parse(localStorage.getItem('settings'))
+  if (!settings) {
+    settings = {
+      "save to file ": true,
+      members: false
+    }
+    localStorage.setItem('settings', JSON.stringify(settings))
+  }
 
   let renderDim = 8
   if (tab === 0) {
@@ -322,6 +338,24 @@ export function renderTab(tab, subtab) {
       switch (subtab) {
         case 0:
           return (
+            <div className="big-grid">
+              <button className="s1 big" onClick={impt}>import</button>
+              <button className="s2 big" onClick={expt}>export</button>
+            </div>
+          )
+        case 1:
+          return (
+            <div>
+              {
+                Object.keys(settings).map(k => {
+                  count += 1
+                  return <button className={`s${count + 10} sub-header`} onClick={() => toggleSetting(k)}>{k}: {settings[k] ? "on" : "off"}</button>
+                })
+              } 
+            </div>
+          )
+        case 2:
+          return (
             <div>
               {[...Array(24).keys()].map(i => {
                 return (
@@ -329,13 +363,6 @@ export function renderTab(tab, subtab) {
                 )
               })}
               <button onClick={reset_colors} className="big center">reset</button>
-            </div>
-          )
-        case 1:
-          return (
-            <div className="big-grid">
-              <button className="s1 big" onClick={impt}>import</button>
-              <button className="s2 big" onClick={expt}>export</button>
             </div>
           )
         default:
