@@ -50,7 +50,7 @@
 
 button {
   border: none;
-  font-size: 1.5vh;
+  font-size: calc(1vmin + 5px);
   margin: none;
 }
 
@@ -131,10 +131,10 @@ h6 {
   align-content: flex-end;
   justify-content: space-between;
   position: relative;
-  width: 100vw;
+  width: 90vw;
   max-width: 1024px;
   height: auto;
-  font-size: 1.5vh;
+  font-size: calc(1vmin + 5px);
   margin: 0 auto 20px auto;
   margin-bottom: 20px;
 }
@@ -144,7 +144,7 @@ h6 {
 }
 
 .bonus {
-  font-size: 0.75vh;
+  font-size: calc(1vmin);
   position: absolute;
   left: 10%;
   transform: translateY(80%);
@@ -173,7 +173,7 @@ h6 {
 }
 
 .progress-bar {
-  width: 100vw;
+  width: 90vw;
   max-width: 1536px;
   margin: 50px auto;
 }
@@ -343,7 +343,7 @@ h6 {
 .grandgrav, .locked {
   margin: auto;
   text-align: center;
-  font-size: 1.5vh;
+  font-size: calc(1vmin + 5px);
   height: max;
   width: 25%;
   border: solid white 2px;
