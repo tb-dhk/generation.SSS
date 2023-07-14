@@ -107,15 +107,15 @@ export function tick(tickspeed) {
           default:
             next = "S" + (gen + 1)
         }
-        for (let c in prestige) {
-          if (prestige[c].challenges.includes(gen + 1)) {
-            defGain **= 9 / 8
-          }
-        }
         if (next !== "S0") {
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
           if (inChallenge["grand gravity"] === 6) {
             defGain *= ggc6[gen]
+          }
+          for (let c in prestige) {
+            if (prestige[c].challenges.includes(gen + 1)) {
+              defGain **= 9 / 8
+            }
           }
           dims[dim][genName].total += defGain
         }
