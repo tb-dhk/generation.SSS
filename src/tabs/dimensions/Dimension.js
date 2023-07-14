@@ -47,6 +47,10 @@ function Dimension({ type, num, tickspeed }) {
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
+  let members = false 
+  try {
+    members = JSON.parse(localStorage.getItem('settings')).members
+  } catch {}
 
   const [total, setTotal] = useState(thisDim.total)
   const [bought, setBought] = useState(thisDim.bought)
@@ -101,9 +105,15 @@ function Dimension({ type, num, tickspeed }) {
     autobuyer = "off"
   }
 
+  let member = ""
+  if (members) {
+    const tripleS = ["seoyeon", "hyerin", "jiwoo", "chaeyeon", "yooyeon", "soomin", "nakyoung", "yubin"]
+    member = tripleS[num-1]
+  }
+
   return (
     <div className={`s${num} dimension`}>
-      <div className={`s${num} name`}>S{num}</div>
+      <div className={`s${num} name`}>S{num} {member}</div>
       <div className={`s${num} bonus`}>× {format(boosts)}</div>
       <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
       <div className={`s${num} autobuy`}>{autobuyer}</div>
