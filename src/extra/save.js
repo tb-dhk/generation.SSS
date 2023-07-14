@@ -1,3 +1,5 @@
+import fileDownload from 'js-file-download'
+
 export function impt() {
   let str = prompt("enter your save.")
   if (String(str) !== "null") {
@@ -12,6 +14,11 @@ export function impt() {
 
 export function expt() {
   let alerts = JSON.parse(localStorage.getItem("alerts"))
+  
+  let saveToFile = false
+  try {
+    saveToFile = JSON.parse(localStorage.getItem("settings"))["save to file"]
+  } catch {}
 
   let object = {}
   for (let key in localStorage) {
@@ -19,11 +26,18 @@ export function expt() {
       object[key] = JSON.parse(localStorage[key])
     }
   }
-  navigator.clipboard.writeText(btoa(JSON.stringify(object)))
+
+  let encoded = btoa(JSON.stringify(object))
+  navigator.clipboard.writeText(encoded)
 
   alerts["export" + Date.now()] = {
     message: "copied to clipboard",
     time: Date.now()
   }
   localStorage.setItem("alerts", JSON.stringify(alerts))
+
+  if (saveToFile) {
+    console.log(encoded)
+    fileDownload(encoded, `generation.SSS_${Date.now()}.txt`)
+  }
 }

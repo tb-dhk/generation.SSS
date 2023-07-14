@@ -229,7 +229,7 @@ export function renderTab(tab, subtab) {
   settings = JSON.parse(localStorage.getItem('settings'))
   if (!settings) {
     settings = {
-      "save to file ": true,
+      "save to file": true,
       members: false
     }
     localStorage.setItem('settings', JSON.stringify(settings))
