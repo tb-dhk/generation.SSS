@@ -8,7 +8,7 @@ you had been given instructions to go into the room on your first day at the new
 
 just a week ago, this mysterious company had offered you a job. "we have found recently that you have amazing potential," the letter they sent you said, "you have special abilities that no one else has, and that you do not know you possess."
 
-you had been studying to retake the suneung. but of course, tired of your mundane school life, you decided to leave and join this shady company instead.
+you had been studying to retake the suneung. but of course, desperate to escape your mundane school life, you decided to leave and join this shady company instead.
 
 "i mean. what's the worst that could happen?"
 
