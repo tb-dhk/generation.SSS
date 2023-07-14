@@ -201,6 +201,42 @@ function App() {
     inChallengesString = <h3>you are not in any challenges.</h3>
   }
 
+  function changeTab(i) {
+    setCurrentTab(i)
+    changeSubTab(0)
+    const tabDivs = document.querySelectorAll("button.tab")
+    for (let j in tabDivs) {
+      let item = tabDivs[j]
+      console.log(item)
+      if (typeof item === "object") {
+        if (item.classList.contains(`s${i+1}`)) {
+          item.classList.add("invert")
+          console.log("add invert")
+        } else if (item.classList.contains("invert")) {
+          item.classList.remove("invert")
+          console.log("remove invert")
+        } else {
+          console.log("nothing")
+        }
+      }
+    }
+  }
+
+  function changeSubTab(i) {
+    setSubTab(i)
+    const subTabDivs = document.querySelectorAll("button.subtab")
+    for (let j in subTabDivs) {
+      let item = subTabDivs[j]
+      if (typeof item === "object") {
+        if (item.classList.contains(`s${i+tabs.length+1}`)) {
+          item.classList.add("invert")
+        } else if (item.classList.contains("invert")) {
+          item.classList.remove("invert")
+        }
+      }
+    }
+  }
+
   /* main structure */
   return (
     <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true} id="hotkeys">
@@ -224,13 +260,13 @@ function App() {
 
       <div className="tabs"> {
         [...Array(tabs.length).keys()].map((i) => {
-          return <button className={`tab s${i + 1}`} onClick={() => { setCurrentTab(i); setSubTab(0) }}>{tabs[i]}</button>
+          return <button className={`tab s${i + 1} ${!i ? "invert" : ""}`} onClick={() => changeTab(i) }>{tabs[i]}</button>
         })
       } </div>
 
       <div className="subtabs"> {
         [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-          return <button className={`subtab s${i + tabs.length + 1}`} onClick={() => setSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+          return <button className={`subtab s${i + tabs.length + 1} ${!i ? "invert" : ""}`} onClick={() => changeSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
         })
       } </div>
 

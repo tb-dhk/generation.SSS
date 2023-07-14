@@ -65,7 +65,6 @@ function handleChallenge(type, num) {
 }
 
 function Challenge({ type, num }) {
-  console.log(type, num)
   const challengeDic = {
     "grand gravity": "grandGravity"
   }

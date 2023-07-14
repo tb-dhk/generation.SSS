@@ -386,7 +386,7 @@ export function renderTab(tab, subtab) {
   }
 }
 
-export function changeColor(className, color, currentTab, subTab) {
+export function changeColor(className, color) {
   if (/^#[0-9A-F]{6}$/i.test(color) || /^#([0-9A-F]{3}){1,2}$/i.test(color)) {
     const items = document.querySelectorAll("." + className)
 
@@ -400,27 +400,18 @@ export function changeColor(className, color, currentTab, subTab) {
     })
     const avg = sep.reduce((p, c) => p + c, 0) / sep.length
 
-    items.forEach(item => {
-      item.style.backgroundColor = color
-      item.style.color = avg >= 8 ? "black" : "white"
-    })
-
-    try {
-      if (parseInt(className.slice(1)) === currentTab + 1) {
-        const currentTabDiv = document.querySelectorAll(`button.tab.${className}`)[0]
-        currentTabDiv.style.backgroundColor = "black"
-        currentTabDiv.style.color = color
-        currentTabDiv.style.border = `2px solid ${color}`
+    for (let i in items) {
+      let item = items[i]
+      if (typeof item === "object") {
+        if (item.classList.contains("invert")) {
+          item.style.backgroundColor = "black"
+          item.style.color = color
+          item.style.border = `2px solid ${color}`
+        } else {
+          item.style.backgroundColor = color
+          item.style.color = avg >= 8 ? "black" : "white"
+        }
       }
-    } catch { }
-
-    try {
-      if (parseInt(className.slice(1)) === subTab + 1) {
-        const subTabDiv = document.querySelectorAll(`button.subtab.${className}`)[0]
-        subTabDiv.style.backgroundColor = "black"
-        subTabDiv.style.color = color
-        subTabDiv.style.border = `2px solid ${color}`
-      }
-    } catch { }
+    }
   }
 }
