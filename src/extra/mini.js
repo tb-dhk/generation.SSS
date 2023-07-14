@@ -89,11 +89,6 @@ export function tick(tickspeed) {
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && (gen <= maxdim() || dim !== "S")) {
         let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
-        for (let c in prestige) {
-          if (prestige[c].challenges.includes(gen + 1)) {
-            boosts **= 9 / 8
-          }
-        }
         if (dim === "S" && gen === 8 - 1) {
           const sacrificeBonus = Math.log(sacrifice) / Math.log(8)
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
@@ -111,6 +106,11 @@ export function tick(tickspeed) {
             break
           default:
             next = "S" + (gen + 1)
+        }
+        for (let c in prestige) {
+          if (prestige[c].challenges.includes(gen + 1)) {
+            defGain **= 9 / 8
+          }
         }
         if (next !== "S0") {
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
