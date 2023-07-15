@@ -160,12 +160,14 @@ h6 {
   position: absolute;
   left: 80%;
   transform: translateX(-80%);
+  padding: inherit
 }
 
 .autobuy {
   position: absolute;
   left: 70%;
   transform: translateX(-80%);
+  padding: inherit
 }
 
 .price {
