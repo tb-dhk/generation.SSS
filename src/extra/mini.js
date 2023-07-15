@@ -288,9 +288,14 @@ export function renderTab(tab, subtab) {
           enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
         } catch { }
 
+        let enableAutobuyButton = <div></div>
+        if (!subtab) {
+          enableAutobuyButton = <button className="s10 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
+        }
+
         finalDiv = (
           <div>
-            <button className="s10 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
+            {enableAutobuyButton}
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
