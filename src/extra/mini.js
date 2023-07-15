@@ -319,11 +319,14 @@ export function renderTab(tab, subtab) {
       }
     case 1:
       return lock(
-        <div className="big-grid"> {
-          [...Array(8).keys()].map(i => {
-            return <Challenge type="grand gravity" num={i + 1} />
-          })
-        } </div>
+        <div className="container label">
+          <span className="sub-header">each challenge raises the corresponding dimension to the power of 1.125.</span>
+          <div className="big-grid"> {
+            [...Array(8).keys()].map(i => {
+              return <Challenge type="grand gravity" num={i + 1} />
+            })
+          } </div>
+        </div>
       )
     case 2:
       for (let x in objekts.Atom01) {
