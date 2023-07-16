@@ -96,18 +96,20 @@ export function tick(tickspeed) {
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
         }
         let next = "S" + (gen + 1)
-        switch (inChallenge["grand gravity"]) {
-          case 7:
-            next = "S" + (gen + 2)
-            break
-          case 8:
-            let list = [3, 5, 4, 6, 7, 0, 8, 0]
-            if (gen <= 8) {
-              next = "S" + list[gen - 1]
-            }
-            break
-          default:
-            next = "S" + (gen + 1)
+        if (dim === "S") {
+          switch (inChallenge["grand gravity"]) {
+            case 7:
+              next = "S" + (gen + 2)
+              break
+            case 8:
+              let list = [3, 5, 4, 6, 7, 0, 8, 0]
+              if (gen <= 8) {
+                next = "S" + list[gen - 1]
+              }
+              break
+            default:
+              next = "S" + (gen + 1)
+          }
         }
         if (next !== "S25" && next !== "S0") {
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
