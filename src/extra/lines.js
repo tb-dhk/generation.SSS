@@ -19,6 +19,8 @@ suddenly, the screen lights up.
 *you have been equipped with 2 S. these 2 S are very valuable and rare, but they will no longer be rare when we start mass producing them.*
 
 *your job now is to generate as much S as possible. click the 'S1' button to spend 2 S to buy your first generator.*
+
+and that is how you begin producing massive amounts of a mysterious substance you know almost nothing about just to pay the bills.
   `,
   `
 apprehensively, you press the little button labeled "S1". suddenly, a machine appears in front of you.
@@ -94,29 +96,29 @@ the 7 of you have been hard at work, and have produced a lot of S in a rather sh
 
 *i will see you then.
 
-"'prestige layer'...? this sounds like an idle game," chaeyeon remarked.
+"'prestige layer'...? this sounds like an idle game," chaeyeon remarks.
 
-"that's because it is." nakyoung deadpanned.
+"that's because it is." nakyoung deadpans.
 
-"is no one going to talk about how she said that the S will combust?" yubin's face was filled with worry.
+"is no one going to talk about how she said that the S will combust?" yubin's face is filled with worry.
 
-"we need to get out of here ASAP!" hyerin darted a few hurried glances around the room, looking for an exit.
+"we need to get out of here ASAP!" hyerin darts a few hurried glances around the room, looking for an exit.
 
-"do any of you have matches? we might be able to burn the place down." jiwoo shouted.
+"do any of you have matches? we might be able to burn the place down." jiwoo shouts.
 
-"I HAVE A BOX!" yooyeon tossed her box of matches over.
+"I HAVE A BOX!" yooyeon tosses her box of matches over.
 
-"I WANT TO GO HOME!" soomin screamed.
+"I WANT TO GO HOME!" soomin screams.
 
-"GUYS. CALM DOWN. WE'RE GOING TO LIVE. THEY PROBABLY WON'T KILL US HERE," seoyeon shouted to calm everyone down. 
+"GUYS. CALM DOWN. WE'RE GOING TO LIVE. THEY PROBABLY WON'T KILL US HERE," you shout to calm everyone down. 
 
-"are you sure?" soomin looked scared.
+"are you sure?" soomin looks scared.
 
 "yes. yes. no one is dying here. not under my watch."
 
-everyone took in deep breaths to calm themselves down. jiwoo put her matches away.
+everyone takes in deep breaths to calm themselves down. jiwoo quickly puts her matches away.
 
-"ALRIGHT!" seoyeon clasped her hands together, struggling to keep her own cool. 
+"ALRIGHT!" you clasp your hands together, struggling to keep her own cool. 
 
 "we need to stay here and finish all of this so we can get out. we're going to have to trust SUAH and MODHAUS on this one. now everyone get back to work!"
     `,
@@ -125,7 +127,7 @@ the smoke clears. the 8 of you emerge coughing, while the screen lights up again
 
 *congratulations on your first grand gravity. you have now unlocked multiple different things to boost your S production.
 
-chaeyeon grimaced. "there's more...?"
+chaeyeon grimaces. "there's more...?"
 
 *yes. after all, we still do not have all 24 girls yet.*
 
@@ -139,34 +141,32 @@ chaeyeon grimaced. "there's more...?"
 
 *your new task is to get all 72 objekts and finish all 8 challenges. i will see you again then. but before i leave...*
 
-a drawer popped out of the wall.
+a drawer pops out of the wall.
 
 *here is two como and one objekt. with every grand gravity, you will be given one set of these, but your como doubles every grand gravity.*
 
-the objekt was a very smooth laminated piece of paper, and felt like a trading card but slightly thicker. the como, meanwhile, were shiny purple tokens.
+the objekt is a very smooth laminated piece of paper with a picture of one of you on it, and feels like a trading card but slightly thicker. the como, meanwhile, are a bunch of shiny purple tokens.
 
-"interesting..." seoyeon mused. "so we need to do another...71 grand gravities before suah meets us again! EVERYBODY BACK TO WORK!"
+"interesting..." you muse. "so we need to do another...71 grand gravities before suah meets us again! EVERYBODY BACK TO WORK!"
   `,
   `
 you finally have 72 objekts. the big screen lights up again, and everyone turns to the bright light emitting from it.
 
 *sighs* unfortunately, we have hit a wall.
 
-"what?" yubin asked, "what do you mean, *a wall*?"
+"what?" yubin asks, "what do you mean, *a wall*?"
 
-*unfortunately, the ruler of this universe has not allowed us to proceed. this is the end of the road for now.*
+*unfortunately, the CEO has not allowed you to proceed. this is the end of the road for now.*
 
 *they will soon build the road ahead for you to proceed, but for now, all you can do is keep grinding for como.*
 
-*however, to make your life a little bit easier, the owner has granted you a grand gravity autobuyer that you have unlocked at 72 objekts.
+"i dont like this guy," soomin pouts.
 
-"i dont like this guy," soomin pouted.
-
-"shush," jiwoo shushed soomin, "they might fire you."
+"shush," jiwoo shushes soomin, "they might fire you."
 
 *regardless of your opinions, i will see you soon.
 
-and with that, the screen went blank for what would be a much longer time.
+and with that, the screen goes blank.
 
 *thank you for playing the beta version of generation.SSS.*
   `
