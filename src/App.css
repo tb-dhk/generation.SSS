@@ -272,23 +272,54 @@ h6 {
 .milestone-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  margin: auto 25vw;
-  column-gap: 10px;
-  row-gap: 10px;
+  margin: auto 10%;
+  row-gap: 0.1vw;
 }
 
-.milestone {
-  height: 6.25vw;
-  width: 6.25vw;
-}
-
-.milestone-img {
-  height: 6.25vw;
-  width: 6.25vw;
+.milestone, .milestone-img {
+  height: 10vw;
+  width: 10vw;
+  position: relative
 }
 
 .milestone-label {
+  margin: 0;
+  position: absolute;
+  top: 0.5vh;
+  left: 50%;
+  transform: translate(-50%, 0%);
   z-index: 1;
+  background-color: transparent 
+}
+
+.milestone-label-text {
+  margin: 0;
+  background-color: transparent 
+}
+
+.milestone-description {
+  margin: 0;
+  position: absolute;
+  bottom: 0.5vh;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+  background-color: transparent 
+}
+
+.milestone-description-text {
+  margin: 0;
+  text-align: center;
+  background-color: transparent 
+}
+
+.milestone-indicator {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  z-index: 2;
 }
 
 .big-grid {

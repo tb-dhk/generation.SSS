@@ -81,7 +81,7 @@ export function tick(tickspeed) {
       defCurrencyGain *= ggc6[0]
     }
 
-    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed
+    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed / 2
     currency[generatedCurrency[dim]] += defCurrencyGain
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
@@ -138,6 +138,8 @@ export function tick(tickspeed) {
   if (inChallenge["grand gravity"] !== 3) {
     autobuy()
   }
+
+  updateMilestones()
 }
 
 export function autobuy() {
@@ -169,6 +171,55 @@ export function autobuy() {
   }
 
   localStorage.setItem('autobuyers', JSON.stringify(autobuyers))
+}
+
+function updateMilestones() {
+  const dimensions = JSON.parse(localStorage.getItem('dimensions'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
+  const objekts = JSON.parse(localStorage.getItem('objekts'))
+
+  let milestones = JSON.parse(localStorage.getItem('milestones'))
+  if (!milestones) {
+    milestones = {
+      "grand gravity": [...Array(2).keys()].map(i => {
+        return [...Array(8).keys()].map(j => {
+          return false
+        })
+      })
+    }
+  }
+
+  const conditions = {
+    "grand gravity": [
+      [
+        dimensions.S.S1.total > 0, 
+        dimensions.S.S8.total > 0,
+        dimensions.como.S1.total > 0,
+        dimensions.como.S8.total > 0,
+        prestige.grandGravity.count > 0,
+        prestige.grandGravity.count >= 24,
+        prestige.grandGravity.challenges >= 4,
+        prestige.grandGravity.challenges >= 8
+      ],
+      [...Array(8).keys()].map(i => {
+        return objekts.Atom01["S"+(i+1)].length >= 9
+      })
+    ]
+  }
+  
+  let newMilestones = []
+  for (let key in milestones) {
+    for (let row in milestones[key]) {
+      for (let col in milestones[key][row]) {
+        if (!milestones[key][row][col] && conditions[key][row][col]) {
+          milestones[key][row][col] = true
+          newMilestones.push(key + " " + (row+1) + (col+1))
+        }
+      }
+    }
+  }
+
+  localStorage.setItem("milestones", JSON.stringify(milestones))
 }
 
 export function clearAlerts() {
@@ -348,12 +399,30 @@ export function renderTab(tab, subtab) {
         </div>
       )
     case 3:
+      let milestoneCompletion = JSON.parse(localStorage.getItem("milestones"))
+      let count1 = 0
+      let count2 = 0
       return <div className="milestone-grid grid"> {
         milestones["grand gravity"].map(row => {
-          return row.map(m => {
+          count1++
+          return Object.keys(row).map(m => {
+            count2++
+            let style = {opacity: 0}
+            if (milestoneCompletion["grand gravity"][count1-1][count2-1]) {
+              style = {
+                "background-color": "#00ff00",
+                opacity: 0.5
+              }
+            }
             return <div className="milestone">
+              <div className="milestone-indicator" style={style}></div>
+              <div className="milestone-label">
+                <h4 className="milestone-label-text">{m}</h4>
+              </div>
+              <div className="milestone-description">
+                <h4 className="milestone-description-text">{row[m]}</h4>
+              </div>
               <img className="milestone-img" src={tripleSlogo} />
-              <p className="milestone-label">a</p>
             </div>
           })
         })
