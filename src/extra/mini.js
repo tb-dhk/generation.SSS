@@ -1,5 +1,7 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 
+import tripleSlogo from "../images/icon.webp"
+
 import Dimension from '../tabs/dimensions/Dimension'
 import Sacrifice from '../tabs/dimensions/Sacrifice'
 import Challenge from '../tabs/challenges/Challenge'
@@ -8,7 +10,7 @@ import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
 import Accordion from '../tabs/misc/Accordion'
 
-import { help, about } from './lines'
+import { help, about, milestones } from './lines'
 import { impt, expt } from './save'
 import { buyDim } from '../tabs/dimensions/Dimension'
 import { autostory } from '../tabs/story/StoryPopup'
@@ -120,6 +122,12 @@ export function tick(tickspeed) {
           dims[dim][genName].total += defGain
         }
       }
+      if (!dims[dim][genName].bought) {
+        dims[dim][genName].bought = 0
+      }
+      if (!dims[dim][genName].total) {
+        dims[dim][genName].total = dims[dim][genName].bought
+      }
     }
   }
 
@@ -180,6 +188,7 @@ export function getSubTabs(tab) {
     ["S", "como"],
     ["grand gravity"],
     ["single class", "double class"],
+    ["grand gravity"],
     ["part 1"],
     ["save", "options", "colors"],
     Object.keys(help),
@@ -339,10 +348,21 @@ export function renderTab(tab, subtab) {
         </div>
       )
     case 3:
+      return <div className="milestone-grid grid"> {
+        milestones["grand gravity"].map(row => {
+          return row.map(m => {
+            return <div className="milestone">
+              <img className="milestone-img" src={tripleSlogo} />
+              <p className="milestone-label">a</p>
+            </div>
+          })
+        })
+      } </div>
+    case 4:
       return [...Array(autostory()[0] + 1).keys()].map(i => {
         return <Story num={i} />
       })
-    case 4:
+    case 5:
       switch (subtab) {
         case 0:
           return (
@@ -377,13 +397,13 @@ export function renderTab(tab, subtab) {
           break
       }
       break
-    case 5:
+    case 6:
       subobj = help[Object.keys(help)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
         return <Accordion num={count - 1} head={i} body={subobj[i]} />
       })
-    case 6:
+    case 7:
       subobj = about[Object.keys(about)[subtab]]
       return Object.keys(subobj).map(i => {
         count++

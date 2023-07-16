@@ -269,6 +269,28 @@ h6 {
   padding: 20px;
 }
 
+.milestone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin: auto 25vw;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.milestone {
+  height: 6.25vw;
+  width: 6.25vw;
+}
+
+.milestone-img {
+  height: 6.25vw;
+  width: 6.25vw;
+}
+
+.milestone-label {
+  z-index: 1;
+}
+
 .big-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -172,6 +172,13 @@ and with that, the screen went blank for what would be a much longer time.
   `
 ]
 
+export const milestones = {
+  "grand gravity": [
+    [11, 12, 13, 14, 15, 16, 17, 18],
+    [21, 22, 23, 24, 25, 26, 27, 28]
+  ]
+}
+
 export const help = {
   basics: {
     concept: "the concept of this game was based on antimatter dimensions, a game where each dimension creates the previous dimension. i wanted to make a tripleS parody so here it is! for credits, see `/credits`.",
@@ -189,7 +196,6 @@ export const help = {
     "what are some future plans for the next minor/major update?": ['- second prestige layer (event gravity)', '- kaede and dahyun will be added', '- 10 event gravity challenges', '- sigma dimensions'].join("\n")
   }
 }
-
 
 export const about = {
   credits: {

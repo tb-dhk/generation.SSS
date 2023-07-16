@@ -9,7 +9,11 @@ export function buyDim(type, num, max) {
 
   function buyone() {
     thisDim.bought += 1
-    thisDim.total += 1
+    if (!thisDim.total) {
+      thisDim.total = 1
+    } else {
+      thisDim.total += 1
+    }
     dims[type]["S" + num.toString()] = thisDim
     currencies[type] -= price(type, num)
 

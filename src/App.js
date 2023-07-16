@@ -100,7 +100,7 @@ function App() {
   const [subTab, setSubTab] = useState(0)
 
   const tickspeed = JSON.parse(localStorage.getItem("tickspeed"))
-  const tabs = ["dimensions", "challenges", "objekts", "story", "settings", "help", "about"]
+  const tabs = ["dimensions", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
 
   const currency = useSelector((state) => state.currency.value)
   const inChallenge = useSelector((state) => state.inChallenge.value)
