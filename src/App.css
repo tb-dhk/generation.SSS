@@ -274,7 +274,9 @@ h6 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: auto;
   justify-content: center;
+  width: 80vw;
   max-width: 1024px;
+  column-gap: 0
 }
 
 .milestone, .milestone-img {
