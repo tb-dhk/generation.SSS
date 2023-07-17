@@ -200,8 +200,8 @@ function updateMilestones() {
         dimensions.como.S8.total > 0,
         prestige.grandGravity.count > 0,
         prestige.grandGravity.count >= 24,
-        prestige.grandGravity.challenges >= 4,
-        prestige.grandGravity.challenges >= 8
+        prestige.grandGravity.challenges.length >= 4,
+        prestige.grandGravity.challenges.length >= 8
       ],
       [...Array(8).keys()].map(i => {
         return objekts.Atom01["S"+(i+1)].length >= 9
