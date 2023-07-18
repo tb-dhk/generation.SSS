@@ -292,8 +292,8 @@ h6 {
 .milestone-img {
   height: auto;
   width: auto;
-  max-height: 192px;
-  max-width: 192px;
+  max-height: 10vw;
+  max-width: 10vw;
   margin: auto
 }
 
