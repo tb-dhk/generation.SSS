@@ -246,7 +246,7 @@ export const milestones = {
       27: {
         name: "that scared me...",
         description: "get all S7 Atom01 objekts.",
-        image: nakyoung0
+        image: nakyoung1
       }, 
       28: {
         description: "get all S8 Atom01 objekts.",
