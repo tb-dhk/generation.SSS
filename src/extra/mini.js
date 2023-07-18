@@ -288,6 +288,19 @@ function toggleSetting(k) {
   localStorage.setItem('settings', JSON.stringify(settings))
 }
 
+export function buyMax(subTab) {
+  const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+
+  let limit = 8
+  if (inChallenge["grand gravity"] === 4) {
+    limit = 6
+  }
+  let dims = ["S", "como"]
+  for (var i = limit; i > 0; i--) {
+    buyDim(dims[subTab], i, true)
+  }
+}
+
 export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
@@ -359,12 +372,13 @@ export function renderTab(tab, subtab) {
 
         let enableAutobuyButton = <div></div>
         if (!subtab) {
-          enableAutobuyButton = <button className="s10 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
+          enableAutobuyButton = <button className="s11 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
         }
 
         finalDiv = (
           <div>
             {enableAutobuyButton}
+            <button className="s12 sub-header" onClick={() => {buyMax(subtab)}}>buy max</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}

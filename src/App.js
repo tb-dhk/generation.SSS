@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 
-import { format, tick, renderTab, getSubTabs, changeColor, clearAlerts } from "./extra/mini"
+import { format, tick, renderTab, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
 
 import { StoryPopup } from "./tabs/story/StoryPopup"
 import { Alert } from "./tabs/misc/Alert"
@@ -150,14 +150,7 @@ function App() {
       changeSubTab((subTab === getSubTabs(currentTab).length - 1) ? 0 : (subTab + 1))
     },
     max: event => {
-      let limit = 8
-      if (inChallenge["grand gravity"] === 4) {
-        limit = 6
-      }
-      let dims = ["S", "como"]
-      for (var i = limit; i > 0; i--) {
-        buyDim(dims[subTab], i, true)
-      }
+      buyMax(subTab) 
     }
   }
 
