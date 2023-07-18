@@ -179,10 +179,11 @@ function updateMilestones() {
   const dimensions = JSON.parse(localStorage.getItem('dimensions'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
+  const alerts = JSON.parse(localStorage.getItem('alerts'))
 
-  let milestones = JSON.parse(localStorage.getItem('milestones'))
-  if (!milestones) {
-    milestones = {
+  let myMilestones = JSON.parse(localStorage.getItem('milestones'))
+  if (!myMilestones) {
+    myMilestones = {
       "grand gravity": [...Array(2).keys()].map(i => {
         return [...Array(8).keys()].map(j => {
           return false
@@ -210,18 +211,26 @@ function updateMilestones() {
   }
   
   let newMilestones = []
-  for (let key in milestones) {
-    for (let row in milestones[key]) {
-      for (let col in milestones[key][row]) {
-        if (!milestones[key][row][col] && conditions[key][row][col]) {
-          milestones[key][row][col] = true
-          newMilestones.push(key + " " + (row+1) + (col+1))
+  for (let key in myMilestones) {
+    for (let row in myMilestones[key]) {
+      for (let col in myMilestones[key][row]) {
+        if (!myMilestones[key][row][col] && conditions[key][row][col]) {
+          myMilestones[key][row][col] = true
+          newMilestones.push(milestones[key][row][Object.keys(milestones[key][row])[col]].name)
         }
       }
     }
   }
+  localStorage.setItem("milestones", JSON.stringify(myMilestones))
 
-  localStorage.setItem("milestones", JSON.stringify(milestones))
+  for (let m in newMilestones) {
+    alerts[`get-milestone-${newMilestones[m]}`] = {
+      message: `you got a new milestone: ${newMilestones[m]}`,
+      time: Date.now()
+    }
+  }
+
+  localStorage.setItem("alerts", JSON.stringify(alerts))
 }
 
 export function clearAlerts() {
@@ -240,7 +249,7 @@ export function getSubTabs(tab) {
   const subTabs = [
     ["S", "como"],
     ["grand gravity"],
-    ["single class", "double class"],
+    ["single class"],
     ["grand gravity"],
     ["part 1"],
     ["save", "options", "colors"],
@@ -419,12 +428,12 @@ export function renderTab(tab, subtab) {
             return <div className="milestone">
               <div className="milestone-indicator" style={style}></div>
               <div className="milestone-label">
-                <h4 className="milestone-label-text">{m}</h4>
+                <h4 className="milestone-label-text">{row[m].name}</h4>
               </div>
               <div className="milestone-description">
-                <h4 className="milestone-description-text">{row[m]}</h4>
+                <h4 className="milestone-description-text">{row[m].description}</h4>
               </div>
-              <img className="milestone-img" src={tripleSlogo} />
+              <img className="milestone-img" src={row[m].image} />
             </div>
           })
         })

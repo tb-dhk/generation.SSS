@@ -138,16 +138,16 @@ function App() {
 
   const handlers = {
     prev_tab: event => {
-      setCurrentTab((currentTab === 0) ? (tabs.length - 1) : (currentTab - 1))
+      changeTab((currentTab === 0) ? (tabs.length - 1) : (currentTab - 1))
     },
     next_tab: event => {
-      setCurrentTab((currentTab === tabs.length - 1) ? 0 : (currentTab + 1))
+      changeTab((currentTab === tabs.length - 1) ? 0 : (currentTab + 1))
     },
     prev_subtab: event => {
-      setSubTab((subTab === 0) ? (getSubTabs(currentTab).length - 1) : (subTab - 1))
+      changeSubTab((subTab === 0) ? (getSubTabs(currentTab).length - 1) : (subTab - 1))
     },
     next_subtab: event => {
-      setSubTab((subTab === getSubTabs(currentTab).length - 1) ? 0 : (subTab + 1))
+      changeSubTab((subTab === getSubTabs(currentTab).length - 1) ? 0 : (subTab + 1))
     },
     max: event => {
       let limit = 8

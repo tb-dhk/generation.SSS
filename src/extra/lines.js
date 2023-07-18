@@ -175,24 +175,56 @@ and with that, the screen goes blank.
 export const milestones = {
   "grand gravity": [
     {
-      11: "buy 1 S1 S generator.", 
-      12: "buy 1 S8 S generator.", 
-      13: "buy 1 S1 como generator.", 
-      14: "buy 1 S8 como generator.", 
-      15: "do one grand gravity.",
-      16: "do 24 grand gravities.", 
-      17: "finish four grand gravity challenges.", 
-      18: "finish all grand gravity challenges."
+      11: {
+        description: "buy 1 S1 S generator."
+      }, 
+      12: {
+        description: "buy 1 S8 S generator."
+      }, 
+      13: {
+        description: "buy 1 S1 como generator."
+      }, 
+      14: {
+        description: "buy 1 S8 como generator."
+      }, 
+      15: {
+        description: "do one grand gravity."
+      },
+      16: {
+        description: "do 24 grand gravities."
+      }, 
+      17: {
+        description: "finish four grand gravity challenges."
+      }, 
+      18: {
+        description: "finish all grand gravity challenges."
+      }
     },
     {
-      21: "get all S1 Atom01 objekts.", 
-      22: "get all S2 Atom01 objekts.", 
-      23: "get all S3 Atom01 objekts.", 
-      24: "get all S4 Atom01 objekts.", 
-      25: "get all S5 Atom01 objekts.",
-      26: "get all S6 Atom01 objekts.", 
-      27: "get all S7 Atom01 objekts.", 
-      28: "get all S8 Atom01 objekts."
+      21: {
+        description: "get all S1 Atom01 objekts."
+      }, 
+      22: {
+        description: "get all S2 Atom01 objekts."
+      }, 
+      23: {
+        description: "get all S3 Atom01 objekts."
+      }, 
+      24: {
+        description: "get all S4 Atom01 objekts."
+      }, 
+      25: {
+        description: "get all S5 Atom01 objekts."
+      },
+      26: {
+        description: "get all S6 Atom01 objekts."
+      }, 
+      27: {
+        description: "get all S7 Atom01 objekts."
+      }, 
+      28: {
+        description: "get all S8 Atom01 objekts."
+      }
     }
   ]
 }
