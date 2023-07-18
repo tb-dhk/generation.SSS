@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/generation.SSS/static/css/main.9ab045d1.css",
-    "main.js": "/generation.SSS/static/js/main.358b1fe1.js",
+    "main.js": "/generation.SSS/static/js/main.f6fe13bd.js",
     "static/js/787.677c3017.chunk.js": "/generation.SSS/static/js/787.677c3017.chunk.js",
     "static/media/soomin-1.png": "/generation.SSS/static/media/soomin-1.dc0da622c3eea675ad25.png",
     "static/media/yubin-0.png": "/generation.SSS/static/media/yubin-0.6ee9a8a0c7070aa88a2e.png",
@@ -14,14 +14,13 @@
     "static/media/Helvetica Neu Bold.ttf": "/generation.SSS/static/media/Helvetica Neu Bold.61acdee6f288cddccf23.ttf",
     "static/media/yooyeon-1.png": "/generation.SSS/static/media/yooyeon-1.b345256506188b416b9a.png",
     "static/media/close.png": "/generation.SSS/static/media/close.6512609a998c4f95a408.png",
-    "static/media/icon.webp": "/generation.SSS/static/media/icon.4bb6f430214296322d48.webp",
     "index.html": "/generation.SSS/index.html",
     "main.9ab045d1.css.map": "/generation.SSS/static/css/main.9ab045d1.css.map",
-    "main.358b1fe1.js.map": "/generation.SSS/static/js/main.358b1fe1.js.map",
+    "main.f6fe13bd.js.map": "/generation.SSS/static/js/main.f6fe13bd.js.map",
     "787.677c3017.chunk.js.map": "/generation.SSS/static/js/787.677c3017.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ab045d1.css",
-    "static/js/main.358b1fe1.js"
+    "static/js/main.f6fe13bd.js"
   ]
 }
