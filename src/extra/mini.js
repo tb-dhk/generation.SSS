@@ -1,7 +1,5 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import tripleSlogo from "../images/icon.webp"
-
 import Dimension from '../tabs/dimensions/Dimension'
 import Sacrifice from '../tabs/dimensions/Sacrifice'
 import Challenge from '../tabs/challenges/Challenge'
@@ -81,7 +79,7 @@ export function tick(tickspeed) {
       defCurrencyGain *= ggc6[0]
     }
 
-    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed / 2
+    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed
     currency[generatedCurrency[dim]] += defCurrencyGain
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
@@ -433,7 +431,7 @@ export function renderTab(tab, subtab) {
               <div className="milestone-description">
                 <h4 className="milestone-description-text">{row[m].description}</h4>
               </div>
-              <img className="milestone-img" src={row[m].image} />
+              <img className="milestone-img" alt={`milestone image for ${row[m].name}`} src={row[m].image} />
             </div>
           })
         })
