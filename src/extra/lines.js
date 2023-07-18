@@ -1,3 +1,12 @@
+import yooyeon0 from "../images/yooyeon-0.png"
+import yooyeon1 from "../images/yooyeon-1.png"
+import soomin0 from "../images/soomin-0.png"
+import soomin1 from "../images/soomin-1.png"
+import nakyoung0 from "../images/nakyoung-0.png"
+import nakyoung1 from "../images/nakyoung-1.png"
+import yubin0 from "../images/yubin-0.png"
+import yubin1 from "../images/yubin-1.png"
+
 export const story = [
   `
 you enter the mysterious room. no one else is there, just you...and a big blank screen.
@@ -176,25 +185,34 @@ export const milestones = {
   "grand gravity": [
     {
       11: {
+        name: "welcome to my kpop class!",
         description: "buy 1 S1 S generator."
       }, 
       12: {
-        description: "buy 1 S8 S generator."
+        description: "buy 1 S8 S generator.",
+        image: yubin0
       }, 
       13: {
-        description: "buy 1 S1 como generator."
+        name: "my evaluation is going to be electrocuted!",
+        description: "buy 1 S1 como generator.",
+        image: soomin0
       }, 
       14: {
-        description: "buy 1 S8 como generator."
+        description: "buy 1 S8 como generator.",
+        image: yooyeon1
       }, 
       15: {
+        name: "ijbol",
         description: "do one grand gravity."
       },
       16: {
+        name: "isn't 24 too many?",
         description: "do 24 grand gravities."
       }, 
       17: {
-        description: "finish four grand gravity challenges."
+        name: "oh lol",
+        description: "finish four grand gravity challenges.",
+        image: nakyoung0
       }, 
       18: {
         description: "finish all grand gravity challenges."
@@ -202,28 +220,37 @@ export const milestones = {
     },
     {
       21: {
+        name: "can i buy a house?",
         description: "get all S1 Atom01 objekts."
       }, 
       22: {
         description: "get all S2 Atom01 objekts."
       }, 
       23: {
+        name: "you know, i used to play ice hockey...",
         description: "get all S3 Atom01 objekts."
       }, 
       24: {
+        name: "siblings with jiwoo (and hyerin is the dog)",
         description: "get all S4 Atom01 objekts."
       }, 
       25: {
-        description: "get all S5 Atom01 objekts."
+        description: "get all S5 Atom01 objekts.",
+        image: yooyeon0
       },
       26: {
-        description: "get all S6 Atom01 objekts."
+        name: "a perfect cure for alzheimer's",
+        description: "get all S6 Atom01 objekts.",
+        image: soomin1
       }, 
       27: {
-        description: "get all S7 Atom01 objekts."
+        name: "that scared me...",
+        description: "get all S7 Atom01 objekts.",
+        image: nakyoung0
       }, 
       28: {
-        description: "get all S8 Atom01 objekts."
+        description: "get all S8 Atom01 objekts.",
+        image: yubin1
       }
     }
   ]

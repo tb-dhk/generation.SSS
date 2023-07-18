@@ -279,33 +279,33 @@ h6 {
   column-gap: 0
 }
 
-.milestone, .milestone-img {
+.milestone {
   height: 20vw;
   width: 20vw;
   max-height: 256px;
   max-width: 256px;
-  position: relative
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.milestone-label {
+.milestone-img {
+  height: auto;
+  width: auto;
+  max-height: 192px;
+  max-width: 192px;
+  margin: auto
+}
+
+.milestone-label-text, .milestone-description-text {
   margin: 0;
-  position: absolute;
-  top: 0.5vh;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  z-index: 1;
+  text-align: center;
   background-color: transparent 
 }
 
-.milestone-label-text {
-  margin: 0;
-  background-color: transparent 
-}
-
-.milestone-description {
+.milestone-label, .milestone-description {
   margin: 0;
   position: absolute;
-  bottom: 0.5vh;
   left: 50%;
   width: 90%;
   transform: translate(-50%, 0%);
@@ -313,10 +313,12 @@ h6 {
   background-color: transparent 
 }
 
-.milestone-description-text {
-  margin: 0;
-  text-align: center;
-  background-color: transparent 
+.milestone-label {
+  top: 0.5vh;
+}
+
+.milestone-description {
+  bottom: 0.5vh;
 }
 
 .milestone-indicator {

@@ -422,13 +422,13 @@ export function renderTab(tab, subtab) {
             if (milestoneCompletion["grand gravity"][count1-1][count2-1]) {
               style = {
                 "background-color": "#00ff00",
-                opacity: 0.5
+                opacity: 0.25
               }
             }
             return <div className="milestone">
               <div className="milestone-indicator" style={style}></div>
               <div className="milestone-label">
-                <h4 className="milestone-label-text">{row[m].name}</h4>
+                <h4 className="milestone-label-text">{`"${row[m].name}"`}</h4>
               </div>
               <div className="milestone-description">
                 <h4 className="milestone-description-text">{row[m].description}</h4>
