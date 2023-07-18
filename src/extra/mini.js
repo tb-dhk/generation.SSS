@@ -445,7 +445,7 @@ export function renderTab(tab, subtab) {
               <div className="milestone-description">
                 <h4 className="milestone-description-text">{row[m].description}</h4>
               </div>
-              <img className="milestone-img" alt={`milestone image for ${row[m].name}`} src={row[m].image} />
+              <img className="milestone-img" alt={`milestone for ${row[m].name}`} src={row[m].image} />
             </div>
           })
         })
