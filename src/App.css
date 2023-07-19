@@ -55,7 +55,8 @@ button {
 }
 
 p, .icon {
-  background-color: transparent
+  background-color: transparent;
+  font-size: calc(4px + 0.5vmin)
 }
 
 h1 {
