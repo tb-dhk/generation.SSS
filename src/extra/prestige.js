@@ -50,14 +50,14 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
         }
       }
       if (!arrayIsEmpty(leftMembers)) {
-        const member = leftMembers[Math.floor(Math.random(leftMembers.length))]
+        const member = leftMembers[Math.floor(Math.random() * leftMembers.length)]
         let leftObjekts = []
         for (let i in [...Array(9).keys()]) {
           if (!objekts.Atom01[member].includes(parseInt(i) + 100)) {
             leftObjekts.push(parseInt(i) + 100)
           }
         }
-        const serial = leftObjekts[Math.floor(Math.random(leftObjekts.length))]
+        const serial = leftObjekts[Math.floor(Math.random() * leftObjekts.length)]
         gainedObjekt = member + " " + serial
         objekts.Atom01[member].push(parseInt(serial))
         objekts.Atom01[member].sort()
@@ -69,7 +69,11 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     }
     localStorage.setItem('objekts', JSON.stringify(objekts))
 
-    newMessage = `you got ${format(2 ** prestige.grandGravity.count)} como and a ${gainedObjekt} objekt.`
+    if (gainedObjekt) {
+      newMessage += ` and a ${gainedObjekt} objekt.`
+    }
+
+    newMessage = `you got ${format(2 ** prestige.grandGravity.count)} como`
   }
 
   if (finishChallenge) {

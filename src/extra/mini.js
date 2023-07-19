@@ -69,7 +69,7 @@ export function tick(tickspeed) {
     const maxDim = maxdim()
     const boosts = (maxDim ** maxDim)
     let defCurrencyGain = Number(dims[dim]["S1"].total) + (inChallenge["grand gravity"] === 7 ? Number(dims[dim]["S2"].total) : 0)
-    defCurrencyGain *= boosts / 1000 * tickspeed
+    defCurrencyGain *= boosts
     if (currency.comoDust) {
       defCurrencyGain *= currency.comoDust ** (1 / 8)
     }
@@ -79,8 +79,8 @@ export function tick(tickspeed) {
       defCurrencyGain *= ggc6[0]
     }
 
-    perSecond[generatedCurrency[dim]] = defCurrencyGain * 1000 / tickspeed
-    currency[generatedCurrency[dim]] += defCurrencyGain
+    perSecond[generatedCurrency[dim]] = defCurrencyGain
+    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
     }
@@ -270,7 +270,7 @@ function lock(div) {
       <div class="locked">
         <h3>oops!</h3>
         <h4>this area is locked.</h4>
-        <p>get 24^24 S and perform a grand gravity to unlock this section!</p>
+        <h6>get 24^24 S and perform a grand gravity to unlock this section!</h6>
       </div>
     )
   }

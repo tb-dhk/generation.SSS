@@ -144,10 +144,10 @@ h6 {
 }
 
 .bonus {
-  font-size: calc(2px + 0.5vmin);
+  font-size: calc(2px + 1vmin);
   position: absolute;
   left: 20%;
-  transform: translateY(80%);
+  transform: translateY(20%);
 }
 
 .amount {
