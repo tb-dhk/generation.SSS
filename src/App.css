@@ -50,7 +50,6 @@
 
 button {
   border: none;
-  font-size: calc(1vmin + 5px);
   margin: none;
 }
 
@@ -145,9 +144,9 @@ h6 {
 }
 
 .bonus {
-  font-size: 0.8vmin;
+  font-size: calc(4px + 0.5vmin);
   position: absolute;
-  left: 10%;
+  left: 20%;
   transform: translateY(80%);
 }
 
@@ -271,6 +270,7 @@ h6 {
   margin: 50px auto;
   padding: 20px;
   min-height: 100px;
+  min-width: 800px;
   text-align: center;
   border-radius: 10px;
   padding: 20px;
@@ -339,7 +339,10 @@ h6 {
 .big-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: auto 25%;
+  margin: auto;
+  width: 50%;
+  min-width: 800px;
+  max-width: 1600px;
   column-gap: 10px;
   row-gap: 10px;
 }

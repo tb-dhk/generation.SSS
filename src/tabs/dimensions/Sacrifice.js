@@ -23,9 +23,9 @@ function Sacrifice() {
   const newBonus = Math.log(Number(currency.S)) / Math.log(8)
   if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice) {
     return <div className={`big sacrifice s${maxdim()}`}>
-      <h3 className={`s${maxdim()}`}>you can now sacrifice!</h3>
-      <h4 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h4>
-      <h4 className={`s${maxdim()}`}>when you sacrifice, your S8 generators will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}).</h4>
+      <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
+      <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
+      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 generators will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}).</h5>
       <button className="round-corners" onClick={doSacrifice}>sacrifice</button>
     </div>
   } else {
