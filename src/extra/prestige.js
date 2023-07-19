@@ -1,9 +1,5 @@
 import { format } from './mini'
 
-function objekt(clss, memberMin, memberMax, serialMin, serialMax) {
-  return ["S" + (Math.floor(Math.random() * (memberMax - memberMin + 1)) + memberMin), clss.toString() + (Math.floor(Math.random() * serialMax - serialMin + 1) + serialMin).toString().padStart(2, '0')];
-}
-
 function arrayIsEmpty(array) {
   if (!Array.isArray(array)) {
     return false;
@@ -45,14 +41,26 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     let gainedObjekt = ""
 
     if (arrayIsEmpty(no100)) {
-      while (true) {
-        const [member, serial] = objekt(1, 1, 8, 1, 8)
-        if (!Array(objekts.Atom01[member]).includes(parseInt(serial))) {
-          gainedObjekt = member + " " + serial
-          objekts.Atom01[member].push(parseInt(serial))
-          objekts.Atom01[member].sort()
-          break
+      let leftMembers = []
+      for (let member in objekts.Atom01) {
+        if (objekts.Atom01[member].length < 9) {
+          leftMembers.push(member)
+        } else {
+          console.log(member, objekts.Atom01[member])
         }
+      }
+      if (!arrayIsEmpty(leftMembers)) {
+        const member = leftMembers[Math.floor(Math.random(leftMembers.length))]
+        let leftObjekts = []
+        for (let i in [...Array(9).keys()]) {
+          if (!objekts.Atom01[member].includes(parseInt(i) + 100)) {
+            leftObjekts.push(parseInt(i) + 100)
+          }
+        }
+        const serial = leftObjekts[Math.floor(Math.random(leftObjekts.length))]
+        gainedObjekt = member + " " + serial
+        objekts.Atom01[member].push(parseInt(serial))
+        objekts.Atom01[member].sort()
       }
     } else {
       const member = no100[Math.floor(Math.random() * no100.length)]

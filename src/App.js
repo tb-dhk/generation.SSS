@@ -200,16 +200,12 @@ function App() {
     const tabDivs = document.querySelectorAll("button.tab")
     for (let j in tabDivs) {
       let item = tabDivs[j]
-      console.log(item)
       if (typeof item === "object") {
         if (item.classList.contains(`s${i+1}`)) {
           item.classList.add("invert")
-          console.log("add invert")
         } else if (item.classList.contains("invert")) {
           item.classList.remove("invert")
-          console.log("remove invert")
         } else {
-          console.log("nothing")
         }
       }
     }

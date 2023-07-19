@@ -203,6 +203,9 @@ function updateMilestones() {
         prestige.grandGravity.challenges.length >= 8
       ],
       [...Array(8).keys()].map(i => {
+        if (objekts.Atom01["S"+(i+1)].length >= 9) {
+          //console.log(objekts.Atom01["S"+(i+1)])
+        }
         return objekts.Atom01["S"+(i+1)].length >= 9
       })
     ]
