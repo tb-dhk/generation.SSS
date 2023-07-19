@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/generation.SSS/static/css/main.62353bc8.css",
-    "main.js": "/generation.SSS/static/js/main.b815d8f9.js",
+    "main.css": "/generation.SSS/static/css/main.6c7a5215.css",
+    "main.js": "/generation.SSS/static/js/main.4d646f4e.js",
     "static/js/787.677c3017.chunk.js": "/generation.SSS/static/js/787.677c3017.chunk.js",
     "static/media/jiwoo-1.png": "/generation.SSS/static/media/jiwoo-1.330b9292f44eff32c4a2.png",
     "static/media/soomin-1.png": "/generation.SSS/static/media/soomin-1.dc0da622c3eea675ad25.png",
@@ -23,12 +23,12 @@
     "static/media/yooyeon-1.png": "/generation.SSS/static/media/yooyeon-1.b345256506188b416b9a.png",
     "static/media/close.png": "/generation.SSS/static/media/close.6512609a998c4f95a408.png",
     "index.html": "/generation.SSS/index.html",
-    "main.62353bc8.css.map": "/generation.SSS/static/css/main.62353bc8.css.map",
-    "main.b815d8f9.js.map": "/generation.SSS/static/js/main.b815d8f9.js.map",
+    "main.6c7a5215.css.map": "/generation.SSS/static/css/main.6c7a5215.css.map",
+    "main.4d646f4e.js.map": "/generation.SSS/static/js/main.4d646f4e.js.map",
     "787.677c3017.chunk.js.map": "/generation.SSS/static/js/787.677c3017.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.62353bc8.css",
-    "static/js/main.b815d8f9.js"
+    "static/css/main.6c7a5215.css",
+    "static/js/main.4d646f4e.js"
   ]
 }
