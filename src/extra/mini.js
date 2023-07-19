@@ -155,9 +155,9 @@ export function autobuy() {
 
   let dims = ["S", "como"]
 
-  for (var j = 0; j < 1; j++) {
+  for (let j = 0; j < 1; j++) {
     if (j === 0 && currency.S < 24 ** 24 && enableAutobuy) {
-      for (var i in objekts.Atom01) {
+      for (let i in objekts.Atom01) {
         if (!(inChallenge["grand gravity"] === 4 && parseInt(i.slice(1)) > 6)) {
           let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
           const remaining = (Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[dims[j]][i]) / 1000))
@@ -299,7 +299,7 @@ export function buyMax(subTab) {
     limit = 6
   }
   let dims = ["S", "como"]
-  for (var i = limit; i > 0; i--) {
+  for (let i = limit; i > 0; i--) {
     buyDim(dims[subTab], i, true)
   }
 }
@@ -509,6 +509,24 @@ export function renderTab(tab, subtab) {
   }
 }
 
+// from http://www.w3.org/TR/WCAG20/#relativeluminancedef
+function luminance(color) {
+  let [R8bit, G8bit, B8bit] = color
+
+  let RsRGB = R8bit/255;
+  let GsRGB = G8bit/255;
+  let BsRGB = B8bit/255;
+
+  let R = (RsRGB <= 0.03928) ? RsRGB/12.92 : Math.pow((RsRGB+0.055)/1.055, 2.4);
+  let G = (GsRGB <= 0.03928) ? GsRGB/12.92 : Math.pow((GsRGB+0.055)/1.055, 2.4);
+  let B = (BsRGB <= 0.03928) ? BsRGB/12.92 : Math.pow((BsRGB+0.055)/1.055, 2.4);
+
+  // For the sRGB colorspace, the relative luminance of a color is defined as: 
+  let L = 0.2126 * R + 0.7152 * G + 0.0722 * B;
+
+  return L;
+}
+
 export function changeColor(className, color) {
   if (/^#[0-9A-F]{6}$/i.test(color) || /^#([0-9A-F]{3}){1,2}$/i.test(color)) {
     const items = document.querySelectorAll("." + className)
@@ -521,7 +539,6 @@ export function changeColor(className, color) {
       }
       return val
     })
-    const avg = sep.reduce((p, c) => p + c, 0) / sep.length
 
     for (let i in items) {
       let item = items[i]
@@ -532,7 +549,9 @@ export function changeColor(className, color) {
           item.style.border = `2px solid ${color}`
         } else {
           item.style.backgroundColor = color
-          item.style.color = avg >= 8 ? "black" : "white"
+          let c = luminance(sep)
+          const blackBackground = (c + 0.05) / (0 + 0.05) >= (1 + 0.05) / (c + 0.05) / 19
+          item.style.color = blackBackground ? "black" : "white"
         }
       }
     }
