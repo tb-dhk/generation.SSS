@@ -204,7 +204,7 @@ function updateMilestones() {
       ],
       [...Array(8).keys()].map(i => {
         if (objekts.Atom01["S"+(i+1)].length >= 9) {
-          //console.log(objekts.Atom01["S"+(i+1)])
+          console.log(objekts.Atom01["S"+(i+1)])
         }
         return objekts.Atom01["S"+(i+1)].length >= 9
       })
@@ -431,6 +431,7 @@ export function renderTab(tab, subtab) {
       return <div className="milestone-grid grid"> {
         milestones["grand gravity"].map(row => {
           count1++
+          count2 = 0
           return Object.keys(row).map(m => {
             count2++
             let style = {opacity: 0}
@@ -462,8 +463,8 @@ export function renderTab(tab, subtab) {
         case 0:
           return (
             <div className="big-grid">
-              <button className="s1 big" onClick={impt}>import</button>
-              <button className="s2 big" onClick={expt}>export</button>
+              <button className="s12 big" onClick={impt}>import</button>
+              <button className="s13 big" onClick={expt}>export</button>
             </div>
           )
         case 1:
@@ -472,7 +473,7 @@ export function renderTab(tab, subtab) {
               {
                 Object.keys(settings).map(k => {
                   count += 1
-                  return <button className={`s${count + 10} sub-header`} onClick={() => toggleSetting(k)}>{k}: {settings[k] ? "on" : "off"}</button>
+                  return <button className={`s${count + 11} sub-header`} onClick={() => toggleSetting(k)}>{k}: {settings[k] ? "on" : "off"}</button>
                 })
               } 
             </div>
