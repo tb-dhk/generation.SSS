@@ -55,31 +55,31 @@ button {
 
 p, .icon {
   background-color: transparent;
-  font-size: calc(4px + 0.5vmin)
+  font-size: calc(2px + 0.5vmin)
 }
 
 h1 {
-  font-size: calc(24px + 3vmin)
+  font-size: calc(12px + 3vmin)
 }
 
 h2 {
-  font-size: calc(20px + 2.5vmin)
+  font-size: calc(10px + 2.5vmin)
 }
 
 h3 {
-  font-size: calc(16px + 2vmin)
+  font-size: calc(8px + 2vmin)
 }
 
 h4 {
-  font-size: calc(12px + 1.5vmin)
+  font-size: calc(6px + 1.5vmin)
 }
 
 h5 {
-  font-size: calc(8px + 1vmin)
+  font-size: calc(4px + 1vmin)
 }
 
 h6 {
-  font-size: calc(4px + 0.5vmin)
+  font-size: calc(2px + 0.5vmin)
 }
 
 #hotkeys {
@@ -144,7 +144,7 @@ h6 {
 }
 
 .bonus {
-  font-size: calc(4px + 0.5vmin);
+  font-size: calc(2px + 0.5vmin);
   position: absolute;
   left: 20%;
   transform: translateY(80%);
