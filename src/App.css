@@ -272,7 +272,7 @@ h6 {
 .milestone-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: auto;
+  margin: 20px auto;
   justify-content: center;
   width: 80vw;
   max-width: 1024px;

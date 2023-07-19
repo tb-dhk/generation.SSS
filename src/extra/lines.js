@@ -1,3 +1,11 @@
+import seoyeon0 from "../images/seoyeon-0.png"
+import seoyeon1 from "../images/seoyeon-1.png"
+import hyerin0 from "../images/hyerin-0.png"
+import hyerin1 from "../images/hyerin-1.png"
+import jiwoo0 from "../images/jiwoo-0.png"
+import jiwoo1 from "../images/jiwoo-1.png"
+import chaeyeon0 from "../images/chaeyeon-0.png"
+import chaeyeon1 from "../images/chaeyeon-1.png"
 import yooyeon0 from "../images/yooyeon-0.png"
 import yooyeon1 from "../images/yooyeon-1.png"
 import soomin0 from "../images/soomin-0.png"
@@ -186,9 +194,11 @@ export const milestones = {
     {
       11: {
         name: "welcome to my kpop class!",
-        description: "buy 1 S1 S generator."
+        description: "buy 1 S1 S generator.",
+        image: chaeyeon1
       }, 
       12: {
+        name: "byte for now",
         description: "buy 1 S8 S generator.",
         image: yubin0
       }, 
@@ -198,16 +208,19 @@ export const milestones = {
         image: soomin0
       }, 
       14: {
+        name: "is this how it feels to partake in teaching practice sessions?", 
         description: "buy 1 S8 como generator.",
         image: yooyeon1
       }, 
       15: {
         name: "ijbol",
-        description: "do one grand gravity."
+        description: "do one grand gravity.",
+        image: jiwoo1
       },
       16: {
         name: "isn't 24 too many?",
-        description: "do 24 grand gravities."
+        description: "do 24 grand gravities.",
+        image: seoyeon0
       }, 
       17: {
         name: "oh lol",
@@ -215,26 +228,34 @@ export const milestones = {
         image: nakyoung0
       }, 
       18: {
-        description: "finish all grand gravity challenges."
+        name: "i thought chickens had 4 legs...",
+        description: "finish all grand gravity challenges.",
+        image: hyerin0
       }
     },
     {
       21: {
         name: "can i buy a house?",
-        description: "get all S1 Atom01 objekts."
+        description: "get all S1 Atom01 objekts.",
+        image: seoyeon1
       }, 
       22: {
-        description: "get all S2 Atom01 objekts."
+        name: "capitalism...",
+        description: "get all S2 Atom01 objekts.",
+        image: hyerin1
       }, 
       23: {
         name: "you know, i used to play ice hockey...",
-        description: "get all S3 Atom01 objekts."
+        description: "get all S3 Atom01 objekts.",
+        image: jiwoo0
       }, 
       24: {
         name: "siblings with jiwoo (and hyerin is the dog)",
-        description: "get all S4 Atom01 objekts."
+        description: "get all S4 Atom01 objekts.",
+        image: chaeyeon0
       }, 
       25: {
+        name: "i really like sexy women",
         description: "get all S5 Atom01 objekts.",
         image: yooyeon0
       },
@@ -249,6 +270,7 @@ export const milestones = {
         image: nakyoung1
       }, 
       28: {
+        name: "it's tiring to leave the haus...",
         description: "get all S8 Atom01 objekts.",
         image: yubin1
       }
