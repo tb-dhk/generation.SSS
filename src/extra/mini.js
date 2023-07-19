@@ -444,10 +444,10 @@ export function renderTab(tab, subtab) {
             return <div className="milestone">
               <div className="milestone-indicator" style={style}></div>
               <div className="milestone-label">
-                <h4 className="milestone-label-text">{`"${row[m].name}"`}</h4>
+                <h5 className="milestone-label-text">{`"${row[m].name}"`}</h5>
               </div>
               <div className="milestone-description">
-                <h4 className="milestone-description-text">{row[m].description}</h4>
+                <h5 className="milestone-description-text">{row[m].description}</h5>
               </div>
               <img className="milestone-img" alt={`milestone for ${row[m].name}`} src={row[m].image} />
             </div>
