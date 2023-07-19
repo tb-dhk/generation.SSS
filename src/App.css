@@ -59,27 +59,27 @@ p, .icon {
 }
 
 h1 {
-  font-size: 3vmin
+  font-size: calc(24px + 3vmin)
 }
 
 h2 {
-  font-size: 2.5vmin
+  font-size: calc(20px + 2.5vmin)
 }
 
 h3 {
-  font-size: 2vmin
+  font-size: calc(16px + 2vmin)
 }
 
 h4 {
-  font-size: 1.5vmin
+  font-size: calc(12px + 1.5vmin)
 }
 
 h5 {
-  font-size: 1vmin
+  font-size: calc(8px + 1vmin)
 }
 
 h6 {
-  font-size: 0.5vmin
+  font-size: calc(4px + 0.5vmin)
 }
 
 #hotkeys {
