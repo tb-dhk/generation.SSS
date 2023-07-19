@@ -482,7 +482,7 @@ export function renderTab(tab, subtab) {
                   <ColorInput s={i + 1} />
                 )
               })}
-              <button onClick={reset_colors} className="big center">reset</button>
+              <button onClick={reset_colors} className="big center reset-colors">reset</button>
             </div>
           )
         default:

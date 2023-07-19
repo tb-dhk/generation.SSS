@@ -346,6 +346,15 @@ h6 {
   padding: 20px;
 }
 
+.reset-colors {
+  display: flex;
+  width: 50vw;
+  margin: auto;
+  max-width: 500px;
+  justify-content: center;
+  align-items: center;
+}
+
 .challengebutton {
   border: 2px;
   margin-bottom: 5px;
