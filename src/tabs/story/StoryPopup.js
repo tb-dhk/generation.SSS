@@ -15,18 +15,13 @@ export function autostory() {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   const objekt = JSON.parse(localStorage.getItem('objekt'))
 
-  let count = 0
-  for (let member in objekt) {
-    count += objekt[member].length
-  }
-
   const conds = [
     true,
     md >= 1 && dims.S["S1"].total > 0,
     md >= 2,
     parseInt(dims.S.S8.total) > 0,
     parseInt(prestige.grandGravity.count) > 0,
-    count >= 72
+    parseInt(prestige.grandGravity.count) >= 72 && prestige.grandGravity.challenges.length >= 8
   ]
 
   for (let i = conds.length - 1; i >= 0; i--) {
