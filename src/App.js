@@ -203,6 +203,7 @@ function App() {
       if (typeof item === "object") {
         if (item.classList.contains(`s${i+1}`)) {
           item.classList.add("invert")
+          item.classList.add("current")
         } else if (item.classList.contains("invert")) {
           item.classList.remove("invert")
         } else {
@@ -219,9 +220,25 @@ function App() {
       if (typeof item === "object") {
         if (item.classList.contains(`s${i+tabs.length+1}`)) {
           item.classList.add("invert")
+          item.classList.add("current")
         } else if (item.classList.contains("invert")) {
           item.classList.remove("invert")
         }
+      }
+    }
+  }
+
+  const invert = (element, truth) => {
+    let button = element.target
+    if (truth) {
+      if (!Array.from(button.classList).includes("current")) {
+        button.classList.add("invert")
+        button.classList.add("not-current")
+      }
+    } else {
+      if (Array.from(button.classList).includes("not-current")) {
+        button.classList.remove("invert")
+        button.classList.remove("not-current")
       }
     }
   }
@@ -249,13 +266,27 @@ function App() {
 
       <div className="tabs"> {
         [...Array(tabs.length).keys()].map((i) => {
-          return <button className={`tab s${i + 1} ${!i ? "invert" : ""}`} onClick={() => changeTab(i) }>{tabs[i]}</button>
+          return <button 
+            className={`tab s${i + 1} ${!i ? "invert current" : ""}`} 
+            onMouseOver={(element) => invert(element, true)} 
+            onMouseOut={(element) => invert(element, false)} 
+            onClick={() => changeTab(i) }
+          >
+            {tabs[i]}
+          </button>
         })
       } </div>
 
       <div className="subtabs"> {
         [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
-          return <button className={`subtab s${i + tabs.length + 1} ${!i ? "invert" : ""}`} onClick={() => changeSubTab(i)}>{getSubTabs(currentTab)[i]}</button>
+          return <button 
+            className={`subtab s${i + tabs.length + 1} ${!i ? "invert current" : ""}`}
+            onMouseOver={(element) => invert(element, true)} 
+            onMouseOut={(element) => invert(element, false)} 
+            onClick={() => changeSubTab(i)}
+          >
+            {getSubTabs(currentTab)[i]}
+          </button>
         })
       } </div>
 
