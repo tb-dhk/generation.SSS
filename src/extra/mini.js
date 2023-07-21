@@ -382,7 +382,7 @@ export function renderTab(tab, subtab) {
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
-            <Sacrifice />
+            {!subtab ? <Sacrifice /> : <div></div>} 
             {progressBar}
           </div>
         )
