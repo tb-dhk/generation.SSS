@@ -111,7 +111,7 @@ function Dimension({ type, num, tickspeed }) {
 
   let member = ""
   if (members) {
-    const tripleS = ["seoyeon", "hyerin", "jiwoo", "chaeyeon", "yooyeon", "soomin", "nakyoung", "yubin"]
+    const tripleS = ["SeoYeon", "HyeRin", "JiWoo", "ChaeYeon", "YooYeon", "SooMin", "NaKyoung", "YuBin"]
     member = tripleS[num-1]
   }
 
