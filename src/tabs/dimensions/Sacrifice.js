@@ -25,7 +25,7 @@ function Sacrifice() {
     return <div className={`big sacrifice s${maxdim()}`}>
       <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
       <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
-      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 generators will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}).</h5>
+      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}).</h5>
       <button className="round-corners" onClick={doSacrifice}>sacrifice</button>
     </div>
   } else {
@@ -33,7 +33,7 @@ function Sacrifice() {
     if (Number(currency.S) < sacrifice) {
       message = `you need ${format(sacrifice)} S to sacrifice.`
     } else if (Number(dimensions.S.S8.total) <= 0) {
-      message = "you need one S8 generator to sacrifice."
+      message = "you need one S8 dimension to sacrifice."
     }
     return <div className={`sacrifice s${maxdim()}`}>
       <h3 className={`s${maxdim()}`}>{"you can't sacrifice yet."}</h3>

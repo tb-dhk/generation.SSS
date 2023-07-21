@@ -4,13 +4,13 @@ import { grandGravity } from "../../extra/prestige"
 const challenges = {
   "grand gravity": [
     ["first grand gravity", "reach 24^24 for the first time."],
-    ["generation (smol ver.)", "S1 generator is heavily weakened but gets an exponentially increasing bonus."],
-    ["termination", "buying a generator automatically erases all lower tier generators."],
-    ["triplequarterS", "S7 and S8 generators are unavailable."],
-    ["it's gold? or white?", "all generator costs change base from 2 to 3."],
-    ["dimension shift", "all generators get a random multiplier from x0.24 to 8."],
-    ["two-system generation", "each generator produces the generator two tiers below. if not available, produces S."],
-    ["two-system generation\n(DIMENSION ver.)", "each generator produces the nearest lower-tier generator in the same subunit. if not available, produces S."]
+    ["generation (smol ver.)", "S1 dimension is heavily weakened but gets an exponentially increasing bonus."],
+    ["termination", "buying a dimension automatically erases all lower tier dimensions."],
+    ["triplequarterS", "S7 and S8 dimensions are unavailable."],
+    ["it's gold? or white?", "all dimension costs change base from 2 to 3."],
+    ["dimension shift", "all dimensions get a random multiplier from x0.24 to 8."],
+    ["two-system generation", "each dimension produces the dimension two tiers below. if not available, produces S."],
+    ["two-system generation\n(DIMENSION ver.)", "each dimension produces the nearest lower-tier dimension in the same subunit. if not available, produces S."]
   ]
 }
 

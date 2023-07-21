@@ -35,22 +35,22 @@ suddenly, the screen lights up.
 
 *you have been equipped with 2 S. these 2 S are very valuable and rare, but they will no longer be rare when we start mass producing them.*
 
-*your job now is to generate as much S as possible. click the 'S1' button to spend 2 S to buy your first generator.*
+*your job now is to generate as much S as possible. click the 'S1' button to spend 2 S to buy your first dimension.*
 
 and that is how you begin producing massive amounts of a mysterious substance you know almost nothing about just to pay the bills.
   `,
   `
 apprehensively, you press the little button labeled "S1". suddenly, a machine appears in front of you.
 
-*each S1 generator allows you to produce 0.001 S per millisecond. this number may increase over time, but what's important now is that you get as many generators as possible to produce S.*
+*each S1 dimension allows you to produce 0.001 S per millisecond. this number may increase over time, but what's important now is that you get as many dimensions as possible to produce S.*
 
-*when you have 4 S, you will be able to introduce another big S into the room. the second big S (S2) will not generate S, but is equipped with a generator that generates your generators.*
+*when you have 4 S, you will be able to introduce another big S into the room. the second big S (S2) will not generate S, but is equipped with a dimension that generates your dimensions.*
 
-*each subsequent big S generates generators of the previous big S. for example, S3 generators will generate S2 generators, which in turn generate S1 generators, which generate S. this allows your S production to increase exponentially.*
+*each subsequent big S generates dimensions of the previous big S. for example, S3 dimensions will generate S2 dimensions, which in turn generate S1 dimensions, which generate S. this allows your S production to increase exponentially.*
 
-*additionally, for every generator you buy, you increase the production by 1/24 (exponentially).*
+*additionally, for every dimension you buy, you increase the production by 1/24 (exponentially).*
 
-*you must unlock and buy each S in order. for example, S3 cannot be bought unless you have at least one S2 generator.*
+*you must unlock and buy each S in order. for example, S3 cannot be bought unless you have at least one S2 dimension.*
 
 *keep generating stars until you are able to unlock more members.*
   `,
@@ -59,7 +59,7 @@ you press the "S2" button. suddenly, another girl comes in and sits down next to
 
 *jeong hyerin, you have been chosen to become the second big S, or S2. out of many small s in the world, you are the second girl we discovered with the special ability to make S.*
 
-*your job now is to generate as many S1 generators as possible. with yoon seoyeon, or S1, you will soon unlock 6 other S.*
+*your job now is to generate as many S1 dimensions as possible. with yoon seoyeon, or S1, you will soon unlock 6 other S.*
 
 *i will see you then.*
 
@@ -150,9 +150,9 @@ chaeyeon grimaces. "there's more...?"
 
 *anyway, back to the new things you've unlocked with the first grand gravity.*
 
-*first thing you've unlocked is como. como will be used for another set of generators, and como progression will be much slower. these como generators will generate como power, which will boost your S production. you will also get (como power)^(1/24) como per second.*
+*first thing you've unlocked is como. como will be used for another set of dimensions, and como progression will be much slower. these como dimensions will generate como power, which will boost your S production. you will also get (como power)^(1/24) como per second.*
 
-*the second thing you've unlocked are objekts. the first 8 objekts unlock autobuyers for each of your generators so that your work will be less manual. the other 64 autobuyers boost the speed of the respective S's autobuyer.*
+*the second thing you've unlocked are objekts. the first 8 objekts unlock autobuyers for each of your dimensions so that your work will be less manual. the other 64 autobuyers boost the speed of the respective S's autobuyer.*
 
 *the third thing you've unlocked is grand gravity challenges. finishing the first grand gravity was actually your first challenge, and you have completed it! the other 7 challenges boost your production, and to complete these, you will have to generate enough como for a grand gravity under harsh conditions. rewards for challenges also consist of one objekt and one como, of course.*
 
@@ -194,22 +194,22 @@ export const milestones = {
     {
       11: {
         name: "welcome to my kpop class!",
-        description: "buy 1 S1 S generator.",
+        description: "buy 1 S1 S dimension.",
         image: chaeyeon1
       }, 
       12: {
         name: "byte for now",
-        description: "buy 1 S8 S generator.",
+        description: "buy 1 S8 S dimension.",
         image: yubin0
       }, 
       13: {
         name: "my evaluation is going to be electrocuted!",
-        description: "buy 1 S1 como generator.",
+        description: "buy 1 S1 como dimension.",
         image: soomin0
       }, 
       14: {
         name: "is this how it feels to partake in teaching practice sessions?", 
-        description: "buy 1 S8 como generator.",
+        description: "buy 1 S8 como dimension.",
         image: yooyeon1
       }, 
       15: {
@@ -281,13 +281,13 @@ export const milestones = {
 export const help = {
   basics: {
     concept: "the concept of this game was based on antimatter dimensions, a game where each dimension creates the previous dimension. i wanted to make a tripleS parody so here it is! for credits, see `/credits`.",
-    generators: "most generators usually produce the generator one tier below them (S3 generators produce S2 generators, etc.) but S1 generators produce S, a special kind of energy with supernatural properties. buying a generator also multiplies the generator's overall production by 25/24.",
-    multipliers: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 generators)."
+    dimensions: "most dimensions usually produce the dimension one tier below them (S3 dimensions produce S2 dimensions, etc.) but S1 dimensions produce S, a special kind of energy with supernatural properties. buying a dimension also multiplies the dimension's overall production by 25/24.",
+    multipliers: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 dimensions)."
   },
   gravity: {
     "grand gravity": "the first prestige layer. S is limted at 24^24, at which a grand gravity will occur. all gravity will be reset and one objekt and 2^(number of grand gravities including this one) como will be given.",
     objekts: "objekt either unlock (100) or boost (101-108) your autobuyers. your autobuyer interval starts at 256s, before halving with every objekt (other than 100). with all objekts, your autobuyer interval should be 1s. see `/objekts` to view all your objekts.",
-    como: "como generators work like S generators, but they produce como power, not como (which is only obtainable from grand gravity). como power is used to boost S1's overall production by (como power)^0.125.",
+    como: "como dimensions work like S dimensions, but they produce como power, not como (which is only obtainable from grand gravity). como power is used to boost S1's overall production by (como power)^0.125.",
     challenges: "at the moment, there is only one category of challenges, grand gravity challenges (gdgcs). these challenges require you to start from the beginning and cause a grand gravity but under limited circumstances. see `/challenges` for more."
   },
   faq: {
