@@ -68,7 +68,7 @@ export function tick(tickspeed) {
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
     const boosts = (maxDim ** maxDim)
-    let defCurrencyGain = Number(dims[dim]["S1"].total) + (inChallenge["grand gravity"] === 7 ? Number(dims[dim]["S2"].total) : 0)
+    let defCurrencyGain = Number(dims[dim]["S1"].total) + ([7, 8].includes(inChallenge["grand gravity"]) ? Number(dims[dim]["S2"].total) : 0)
     defCurrencyGain *= boosts
     if (currency.comoDust) {
       defCurrencyGain *= currency.comoDust ** (1 / 8)
