@@ -13,7 +13,6 @@ export function autostory() {
   const md = maxdim()
   const dims = JSON.parse(localStorage.getItem('dimensions'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
-  const objekt = JSON.parse(localStorage.getItem('objekt'))
 
   const conds = [
     true,
