@@ -55,6 +55,7 @@ export function tick(tickspeed) {
   const prestige = JSON.parse(localStorage.getItem('prestige'));
   const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'));
+  const milestones = JSON.parse(localStorage.getItem('milestones'));
   const times = JSON.parse(localStorage.getItem('times'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'));
 
@@ -112,6 +113,13 @@ export function tick(tickspeed) {
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen + 1)) {
             boosts **= 9 / 8
+          }
+        }
+        for (let cat in milestones) {
+          for (let row in milestones[cat]) {
+            if (row[gen-1] === true) {
+              boosts **= 9 / 8
+            }
           }
         }
         if (inChallenge["grand gravity"] === 6) {
