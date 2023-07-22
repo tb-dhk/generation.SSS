@@ -1,7 +1,6 @@
 {
   "name": "generation.sss",
   "version": "0.1.0",
-  "homepage": "generation.wav.haus",
   "private": true,
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.0.3",
