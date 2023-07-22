@@ -204,9 +204,11 @@ function App() {
         if (item.classList.contains(`s${i+1}`)) {
           item.classList.add("invert")
           item.classList.add("current")
-        } else if (item.classList.contains("invert")) {
-          item.classList.remove("invert")
-        } else {
+        } else { 
+          item.classList.remove("current")
+          if (item.classList.contains("invert")) {
+            item.classList.remove("invert")
+          }
         }
       }
     }
@@ -221,8 +223,11 @@ function App() {
         if (item.classList.contains(`s${i+tabs.length+1}`)) {
           item.classList.add("invert")
           item.classList.add("current")
-        } else if (item.classList.contains("invert")) {
-          item.classList.remove("invert")
+        } else {
+          item.classList.remove("current")
+          if (item.classList.contains("invert")) {
+            item.classList.remove("invert")
+          }
         }
       }
     }
