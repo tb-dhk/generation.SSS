@@ -308,7 +308,7 @@ export const about = {
     "fan participation": "MODHAUS has created a fan-participatory governance system using blockchain technology in order to bring fans into the decision-making process. fans are given the opportunity to participate and communicate with the group by deciding the DIMENSIONs and the content through photocards called objekts and a currency called COMO."
   },
   source: {
-    "info": `generation.SSS v0.1.0-rc.2, released 2023-07-19`,
+    "info": `generation.SSS v0.1.0, released 2023-07-23`,
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
