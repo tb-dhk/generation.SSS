@@ -4,7 +4,9 @@ function doSacrifice() {
   let dimensions = JSON.parse(localStorage.getItem('dimensions'))
   let currency = JSON.parse(localStorage.getItem('currency'))
   for (let dim in dimensions.S) {
-    dimensions.S[dim].total = dimensions.S[dim].bought
+    if (dim !== "S8") {
+      dimensions.S[dim].total = 0
+    }
   }
   localStorage.setItem('dimensions', JSON.stringify(dimensions))
   localStorage.setItem('currency', JSON.stringify(currency))

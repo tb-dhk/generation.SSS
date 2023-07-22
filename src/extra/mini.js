@@ -80,7 +80,7 @@ export function tick(tickspeed) {
     }
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
-    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeedwe know itswith 
+    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
     }
