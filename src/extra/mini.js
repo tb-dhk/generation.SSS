@@ -80,7 +80,7 @@ export function tick(tickspeed) {
     }
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
-    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed
+    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeedwe know itswith 
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
     }
@@ -109,16 +109,16 @@ export function tick(tickspeed) {
               next = "S" + (gen + 1)
           }
         }
+        for (let c in prestige) {
+          if (prestige[c].challenges.includes(gen + 1)) {
+            boosts **= 9 / 8
+          }
+        }
+        if (inChallenge["grand gravity"] === 6) {
+          boosts *= ggc6[gen]
+        } 
         if (next !== "S25" && next !== "S0") {
           let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
-          if (inChallenge["grand gravity"] === 6) {
-            defGain *= ggc6[gen]
-          }
-          for (let c in prestige) {
-            if (prestige[c].challenges.includes(gen + 1)) {
-              defGain **= 9 / 8
-            }
-          }
           dims[dim][genName].total += defGain
         }
       }
