@@ -251,6 +251,16 @@ export function clearAlerts() {
   localStorage.setItem('alerts', JSON.stringify(alerts))
 }
 
+export function getTabs() {
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
+  if (sacrifice > 1 || prestige.grandGravity.count) {
+    return ["dimensions", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
+  } else {
+    return ["dimensions", "milestones", "story", "settings", "help", "about"]
+  }
+}
+
 export function getSubTabs(tab) {
   const subTabs = [
     ["S", "como"],
@@ -265,6 +275,10 @@ export function getSubTabs(tab) {
   return subTabs[tab]
 }
 
+export function getNextColor(tab) {
+  return getTabs(tab).length + getSubTabs(tab).length
+}
+
 function lock(div) {
   let prestige = JSON.parse(localStorage.getItem('prestige'))
   let grandGravityCount = prestige.grandGravity.count
@@ -275,7 +289,7 @@ function lock(div) {
       <div class="locked">
         <h3>oops!</h3>
         <h4>this area is locked.</h4>
-        <h6>get 24^24 S and perform a grand gravity to unlock this section!</h6>
+        <h5>get 24^24 S and perform a grand gravity to unlock this section!</h5>
       </div>
     )
   }
@@ -314,6 +328,8 @@ export function renderTab(tab, subtab) {
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
   let settings = {}
   
   settings = JSON.parse(localStorage.getItem('settings'))
@@ -355,7 +371,12 @@ export function renderTab(tab, subtab) {
     localStorage.setItem('colors', JSON.stringify(colors))
   }
 
-  switch (tab) {
+  let ntab = tab
+  if (!(sacrifice > 1 || prestige.grandGravity.count) && ntab) {
+    ntab += 2
+  }
+
+  switch (ntab) {
     case 0:
       let finalDiv = <div></div>
       if (currency.S < 24 ** 24) {
@@ -380,13 +401,13 @@ export function renderTab(tab, subtab) {
 
         let enableAutobuyButton = <div></div>
         if (!subtab) {
-          enableAutobuyButton = <button className="s11 sub-header" onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
+          enableAutobuyButton = <button className={`s${getNextColor(ntab) + 1} sub-header`} onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
         }
 
         finalDiv = (
           <div>
             {enableAutobuyButton}
-            <button className="s12 sub-header" onClick={() => {buyMax(subtab)}}>buy max</button>
+            <button className={`s${getNextColor(ntab) + 2} sub-header`} onClick={() => {buyMax(subtab)}}>buy max</button>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
@@ -468,8 +489,8 @@ export function renderTab(tab, subtab) {
         case 0:
           return (
             <div className="big-grid">
-              <button className="s12 big" onClick={impt}>import</button>
-              <button className="s13 big" onClick={expt}>export</button>
+              <button className={`s${getNextColor(ntab) + 1} big`} onClick={impt}>import</button>
+              <button className={`s${getNextColor(ntab) + 2} big`} onClick={expt}>export</button>
             </div>
           )
         case 1:
@@ -478,7 +499,7 @@ export function renderTab(tab, subtab) {
               {
                 Object.keys(settings).map(k => {
                   count += 1
-                  return <button className={`s${count + 11} sub-header`} onClick={() => toggleSetting(k)}>{k}: {settings[k] ? "on" : "off"}</button>
+                  return <button className={`s${getNextColor(ntab) + count} sub-header`} onClick={() => toggleSetting(k)}>{k}: {settings[k] ? "on" : "off"}</button>
                 })
               } 
             </div>
@@ -502,13 +523,13 @@ export function renderTab(tab, subtab) {
       subobj = help[Object.keys(help)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
-        return <Accordion num={count - 1} head={i} body={subobj[i]} />
+        return <Accordion num={getNextColor(ntab) + count - 1} head={i} body={subobj[i]} />
       })
     case 7:
       subobj = about[Object.keys(about)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
-        return <Accordion num={count - 1} head={i} body={subobj[i]} />
+        return <Accordion num={getNextColor(ntab) + count - 1} head={i} body={subobj[i]} />
       })
     default:
       return
@@ -549,10 +570,12 @@ export function changeColor(className, color) {
     for (let i in items) {
       let item = items[i]
       if (typeof item === "object") {
+        item.style.border = `2px solid ${color}`
+        item.style.borderRadius = "5px"
+        item.style.padding = "auto 5px"
         if (item.classList.contains("invert")) {
           item.style.backgroundColor = "black"
           item.style.color = color
-          item.style.border = `2px solid ${color}`
         } else {
           item.style.backgroundColor = color
           let c = luminance(sep)

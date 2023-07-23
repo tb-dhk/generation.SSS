@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 
-import { format, tick, renderTab, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
+import { format, tick, renderTab, getTabs, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
 
 import { StoryPopup } from "./tabs/story/StoryPopup"
 import { Alert } from "./tabs/misc/Alert"
@@ -86,7 +86,7 @@ function reset() {
   }
   localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
 
-  localStorage.setItem("alerts", JSON.stringify({}))
+  localStorage.setItem("alerts", JSON.stringify({start: {message: "press the '2 S' button to start!", time: Date.now() + 15000}}))
 }
 
 function App() {
@@ -100,12 +100,16 @@ function App() {
   const [subTab, setSubTab] = useState(0)
 
   const tickspeed = JSON.parse(localStorage.getItem("tickspeed"))
-  const tabs = ["dimensions", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
+  const tabs = getTabs() 
 
   const currency = useSelector((state) => state.currency.value)
   const inChallenge = useSelector((state) => state.inChallenge.value)
   const dispatch = useDispatch()
   const alerts = JSON.parse(localStorage.getItem("alerts"))
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
+  
+  console.log(getSubTabs)
 
   /* ticks */
   useEffect(() => {
@@ -248,6 +252,13 @@ function App() {
     }
   }
 
+  let ntab = currentTab 
+  if (!(sacrifice > 1 || prestige.grandGravity.count) && currentTab) {
+    ntab += 2
+  }
+
+  const subTabs = getSubTabs(ntab)
+
   /* main structure */
   return (
     <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true} id="hotkeys">
@@ -275,7 +286,7 @@ function App() {
             className={`tab s${i + 1} ${!i ? "invert current" : ""}`} 
             onMouseOver={(element) => invert(element, true)} 
             onMouseOut={(element) => invert(element, false)} 
-            onClick={() => changeTab(i) }
+            onClick={() => changeTab(i)}
           >
             {tabs[i]}
           </button>
@@ -283,14 +294,14 @@ function App() {
       } </div>
 
       <div className="subtabs"> {
-        [...Array(getSubTabs(currentTab).length).keys()].map((i) => {
+        [...Array(subTabs.length).keys()].map((i) => {
           return <button 
             className={`subtab s${i + tabs.length + 1} ${!i ? "invert current" : ""}`}
             onMouseOver={(element) => invert(element, true)} 
             onMouseOut={(element) => invert(element, false)} 
             onClick={() => changeSubTab(i)}
           >
-            {getSubTabs(currentTab)[i]}
+            {subTabs[i]}
           </button>
         })
       } </div>

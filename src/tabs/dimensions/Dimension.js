@@ -41,6 +41,17 @@ export function buyDim(type, num, max) {
 
 }
 
+const invert = (element, truth) => {
+  let button = element.target
+  if (truth) {
+    button.classList.add("invert")
+    button.classList.add("not-current")
+  } else {
+    button.classList.remove("invert")
+    button.classList.remove("not-current")
+  }
+}
+
 function Dimension({ type, num, tickspeed }) {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   const dims = JSON.parse(localStorage.getItem('dimensions'))
@@ -51,6 +62,8 @@ function Dimension({ type, num, tickspeed }) {
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
+  const currencies = JSON.parse(localStorage.getItem('currency'))
+
   let members = false 
   try {
     members = JSON.parse(localStorage.getItem('settings')).members
@@ -116,13 +129,29 @@ function Dimension({ type, num, tickspeed }) {
   }
 
   return (
-    <div className={`s${num} dimension`}>
+    <div className={`dimension`}>
       <div className={`s${num} name`}>S{num} {member}</div>
-      <div className={`s${num} bonus`}>× {format(boosts)}</div>
-      <div className={`s${num} amount`}>{format(total)} ({format(bought)})</div>
-      <div className={`s${num} autobuy`}>{autobuyer}</div>
-      <button type="button" className={`s${num} max`} onClick={() => buyDim(type, num, true)}>max</button>
-      <button type="button" className={`s${num} price`} onClick={() => buyDim(type, num, false)}>{format(price(type, num))} {type}</button>
+      <div className={`bonus`}>× {format(boosts)}</div>
+      <div className={`amount`}>{format(total)} ({format(bought)})</div>
+      <div className={`autobuy`}>{autobuyer}</div>
+      <button 
+        type="button" 
+        className={`s${num} max`} 
+        onMouseOver={(element) => invert(element, true)} 
+        onMouseOut={(element) => invert(element, false)}
+        onClick={() => buyDim(type, num, true)}
+      >
+        max
+      </button>
+      <button 
+        type="button" 
+        className={`s${num} price ${currencies.S >= price(type, num) ? "" : "invert"}`} 
+        onMouseOver={(element) => invert(element, currencies.S >= price(type, num))} 
+        onMouseOut={(element) => invert(element, currencies.S < price(type, num))}
+        onClick={() => buyDim(type, num, false)}
+      >
+        {format(price(type, num))} {type}
+      </button>
     </div>
   )
 }

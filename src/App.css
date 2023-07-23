@@ -51,6 +51,7 @@
 button {
   border: none;
   margin: none;
+  border-radius: 5px;
 }
 
 p, .icon {
@@ -148,26 +149,27 @@ h6 {
   position: absolute;
   left: 20%;
   transform: translateY(20%);
+  padding: 5px;
 }
 
 .amount {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  padding: 5px;
 }
 
 .max {
   position: absolute;
   left: 80%;
   transform: translateX(-80%);
-  padding: inherit
 }
 
 .autobuy {
   position: absolute;
   left: 70%;
   transform: translateX(-80%);
-  padding: inherit
+  padding: 5px;
 }
 
 .price {
