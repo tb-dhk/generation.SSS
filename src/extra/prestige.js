@@ -69,11 +69,12 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     }
     localStorage.setItem('objekts', JSON.stringify(objekts))
 
+    newMessage = `you got ${format(2 ** prestige.grandGravity.count)} como`
     if (gainedObjekt) {
       newMessage += ` and a ${gainedObjekt} objekt.`
+    } else {
+      newMessage += "."
     }
-
-    newMessage = `you got ${format(2 ** prestige.grandGravity.count)} como`
   }
 
   if (finishChallenge) {

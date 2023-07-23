@@ -23,7 +23,7 @@ function Sacrifice() {
   let currentBonus = Math.log(sacrifice) / Math.log(8)
   currentBonus = currentBonus > 1 ? currentBonus : 1
   const newBonus = Math.log(Number(currency.S)) / Math.log(8)
-  if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice) {
+  if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice * 2) {
     return <div className={`big sacrifice s${maxdim()}`}>
       <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
       <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
@@ -33,7 +33,7 @@ function Sacrifice() {
   } else {
     let message = ""
     if (Number(currency.S) < sacrifice) {
-      message = `you need ${format(sacrifice)} S to sacrifice.`
+      message = `you need ${format(sacrifice * 2)} S to sacrifice.`
     } else if (Number(dimensions.S.S8.total) <= 0) {
       message = "you need one S8 dimension to sacrifice."
     }
