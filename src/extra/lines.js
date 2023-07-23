@@ -52,7 +52,7 @@ apprehensively, you press the little button labeled "S1". suddenly, a machine ap
 
 *you must unlock and buy each S in order. for example, S3 cannot be bought unless you have at least one S2 dimension.*
 
-*keep generating stars until you are able to unlock more members.*
+*keep generating S until you are able to unlock more members.*
   `,
   `
 you press the "S2" button. suddenly, another girl comes in and sits down next to you. the screen then lights up again.
