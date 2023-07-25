@@ -37,7 +37,7 @@ function Sacrifice() {
       <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
       <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
       <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
-      <button className="round-corners" onClick={doSacrifice}>sacrifice</button>
+      <button className="round-corners challengebutton" onClick={doSacrifice}>sacrifice</button>
     </div>
   }
 }
