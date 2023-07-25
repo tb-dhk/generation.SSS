@@ -52,6 +52,7 @@ button {
   border: none;
   margin: none;
   border-radius: 5px;
+  font-size: calc(1vmin + 5px)
 }
 
 p, .icon {
@@ -81,6 +82,10 @@ h5 {
 
 h6 {
   font-size: calc(2px + 0.5vmin)
+}
+
+hr {
+  margin: none;
 }
 
 #hotkeys {
@@ -126,18 +131,19 @@ h6 {
   width: 100%
 }
 
-.dimension {
-  display: flex;
-  flex-direction: row;
-  align-content: flex-end;
-  justify-content: space-between;
-  position: relative;
+.dimension-container {
   width: 90vw;
   max-width: 1024px;
-  height: auto;
+  margin: auto;
+}
+
+.dimension {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 1fr 1fr 2fr;
+  grid-template-rows: 2vh;
+  justify-items: center;
+  align-items: center;
   font-size: calc(1vmin + 5px);
-  margin: 0 auto 20px auto;
-  margin-bottom: 20px;
 }
 
 .name {
@@ -145,30 +151,14 @@ h6 {
 }
 
 .bonus {
-  font-size: calc(2px + 1vmin);
-  position: absolute;
-  left: 20%;
-  transform: translateY(20%);
   padding: 5px;
 }
 
 .amount {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 5px;
 }
 
-.max {
-  position: absolute;
-  left: 80%;
-  transform: translateX(-80%);
-}
-
 .autobuy {
-  position: absolute;
-  left: 70%;
-  transform: translateX(-80%);
   padding: 5px;
 }
 
@@ -268,11 +258,11 @@ h6 {
 }
 
 .sacrifice {
-  max-width: 35vw;
+  max-width: 30vw;
   margin: 50px auto;
   padding: 20px;
   min-height: 100px;
-  min-width: 800px;
+  min-width: 600px;
   text-align: center;
   border-radius: 10px;
   padding: 20px;

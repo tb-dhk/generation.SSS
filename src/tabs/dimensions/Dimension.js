@@ -54,11 +54,8 @@ const invert = (element, truth) => {
 
 function Dimension({ type, num, tickspeed }) {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
-  const dims = JSON.parse(localStorage.getItem('dimensions'))
-  const thisDim = dims[type]["S" + num.toString()]
   const autobuyers = JSON.parse(localStorage.getItem('autobuyers'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
-  const objs = objekts.Atom01["S" + num].filter(c => { return c.toString()[0] === "1" })
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
   const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
@@ -69,13 +66,13 @@ function Dimension({ type, num, tickspeed }) {
     members = JSON.parse(localStorage.getItem('settings')).members
   } catch {}
 
-  const [total, setTotal] = useState(thisDim.total)
-  const [bought, setBought] = useState(thisDim.bought)
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       const dims = JSON.parse(localStorage.getItem('dimensions'));
-      const thisDim = dims[type]["S" + num.toString()];
+      let thisDim = {total: 0, bought: 0}
+      if (num) {
+        thisDim = dims[type]["S" + num.toString()];
+      }
       setTotal(thisDim.total);
       setBought(thisDim.bought);
     }, tickspeed);
@@ -85,75 +82,110 @@ function Dimension({ type, num, tickspeed }) {
     };
   })
 
-  let boosts = (25 / 24) ** bought
+  const [total, setTotal] = useState(0)
+  const [bought, setBought] = useState(0)
 
-  for (let c in prestige) {
-    if (prestige[c].challenges.includes(num)) {
-      boosts **= 9 / 8
+  if (num){
+    const objs = objekts.Atom01["S" + num].filter(c => { return c.toString()[0] === "1" })
+
+    let boosts = (25 / 24) ** bought
+
+    for (let c in prestige) {
+      if (prestige[c].challenges.includes(num)) {
+        boosts **= 9 / 8
+      }
     }
-  }
 
-  if (type === "S" && num === 8) {
-    boosts *= Math.log(sacrifice) / Math.log(8)
-  }
+    let objektCount = 0
+    for (let x in objekts.Atom01) {
+      objektCount += objekts.Atom01[x].length
+    }
 
-  if (inChallenge.grandGravity === 6) {
-    boosts *= Number(ggc6[num - 1])
-  }
-  
-  boosts = boosts > 1 ? boosts : 1 
+    if (type === "S" && num === 8) {
+      boosts *= Math.log(sacrifice) / Math.log(8) * ((25/24) ** objektCount)
+    }
 
-  let enableAutobuy = true
-  try {
-    enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
-  } catch { }
+    if (inChallenge.grandGravity === 6) {
+      boosts *= Number(ggc6[num - 1])
+    }
+    
+    boosts = boosts > 1 ? boosts : 1 
 
-  let autobuyer = "locked"
-
-  if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100) && enableAutobuy) {
+    let enableAutobuy = true
     try {
-      autobuyer = Math.floor(2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000)
-      autobuyer = autobuyer < 0 ? 0 : autobuyer
-      autobuyer += "s"
-    } catch {
-      autobuyer = ""
+      enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+    } catch { }
+
+    let autobuyer = "locked"
+
+    if (inChallenge["grand gravity"] !== 3 && objekts.Atom01["S" + num].includes(100) && enableAutobuy) {
+      try {
+        autobuyer = 2 ** (9 - objs.length) - (Date.now() - autobuyers[type]["S" + num]) / 1000
+        autobuyer = autobuyer < 0 ? 0 : autobuyer
+        if (autobuyer < 1) {
+          autobuyer = Math.floor(autobuyer * 1000) + "m"
+        } else {
+          autobuyer = Math.floor(autobuyer)
+        }
+        autobuyer += "s"
+      } catch {
+        console.log(type, autobuyers[type])
+        autobuyer = ""
+      }
+    } else if (objekts.Atom01["S" + num].includes(100)) {
+      autobuyer = "off"
     }
-  } else if (objekts.Atom01["S" + num].includes(100)) {
-    autobuyer = "off"
-  }
 
-  let member = ""
-  if (members) {
-    const tripleS = ["SeoYeon", "HyeRin", "JiWoo", "ChaeYeon", "YooYeon", "SooMin", "NaKyoung", "YuBin"]
-    member = tripleS[num-1]
-  }
+    let member = ""
+    if (members) {
+      const tripleS = ["SeoYeon", "HyeRin", "JiWoo", "ChaeYeon", "YooYeon", "SooMin", "NaKyoung", "YuBin"]
+      member = tripleS[num-1]
+    }
+    return (
+      <div className="dimension-container">
+        <div className={`dimension`}>
+          <div className={`s${num} name`}>S{num} {member}</div>
+          <div className={`bonus`}>× {format(boosts)}</div>
+          <div className={`amount`}>{format(total)} ({format(bought)})</div>
+          <div className={`autobuy`}>{autobuyer}</div>
+          <button 
+            type="button" 
+            className={`s${num} max`} 
+            onMouseOver={(element) => invert(element, true)} 
+            onMouseOut={(element) => invert(element, false)}
+            onClick={() => buyDim(type, num, true)}
+          >
+            max
+          </button>
+          <button 
+            type="button" 
+            className={`s${num} price ${currencies[type] >= price(type, num) ? "" : "invert"}`} 
+            onMouseOver={(element) => invert(element, currencies[type] >= price(type, num))} 
+            onMouseOut={(element) => invert(element, currencies[type] < price(type, num))}
+            onClick={() => buyDim(type, num, false)}
+          >
+            {format(price(type, num))} {type}
+          </button>
+        </div>
+        <hr />
+      </div>
+    )
+  } else {
+    return (
+      <div className="dimension-container">
+        <div className={`dimension`}>
+          <div className={`name`}>dimension</div>
+          <div className={``}>boosts</div>
+          <div className={`amount`}>total (bought)</div>
+          <div className={`autobuy`}>autobuyer</div>
+          <div className={`max`}>max</div>
+          <div className={`price`}>price</div>
+        </div>
+        <hr />
+      </div>
+    )
 
-  return (
-    <div className={`dimension`}>
-      <div className={`s${num} name`}>S{num} {member}</div>
-      <div className={`bonus`}>× {format(boosts)}</div>
-      <div className={`amount`}>{format(total)} ({format(bought)})</div>
-      <div className={`autobuy`}>{autobuyer}</div>
-      <button 
-        type="button" 
-        className={`s${num} max`} 
-        onMouseOver={(element) => invert(element, true)} 
-        onMouseOut={(element) => invert(element, false)}
-        onClick={() => buyDim(type, num, true)}
-      >
-        max
-      </button>
-      <button 
-        type="button" 
-        className={`s${num} price ${currencies.S >= price(type, num) ? "" : "invert"}`} 
-        onMouseOver={(element) => invert(element, currencies.S >= price(type, num))} 
-        onMouseOut={(element) => invert(element, currencies.S < price(type, num))}
-        onClick={() => buyDim(type, num, false)}
-      >
-        {format(price(type, num))} {type}
-      </button>
-    </div>
-  )
+  }
 }
 
 export default Dimension

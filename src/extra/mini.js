@@ -51,6 +51,7 @@ export function maxdim(currency = "S") {
 
 export function tick(tickspeed) {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
+  const objekts = JSON.parse(localStorage.getItem('objekts'));
   const currency = JSON.parse(localStorage.getItem('currency'));
   const prestige = JSON.parse(localStorage.getItem('prestige'));
   const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
@@ -65,6 +66,11 @@ export function tick(tickspeed) {
   }
 
   let perSecond = {}
+
+  let objektCount = 0
+  for (let x in objekts.Atom01) {
+    objektCount += objekts.Atom01[x].length
+  }
 
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
@@ -93,6 +99,7 @@ export function tick(tickspeed) {
         if (dim === "S" && gen === 8 - 1) {
           const sacrificeBonus = Math.log(sacrifice) / Math.log(8)
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
+          boosts *= (25/24) ** objektCount
         }
         let next = "S" + (gen + 1)
         if (dim === "S") {
@@ -253,8 +260,7 @@ export function clearAlerts() {
 
 export function getTabs() {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
-  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
-  if (sacrifice > 1 || prestige.grandGravity.count) {
+  if (prestige.grandGravity.count) {
     return ["dimensions", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
   } else {
     return ["dimensions", "milestones", "story", "settings", "help", "about"]
@@ -262,6 +268,7 @@ export function getTabs() {
 }
 
 export function getSubTabs(tab) {
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
   const subTabs = [
     ["S", "como"],
     ["grand gravity"],
@@ -272,6 +279,9 @@ export function getSubTabs(tab) {
     Object.keys(help),
     Object.keys(about)
   ]
+  if (!tab && !prestige.grandGravity.count) {
+    return ["S"]    
+  }
   return subTabs[tab]
 }
 
@@ -323,12 +333,89 @@ export function buyMax(subTab) {
   }
 }
 
+const colors = {
+  s1: "#22aeff",
+  s2: "#9200ff",
+  s3: "#fff800",
+  s4: "#98f21d",
+  s5: "#d80d76",
+  s6: "#ff7fa4",
+  s7: "#729ba1",
+  s8: "#ffe3e2",
+  s9: "#ffc931",
+  s10: "#fb98dc",
+  s11: "#ffe000",
+  s12: "#5975fd",
+  s13: "#ff953f",
+  s14: "#1222b5",
+  s15: "#d51312"
+}
+
+export function reset() {
+  if (window.confirm("are you sure you want to reset? all your progress will be completely wiped.")) {
+    localStorage.clear()
+
+    const types = ["S", "como", "comoDust", "sigma"]
+
+    const dims = Object.fromEntries(
+      [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
+    )
+    const dimObj = Object.fromEntries(
+      types.map(x => [x, dims])
+    )
+    localStorage.setItem("dimensions", JSON.stringify(dimObj))
+
+    const currencyObj = Object.fromEntries(
+      types.map(x => [x, Number(x === "S") * 2])
+    )
+    localStorage.setItem("currency", JSON.stringify(currencyObj))
+    localStorage.setItem("started", true)
+    localStorage.setItem("tickspeed", 50)
+    localStorage.setItem("story", 0)
+    localStorage.setItem("inchallenge", JSON.stringify({ "grand gravity": 1 }))
+
+    localStorage.setItem("colors", JSON.stringify(colors))
+
+    const prestige = {
+      grandGravity: {
+        count: 0,
+        challenges: []
+      }
+    }
+    localStorage.setItem("prestige", JSON.stringify(prestige))
+
+    let objekts = {
+      Atom01: {}
+    }
+    for (var i = 1; i <= 8; i++) {
+      objekts.Atom01["S" + i] = []
+    }
+    localStorage.setItem("objekts", JSON.stringify(objekts))
+
+    const times = ["grand gravity"]
+    const timesObj = Object.fromEntries(
+      times.map(x => [x, Date.now()])
+    )
+    localStorage.setItem("times", JSON.stringify(timesObj))
+
+    let autobuyers = {
+      S: {}
+    }
+    for (i = 1; i <= 8; i++) {
+      autobuyers.S["S" + i] = Date.now()
+    }
+    localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
+
+    localStorage.setItem("alerts", JSON.stringify({start: {message: "press the '2 S' button to start!", time: Date.now() + 15000}}))
+    window.location.reload()
+  }
+}
+
 export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
-  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   let settings = {}
   
@@ -349,30 +436,12 @@ export function renderTab(tab, subtab) {
   let count = 0
   let subobj = {}
 
-  const colors = {
-    s1: "#22aeff",
-    s2: "#9200ff",
-    s3: "#fff800",
-    s4: "#98f21d",
-    s5: "#d80d76",
-    s6: "#ff7fa4",
-    s7: "#729ba1",
-    s8: "#ffe3e2",
-    s9: "#ffc931",
-    s10: "#fb98dc",
-    s11: "#ffe000",
-    s12: "#5975fd",
-    s13: "#ff953f",
-    s14: "#1222b5",
-    s15: "#d51312"
-  }
-
   function reset_colors() {
     localStorage.setItem('colors', JSON.stringify(colors))
   }
 
   let ntab = tab
-  if (!(sacrifice > 1 || prestige.grandGravity.count) && ntab) {
+  if (!prestige.grandGravity.count && ntab) {
     ntab += 2
   }
 
@@ -408,10 +477,13 @@ export function renderTab(tab, subtab) {
           <div>
             {enableAutobuyButton}
             <button className={`s${getNextColor(ntab) + 2} sub-header`} onClick={() => {buyMax(subtab)}}>buy max</button>
+            <div className="dimension-container">
+              <Dimension type={getSubTabs(tab)[subtab]} num={0} tickspeed={tickspeed} />
+            </div>
             {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
               return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
             })}
-            {!subtab ? <Sacrifice /> : <div></div>} 
+            {!subtab && maxdim() >= 8 ? <Sacrifice /> : <div></div>} 
             {progressBar}
           </div>
         )
@@ -446,7 +518,9 @@ export function renderTab(tab, subtab) {
       }
       return lock(
         <div>
-          <h4 className="label"><span>you have {count} objekts.</span></h4>
+          <h4 classname="label"><span>you have {count} objekt{count !== 1 ? "s" : ""}.</span></h4>
+          <h5 classname="label"><span>each 100 objekt unlocks an autobuyer, and each other objekt speeds up the corresponding autobuyer.</span></h5>
+          <h5 classname="label"><span>each objekt also multiplies your sacrifice boost by 1.041.</span></h5>
           <ObjektGrid season="Atom01" clss={subtab + 1} startNumber={0} stopNumber={8} />
         </div>
       )
@@ -491,6 +565,7 @@ export function renderTab(tab, subtab) {
             <div className="big-grid">
               <button className={`s${getNextColor(ntab) + 1} big`} onClick={impt}>import</button>
               <button className={`s${getNextColor(ntab) + 2} big`} onClick={expt}>export</button>
+              <button className={`s${getNextColor(ntab) + 3} big`} onClick={reset}>hard reset</button>
             </div>
           )
         case 1:

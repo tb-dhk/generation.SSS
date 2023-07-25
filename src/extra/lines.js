@@ -194,22 +194,22 @@ export const milestones = {
     {
       11: {
         name: "welcome to my kpop class!",
-        description: "buy 1 S1 S dimension.",
+        description: "buy one S1 S dimension.",
         image: chaeyeon1
       }, 
       12: {
         name: "byte for now",
-        description: "buy 1 S8 S dimension.",
+        description: "buy one S8 S dimension.",
         image: yubin0
       }, 
       13: {
         name: "my evaluation is going to be electrocuted!",
-        description: "buy 1 S1 como dimension.",
+        description: "buy one S1 como dimension.",
         image: soomin0
       }, 
       14: {
         name: "is this how it feels to partake in teaching practice sessions?", 
-        description: "buy 1 S8 como dimension.",
+        description: "buy one S8 como dimension.",
         image: yooyeon1
       }, 
       15: {
@@ -282,12 +282,12 @@ export const help = {
   basics: {
     concept: "the concept of this game was based on antimatter dimensions, a game where each dimension creates the previous dimension. i wanted to make a tripleS parody so here it is! for credits, see `/credits`.",
     dimensions: "most dimensions usually produce the dimension one tier below them (S3 dimensions produce S2 dimensions, etc.) but S1 dimensions produce S, a special kind of energy with supernatural properties. buying a dimension also multiplies the dimension's overall production by 25/24.",
-    multipliers: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 dimensions)."
+    boosters: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 dimensions)."
   },
   gravity: {
     "grand gravity": "the first prestige layer. S is limted at 24^24, at which a grand gravity will occur. all gravity will be reset and one objekt and 2^(number of grand gravities including this one) como will be given.",
     objekts: "objekt either unlock (100) or boost (101-108) your autobuyers. your autobuyer interval starts at 256s, before halving with every objekt (other than 100). with all objekts, your autobuyer interval should be 1s. see `/objekts` to view all your objekts.",
-    como: "como dimensions work like S dimensions, but they produce como power, not como (which is only obtainable from grand gravity). como power is used to boost S1's overall production by (como power)^0.125.",
+    como: "como dimensions work like S dimensions, but they produce comodust, not como (which is only obtainable from grand gravity). comodust is used to boost S1's overall production by (comodust)^0.125.",
     challenges: "at the moment, there is only one category of challenges, grand gravity challenges (gdgcs). these challenges require you to start from the beginning and cause a grand gravity but under limited circumstances. see `/challenges` for more."
   },
   faq: {

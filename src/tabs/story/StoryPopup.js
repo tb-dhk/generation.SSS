@@ -17,7 +17,7 @@ export function autostory() {
   const conds = [
     true,
     md >= 1 && dims.S["S1"].total > 0,
-    md >= 2,
+    md >= 2 && dims.S["S2"].total > 0,
     parseInt(dims.S.S8.total) > 0,
     parseInt(prestige.grandGravity.count) > 0,
     parseInt(prestige.grandGravity.count) >= 72 && prestige.grandGravity.challenges.length >= 8

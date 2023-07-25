@@ -20,27 +20,24 @@ function Sacrifice() {
   }
   let dimensions = JSON.parse(localStorage.getItem("dimensions"))
   let currency = JSON.parse(localStorage.getItem("currency"))
+  let objekts = JSON.parse(localStorage.getItem("objekts"))
+
+  let objektCount = 0
+  for (let x in objekts.Atom01) {
+    objektCount += objekts.Atom01[x].length
+  }
+
   let currentBonus = Math.log(sacrifice) / Math.log(8)
   currentBonus = currentBonus > 1 ? currentBonus : 1
-  const newBonus = Math.log(Number(currency.S)) / Math.log(8)
+  currentBonus *= (25/24) ** objektCount
+  const newBonus = (Math.log(Number(currency.S)) / Math.log(8)) * ((25/24) ** objektCount)
+
   if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice * 2) {
     return <div className={`big sacrifice s${maxdim()}`}>
       <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
       <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h5>
       <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus)} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
       <button className="round-corners" onClick={doSacrifice}>sacrifice</button>
-    </div>
-  } else {
-    let message = ""
-    if (Number(currency.S) < sacrifice) {
-      message = `you need ${format(sacrifice * 2)} S to sacrifice.`
-    } else if (Number(dimensions.S.S8.total) <= 0) {
-      message = "you need one S8 dimension to sacrifice."
-    }
-    return <div className={`sacrifice s${maxdim()}`}>
-      <h3 className={`s${maxdim()}`}>{"you can't sacrifice yet."}</h3>
-      <h4 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus)}.</h4>
-      <h4 className={`s${maxdim()}`}>{message}</h4>
     </div>
   }
 }

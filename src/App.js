@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 
-import { format, tick, renderTab, getTabs, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
+import { format, reset, tick, renderTab, getTabs, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
 
 import { StoryPopup } from "./tabs/story/StoryPopup"
 import { Alert } from "./tabs/misc/Alert"
@@ -34,61 +34,6 @@ const colors = {
   s15: "#d51312"
 }
 
-function reset() {
-  const types = ["S", "como", "comoDust", "sigma"]
-
-  const dims = Object.fromEntries(
-    [...Array(24).keys()].map(x => ["S" + (x + 1), { bought: 0, total: 0 }])
-  )
-  const dimObj = Object.fromEntries(
-    types.map(x => [x, dims])
-  )
-  localStorage.setItem("dimensions", JSON.stringify(dimObj))
-
-  const currencyObj = Object.fromEntries(
-    types.map(x => [x, Number(x === "S") * 2])
-  )
-  localStorage.setItem("currency", JSON.stringify(currencyObj))
-  localStorage.setItem("started", true)
-  localStorage.setItem("tickspeed", 50)
-  localStorage.setItem("story", 0)
-  localStorage.setItem("inchallenge", JSON.stringify({ "grand gravity": 1 }))
-
-  localStorage.setItem("colors", JSON.stringify(colors))
-
-  const prestige = {
-    grandGravity: {
-      count: 0,
-      challenges: []
-    }
-  }
-  localStorage.setItem("prestige", JSON.stringify(prestige))
-
-  let objekts = {
-    Atom01: {}
-  }
-  for (var i = 1; i <= 8; i++) {
-    objekts.Atom01["S" + i] = []
-  }
-  localStorage.setItem("objekts", JSON.stringify(objekts))
-
-  const times = ["grand gravity"]
-  const timesObj = Object.fromEntries(
-    times.map(x => [x, Date.now()])
-  )
-  localStorage.setItem("times", JSON.stringify(timesObj))
-
-  let autobuyers = {
-    S: {}
-  }
-  for (i = 1; i <= 8; i++) {
-    autobuyers.S["S" + i] = Date.now()
-  }
-  localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
-
-  localStorage.setItem("alerts", JSON.stringify({start: {message: "press the '2 S' button to start!", time: Date.now() + 15000}}))
-}
-
 function App() {
   /* initialising */
   let started = localStorage.getItem("started")
@@ -106,11 +51,8 @@ function App() {
   const inChallenge = useSelector((state) => state.inChallenge.value)
   const dispatch = useDispatch()
   const alerts = JSON.parse(localStorage.getItem("alerts"))
-  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   
-  console.log(getSubTabs)
-
   /* ticks */
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -177,7 +119,7 @@ function App() {
 
   let perSecond = JSON.parse(localStorage.getItem("perSecond"))
   try {
-    perSecond = (currentTab === 0 && currency.S < 24 ** 24) ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab]}/s)` : ""
+    perSecond = (currentTab === 0 && currency.S < 24 ** 24) ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab] === "comoDust" ? "comodust" : Object.keys(perSecond)[subTab]}/s)` : ""
   } catch {
     perSecond = ""
   }
@@ -192,10 +134,12 @@ function App() {
   }
 
   let inChallengesString = <h3> </h3>
-  if (inChallengesList.length) {
-    inChallengesString = <h3>you are in {inChallengesList.join(" and ")}.</h3>
-  } else {
-    inChallengesString = <h3>you are not in any challenges.</h3>
+  if (prestige.grandGravity.count) {
+    if (inChallengesList.length) {
+      inChallengesString = <h3>you are in {inChallengesList.join(" and ")}.</h3>
+    } else {
+      inChallengesString = <h3>you are not in any challenges.</h3>
+    }
   }
 
   function changeTab(i) {
@@ -253,7 +197,7 @@ function App() {
   }
 
   let ntab = currentTab 
-  if (!(sacrifice > 1 || prestige.grandGravity.count) && currentTab) {
+  if (!prestige.grandGravity.count && currentTab) {
     ntab += 2
   }
 

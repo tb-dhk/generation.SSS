@@ -75,6 +75,14 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     } else {
       newMessage += "."
     }
+
+    let currency = JSON.parse(localStorage.getItem('currency'))
+    currency.S = 2
+    currency.como += 2 ** prestige.grandGravity.count
+    if (finishChallenge) {
+      currency.comoDust = 0
+    }
+    localStorage.setItem('currency', JSON.stringify(currency))
   }
 
   if (finishChallenge) {
@@ -88,14 +96,6 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     inChallenge["grand gravity"] = 0
     localStorage.setItem('inchallenge', JSON.stringify(inChallenge))
   }
-
-  let currency = JSON.parse(localStorage.getItem('currency'))
-  currency.S = 2
-  currency.como += 2 ** prestige.grandGravity.count
-  if (finishChallenge) {
-    currency.comoDust = 0
-  }
-  localStorage.setItem('currency', JSON.stringify(currency))
 
   let times = JSON.parse(localStorage.getItem('times'))
   times["grand gravity"] = Date.now()
