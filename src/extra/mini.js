@@ -76,7 +76,7 @@ export function tick(tickspeed) {
 
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
-    const boosts = (maxDim ** maxDim)
+    let boosts = 1 
     let defCurrencyGain = Number(dims[dim]["S1"].total) + ([7, 8].includes(inChallenge["grand gravity"]) ? Number(dims[dim]["S2"].total) : 0)
     defCurrencyGain *= boosts
     if (currency.comoDust) {
@@ -89,25 +89,29 @@ export function tick(tickspeed) {
     }
 
     for (let c in prestige) {
-      if (prestige[c].challenges.includes(gen + 1)) {
-        boosts **= 9 / 8 * (17 ** upgrades["grand gravity"][6])
+      if (prestige[c].challenges.includes(1) && defCurrencyGain >= 1) {
+        defCurrencyGain *= 9 / 8 * (17 ** upgrades["grand gravity"][6])
       }
     }
 
-    perSecond[generatedCurrency[dim]] = defCurrencyGain
     let base = 2
     let unit = 0
     if (dim === "como") {
+      defCurrencyGain *= 19 ** upgrades["grand gravity"][7]
       base = 7
       unit = 3
     }
+
     defCurrencyGain *= base ** upgrades["grand gravity"][unit]
+
+    perSecond[generatedCurrency[dim]] = defCurrencyGain
     currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
     }
 
     for (const genName in dims[dim]) {
+      boosts = (maxDim ** maxDim)
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && (gen <= maxdim() || dim !== "S")) {
         let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
@@ -135,7 +139,7 @@ export function tick(tickspeed) {
         }
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen + 1)) {
-            boosts **= 9 / 8 * (17 ** upgrades["grand gravity"][6])
+            boosts *= 9 / 8 * (17 ** upgrades["grand gravity"][6])
           }
         }
         for (let cat in milestones) {
@@ -523,7 +527,7 @@ export function renderTab(tab, subtab) {
     case 1:
       return lock(
         <div className="container label">
-          <span className="sub-header">each challenge raises the corresponding dimension to the power of {format(1.125 * (17 ** upgrades["grand gravity"][6]))}.</span>
+          <span className="sub-header">each challenge multiplies the production of the corresponding dimension by {format(1.125 * (17 ** upgrades["grand gravity"][6]))}.</span>
           <div className="big-grid"> {
             [...Array(8).keys()].map(i => {
               return <Challenge type="grand gravity" num={i + 1} />
