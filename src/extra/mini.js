@@ -109,7 +109,7 @@ export function tick(tickspeed) {
         if (dim === "S" && gen === 8 - 1) {
           const sacrificeBonus = Math.log(sacrifice) / Math.log(8) * (3 ** upgrades["grand gravity"][1])
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
-          boosts *= (25/24) ** objektCount
+          boosts *= (25/24) ** objektCount * (13 ** upgrades["grand gravity"][5])
         }
         let next = "S" + (gen + 1)
         if (dim === "S") {
