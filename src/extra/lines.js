@@ -329,9 +329,9 @@ export const challenges = {
 
 export const upgradeLines = {
   "grand gravity": [
-    ["1", "boost S generators"],
-    ["2", "boost sacrifice"],
-    ["3", "boost como"],
+    ["1", "boost S production"],
+    ["2", "boost sacrifice boost"],
+    ["3", "boost como production"],
     ["4", "boost comodust production"],
     ["5", "boost comodust effect"],
     ["6", "boost objekt boost"],
