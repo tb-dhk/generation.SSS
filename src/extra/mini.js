@@ -92,8 +92,8 @@ export function tick(tickspeed) {
     let base = 2
     let unit = 0
     if (dim === "como") {
-      base = 5
-      unit = 2
+      base = 7
+      unit = 3
     }
     defCurrencyGain *= base ** upgrades["grand gravity"][unit]
     currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 

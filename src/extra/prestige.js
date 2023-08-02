@@ -12,6 +12,7 @@ function arrayIsEmpty(array) {
 
 export function grandGravity(giveObjekt = true, finishChallenge = true, newMessage = "") {
   localStorage.setItem('sacrifice', JSON.stringify(1))
+  const upgrades = JSON.parse(localStorage.getItem('upgrades'))
 
   let dimObj = JSON.parse(localStorage.getItem('dimensions'))
   for (let s in dimObj.S) {
@@ -69,7 +70,9 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     }
     localStorage.setItem('objekts', JSON.stringify(objekts))
 
-    newMessage = `you got ${format(2 ** (prestige.grandGravity.count + 1))} como`
+    const gainedComo = 2 ** (prestige.grandGravity.count + 1) * 5 ** upgrades["grand gravity"][2]
+
+    newMessage = `you got ${format(gainedComo)} como`
     if (gainedObjekt) {
       newMessage += ` and a ${gainedObjekt} objekt.`
     } else {
@@ -78,7 +81,7 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
 
     let currency = JSON.parse(localStorage.getItem('currency'))
     currency.S = 2
-    currency.como += 2 ** (prestige.grandGravity.count + 1) 
+    currency.como += gainedComo  
     if (finishChallenge) {
       currency.comoDust = 0
     }
