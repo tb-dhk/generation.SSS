@@ -89,7 +89,13 @@ export function tick(tickspeed) {
     }
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
-    defCurrencyGain *= 2 ** upgrades["grand gravity"][0]
+    let base = 2
+    let unit = 0
+    if (dim === "como") {
+      base = 5
+      unit = 2
+    }
+    defCurrencyGain *= base ** upgrades["grand gravity"][unit]
     currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
