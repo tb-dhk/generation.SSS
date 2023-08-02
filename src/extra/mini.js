@@ -89,6 +89,7 @@ export function tick(tickspeed) {
     }
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
+    defCurrencyGain *= 2 ** upgrades["grand gravity"][0]
     currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
     if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
       currency[generatedCurrency[dim]] = 24 ** 24
@@ -99,7 +100,7 @@ export function tick(tickspeed) {
       if (gen < 24 && (gen <= maxdim() || dim !== "S")) {
         let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
         if (dim === "S" && gen === 8 - 1) {
-          const sacrificeBonus = Math.log(sacrifice) / Math.log(8) * upgrades["grand gravity"][1]
+          const sacrificeBonus = Math.log(sacrifice) / Math.log(8) * (3 ** upgrades["grand gravity"][1])
           boosts *= sacrificeBonus > 1 ? sacrificeBonus : 1
           boosts *= (25/24) ** objektCount
         }
