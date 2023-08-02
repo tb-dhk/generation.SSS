@@ -47,8 +47,7 @@ function Upgrade({ type, num }) {
       onMouseEnter={(element) => invert(element, true, affordable)}
       onMouseLeave={(element) => invert(element, false, affordable)}
     >
-      <h4 className={`s${num} ${color} noborder transparent lower`}>{upgradeLines[type][num-1][0]}</h4>
-      <h5 className={`s${num} ${color} noborder transparent lower`}>{upgradeLines[type][num-1][1]}</h5>
+      <h4 className={`s${num} ${color} noborder transparent lower`}>{upgradeLines[type][num-1]}</h4>
       <h5 className={`s${num} ${color} noborder transparent lower`}>×{format(primes[num-1] ** thisUpgrade)} → ×{format(primes[num-1] ** (thisUpgrade + 1))}</h5>
       <h5 className={`s${num} ${color} noborder transparent lower`}>{format(24 ** (thisUpgrade * num))} como</h5>
     </button>

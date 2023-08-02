@@ -37,8 +37,8 @@ function Sacrifice() {
   if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice * 2) {
     return <div className={`big sacrifice s${maxdim()}`}>
       <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
-      <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus) * sacrificeUpgrade}.</h5>
-      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus) * sacrificeUpgrade} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
+      <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus * sacrificeUpgrade)}.</h5>
+      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus * sacrificeUpgrade)} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
       <button className="round-corners challengebutton" onClick={doSacrifice}>sacrifice</button>
     </div>
   }
