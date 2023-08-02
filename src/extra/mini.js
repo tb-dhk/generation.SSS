@@ -88,6 +88,12 @@ export function tick(tickspeed) {
       defCurrencyGain *= ggc6[0]
     }
 
+    for (let c in prestige) {
+      if (prestige[c].challenges.includes(gen + 1)) {
+        boosts **= 9 / 8 * (17 ** upgrades["grand gravity"][6])
+      }
+    }
+
     perSecond[generatedCurrency[dim]] = defCurrencyGain
     let base = 2
     let unit = 0
@@ -129,7 +135,7 @@ export function tick(tickspeed) {
         }
         for (let c in prestige) {
           if (prestige[c].challenges.includes(gen + 1)) {
-            boosts **= 9 / 8
+            boosts **= 9 / 8 * (17 ** upgrades["grand gravity"][6])
           }
         }
         for (let cat in milestones) {
@@ -429,6 +435,7 @@ export function renderTab(tab, subtab) {
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
+  const upgrades = JSON.parse(localStorage.getItem('upgrades'))
   let settings = {}
   
   settings = JSON.parse(localStorage.getItem('settings'))
@@ -516,7 +523,7 @@ export function renderTab(tab, subtab) {
     case 1:
       return lock(
         <div className="container label">
-          <span className="sub-header">each challenge raises the corresponding dimension to the power of 1.125.</span>
+          <span className="sub-header">each challenge raises the corresponding dimension to the power of {format(1.125 * (17 ** upgrades["grand gravity"][6]))}.</span>
           <div className="big-grid"> {
             [...Array(8).keys()].map(i => {
               return <Challenge type="grand gravity" num={i + 1} />
@@ -542,7 +549,7 @@ export function renderTab(tab, subtab) {
         <div>
           <h4 className="label"><span>you have {count} objekt{count !== 1 ? "s" : ""}.</span></h4>
           <h5 className="label"><span>each 100 objekt unlocks an autobuyer, and each other objekt speeds up the corresponding autobuyer.</span></h5>
-          <h5 className="label"><span>each objekt also multiplies your sacrifice boost by 1.041.</span></h5>
+          <h5 className="label"><span>each objekt also multiplies your sacrifice boost by {format(1.041 * (13 ** upgrades["grand gravity"][5]))}.</span></h5>
           <ObjektGrid season="Atom01" clss={subtab + 1} startNumber={0} stopNumber={8} />
         </div>
       )
