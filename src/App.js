@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { HotKeys } from "react-hotkeys";
 
-import { format, reset, tick, renderTab, getTabs, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
+import { format, reset, tick, sLimit, renderTab, getTabs, getSubTabs, changeColor, clearAlerts, buyMax } from "./extra/mini"
 
 import { StoryPopup } from "./tabs/story/StoryPopup"
 import { Alert } from "./tabs/misc/Alert"
@@ -127,7 +127,7 @@ function App() {
 
   let perSecond = JSON.parse(localStorage.getItem("perSecond"))
   try {
-    perSecond = (currentTab === 0 && currency.S < 24 ** 24) ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab] === "comoDust" ? "comodust" : Object.keys(perSecond)[subTab]}/s)` : ""
+    perSecond = (currentTab === 0 && currency.S < sLimit()) ? ` (${format(Object.values(perSecond)[subTab])} ${Object.keys(perSecond)[subTab] === "comoDust" ? "comodust" : Object.keys(perSecond)[subTab]}/s)` : ""
   } catch {
     perSecond = ""
   }

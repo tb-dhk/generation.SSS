@@ -50,6 +50,16 @@ export function maxdim(currency = "S") {
   }
 }
 
+export function sLimit() {
+  if (maxdim("como") <= 4) {
+    return 24 ** 24 
+  } else if (maxdim("como") <= 8) {
+    return 24 ** (6 * maxdim("como"))
+  } else {
+    return 24 ** 48
+  }
+}
+
 export function tick(tickspeed) {
   const dims = JSON.parse(localStorage.getItem('dimensions'))
   const objekts = JSON.parse(localStorage.getItem('objekts'))
@@ -106,8 +116,8 @@ export function tick(tickspeed) {
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
     currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
-    if (currency[generatedCurrency[dim]] > 24 ** 24 && dim === "S") {
-      currency[generatedCurrency[dim]] = 24 ** 24
+    if (currency[generatedCurrency[dim]] > sLimit() && dim === "S") {
+      currency[generatedCurrency[dim]] = sLimit()
     }
 
     for (const genName in dims[dim]) {
@@ -191,7 +201,7 @@ export function autobuy() {
   let dims = ["S", "como"]
 
   for (let j = 0; j < 1; j++) {
-    if (j === 0 && currency.S < 24 ** 24 && enableAutobuy) {
+    if (j === 0 && currency.S < sLimit() && enableAutobuy) {
       for (let i in objekts.Atom01) {
         if (!(inChallenge["grand gravity"] === 4 && parseInt(i.slice(1)) > 6)) {
           let objs = objekts.Atom01[i].filter(c => c.toString()[0] === "1")
@@ -471,7 +481,7 @@ export function renderTab(tab, subtab) {
   switch (ntab) {
     case 0:
       let finalDiv = <div></div>
-      if (currency.S < 24 ** 24) {
+      if (currency.S < sLimit()) {
         let limit = 8
         if (inChallenge["grand gravity"] === 4) {
           limit = 6
@@ -480,7 +490,7 @@ export function renderTab(tab, subtab) {
         if (!subtab) {
           progressBar = <ProgressBar
             className="progress-bar"
-            completed={Number((Math.log(currency.S) / Math.log(24 ** 24) * 100).toFixed(2))}
+            completed={Number((Math.log(currency.S) / Math.log(sLimit()) * 100).toFixed(2))}
             bgColor={colors["s" + (maxdim())]}
             baseBgColor="white"
             transitionDuration="0.5s"

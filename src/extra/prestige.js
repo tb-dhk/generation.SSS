@@ -70,7 +70,7 @@ export function grandGravity(giveObjekt = true, finishChallenge = true, newMessa
     }
     localStorage.setItem('objekts', JSON.stringify(objekts))
 
-    const gainedComo = 2 ** (prestige.grandGravity.count + 1) * 5 ** upgrades["grand gravity"][2]
+    const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24)) 
 
     newMessage = `you got ${format(gainedComo)} como`
     if (gainedObjekt) {
