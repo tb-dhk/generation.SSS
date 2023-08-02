@@ -39,22 +39,23 @@ export function price(type, num) {
   return base ** ((num * (num + bought)))
 }
 
-export function maxdim(currency = "S") {
+export function maxdim(currency = "S", strict = false) {
   const dims = JSON.parse(localStorage.getItem('dimensions'));
 
   /* number of dimensions to render */
-  for (let d = 1; d <= 24; d++) {
-    if (!dims[currency]["S" + d].total) {
+  for (let d = 1; d <= 24 - Number(strict); d++) {
+    if ((!strict && !dims[currency]["S" + d].total) || (strict && !dims[currency]["S" + (d + 1)].total)) {
+      console.log(currency, d)
       return d
     }
   }
 }
 
 export function sLimit() {
-  if (maxdim("como") <= 4) {
+  if (maxdim("como", true) <= 4) {
     return 24 ** 24 
-  } else if (maxdim("como") <= 8) {
-    return 24 ** (6 * maxdim("como"))
+  } else if (maxdim("como", true) <= 8) {
+    return 24 ** (6 * maxdim("como", true))
   } else {
     return 24 ** 48
   }
@@ -521,11 +522,12 @@ export function renderTab(tab, subtab) {
           </div>
         )
       } else {
+        const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
         finalDiv = (
           <div className="invert grandgrav">
             <h3 className="invert">boom!</h3>
             <h4 className="invert">too much S!</h4>
-            <button className="grandgrav-button" onClick={grandGravity}>grand gravity!</button>
+            <button className="grandgrav-button" onClick={grandGravity}>grand gravity for {gainedComo} como!</button>
           </div>
         )
       }

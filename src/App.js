@@ -16,24 +16,6 @@ import { message } from "./tabs/challenges/Challenge"
 import { updateCurrency } from "./slices/currency"
 import { updateInChallenge } from "./slices/inchallenge"
 
-const colors = {
-  s1: "#22aeff",
-  s2: "#9200ff",
-  s3: "#fff800",
-  s4: "#98f21d",
-  s5: "#d80d76",
-  s6: "#ff7fa4",
-  s7: "#729ba1",
-  s8: "#ffe3e2",
-  s9: "#ffc931",
-  s10: "#fb98dc",
-  s11: "#ffe000",
-  s12: "#5975fd",
-  s13: "#ff953f",
-  s14: "#1222b5",
-  s15: "#d51312"
-}
-
 function App() {
   /* initialising */
   let started = localStorage.getItem("started")
