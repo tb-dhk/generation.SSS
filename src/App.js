@@ -41,11 +41,14 @@ function App() {
     localStorage.setItem("upgrades", JSON.stringify({"grand gravity": [0, 0, 0, 0, 0, 0, 0, 0]}))
   }
 
+  let lastTick = Date.now()
+
   /* ticks */
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
-      tick(tickspeed)
+      tick(Date.now() - lastTick)
+      lastTick = Date.now()
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {

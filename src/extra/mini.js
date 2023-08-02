@@ -116,7 +116,7 @@ export function tick(tickspeed) {
     defCurrencyGain *= base ** upgrades["grand gravity"][unit]
 
     perSecond[generatedCurrency[dim]] = defCurrencyGain
-    currency[generatedCurrency[dim]] += defCurrencyGain / 1000 * tickspeed 
+    currency[generatedCurrency[dim]] += defCurrencyGain * tickspeed / 1000
     if (currency[generatedCurrency[dim]] > sLimit() && dim === "S") {
       currency[generatedCurrency[dim]] = sLimit()
     }
@@ -164,7 +164,7 @@ export function tick(tickspeed) {
           boosts *= ggc6[gen]
         } 
         if (next !== "S25" && next !== "S0") {
-          let defGain = Number(dims[dim][next].total) * boosts / 1000 * tickspeed
+          let defGain = Number(dims[dim][next].total) * boosts * tickspeed / 1000
           dims[dim][genName].total += defGain
         }
       }
