@@ -1,31 +1,56 @@
-import upgrades from "../../extra/lines.js"
+import { upgradeLines } from "../../extra/lines.js"
+import { format } from "../../extra/mini.js"
 
-const invert = (element, truth) => {
+const invert = (element, truth, affordable) => {
   let button = element.currentTarget
-  if (truth) {
-    button.classList.remove("translucent")
-    for (let c in button.children) {
-      if (typeof button.children[c] === "object") {
-        button.children[c].classList.remove("white")
+  if (affordable) {
+    if (truth) {
+      button.classList.remove("translucent")
+      for (let c in button.children) {
+        if (typeof button.children[c] === "object") {
+          button.children[c].classList.remove("white")
+        }
       }
-    }
-  } else {
-    button.classList.add("translucent")
-    for (let c in button.children) {
-      if (typeof button.children[c] === "object") {
-        button.children[c].classList.add("white")
+    } else {
+      button.classList.add("translucent")
+      for (let c in button.children) {
+        if (typeof button.children[c] === "object") {
+          button.children[c].classList.add("white")
+        }
       }
-
     }
   }
 }
 
+function buy(type, num) {
+  const currency = JSON.parse(localStorage.getItem("currency"))
+  const upgrades = JSON.parse(localStorage.getItem("upgrades"))
+  const thisUpgrade = upgrades[type][num-1]
+  currency.como -= 24 ** (thisUpgrade * num)
+  upgrades[type][num-1]++
+  localStorage.setItem("currency", JSON.stringify(currency))
+  localStorage.setItem("upgrades", JSON.stringify(upgrades))
+}
+
 function Upgrade({ type, num }) {
+  const currency = JSON.parse(localStorage.getItem("currency"))
+  const upgrades = JSON.parse(localStorage.getItem("upgrades"))
+  const thisUpgrade = upgrades[type][num-1]
+  const affordable = currency.como >= 24 ** (thisUpgrade * num)
+  const transparency = affordable ? "translucent" : ""
+  const color = affordable ? "white" : ""
+  const primes = [2, 3, 5, 7, 11, 13, 17, 19]
   return (
-    <button className={`s${num} medium translucent`} onMouseEnter={(element) => invert(element, true)} onMouseLeave={(element) => invert(element, false)}>
-      <h4 className={`s${num} white noborder transparent lower`}>name</h4>
-      <h5 className={`s${num} white noborder transparent lower`}>description</h5>
-      <h5 className={`s${num} white noborder transparent lower`}>price</h5>
+    <button 
+      className={`s${num} medium ${transparency}`} 
+      onClick={() => {if (affordable) buy(type, num)}}
+      onMouseEnter={(element) => invert(element, true, affordable)}
+      onMouseLeave={(element) => invert(element, false, affordable)}
+    >
+      <h4 className={`s${num} ${color} noborder transparent lower`}>{upgradeLines[type][num-1][0]}</h4>
+      <h5 className={`s${num} ${color} noborder transparent lower`}>{upgradeLines[type][num-1][1]}</h5>
+      <h5 className={`s${num} ${color} noborder transparent lower`}>×{format(primes[num-1] ** thisUpgrade)} → ×{format(primes[num-1] ** (thisUpgrade + 1))}</h5>
+      <h5 className={`s${num} ${color} noborder transparent lower`}>{format(24 ** (thisUpgrade * num))} como</h5>
     </button>
   )
 }

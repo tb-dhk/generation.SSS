@@ -52,7 +52,13 @@ function App() {
   const dispatch = useDispatch()
   const alerts = JSON.parse(localStorage.getItem("alerts"))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
-  
+
+  try {
+    JSON.parse(localStorage.getItem("upgrades"))
+  } catch {
+    localStorage.setItem("upgrades", JSON.stringify({"grand gravity": [0, 0, 0, 0, 0, 0, 0, 0]}))
+  }
+
   /* ticks */
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -113,6 +119,8 @@ function App() {
   if (!currentTab && subTab === 1) {
     currencyString = `you have ${format(currency.como)} como and ${format(currency.comoDust)} comodust.`
     comoDustMult = `your comodust is boosting S production by ${format(currency.comoDust ** (1 / 8))}.`
+  } else if (currentTab === 2) {
+    currencyString = `you have ${format(currency.como)} como.`
   } else {
     currencyString = `you have ${format(currency.S)} S.`
   }

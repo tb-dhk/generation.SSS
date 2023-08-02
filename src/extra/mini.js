@@ -262,7 +262,7 @@ export function clearAlerts() {
 export function getTabs() {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   if (prestige.grandGravity.count) {
-    return ["dimensions", "upgrades", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
+    return ["dimensions", "challenges", "upgrades", "objekts", "milestones", "story", "settings", "help", "about"]
   } else {
     return ["dimensions", "milestones", "story", "settings", "help", "about"]
   }
@@ -516,7 +516,6 @@ export function renderTab(tab, subtab) {
     case 2:
       return lock(
         <div className="container label">
-          <span className="sub-header">each challenge raises the corresponding dimension to the power of 1.125.</span>
           <div className="medium-grid"> {
             [...Array(8).keys()].map(i => {
               return <Upgrade type="grand gravity" num={i + 1} />
