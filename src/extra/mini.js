@@ -3,6 +3,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import Dimension from '../tabs/dimensions/Dimension'
 import Sacrifice from '../tabs/dimensions/Sacrifice'
 import Challenge from '../tabs/challenges/Challenge'
+import Upgrade from '../tabs/upgrades/Upgrade'
 import Story from '../tabs/story/Story'
 import ObjektGrid from '../tabs/objekt/ObjektGrid'
 import ColorInput from '../tabs/settings/ColorInput'
@@ -261,7 +262,7 @@ export function clearAlerts() {
 export function getTabs() {
   const prestige = JSON.parse(localStorage.getItem('prestige'))
   if (prestige.grandGravity.count) {
-    return ["dimensions", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
+    return ["dimensions", "upgrades", "challenges", "objekts", "milestones", "story", "settings", "help", "about"]
   } else {
     return ["dimensions", "milestones", "story", "settings", "help", "about"]
   }
@@ -442,7 +443,7 @@ export function renderTab(tab, subtab) {
 
   let ntab = tab
   if (!prestige.grandGravity.count && ntab) {
-    ntab += 2
+    ntab += 3
   }
 
   switch (ntab) {
@@ -513,18 +514,29 @@ export function renderTab(tab, subtab) {
         </div>
       )
     case 2:
+      return lock(
+        <div className="container label">
+          <span className="sub-header">each challenge raises the corresponding dimension to the power of 1.125.</span>
+          <div className="medium-grid"> {
+            [...Array(8).keys()].map(i => {
+              return <Upgrade type="grand gravity" num={i + 1} />
+            })
+          } </div>
+        </div>
+      )
+    case 3:
       for (let x in objekts.Atom01) {
         count += objekts.Atom01[x].length
       }
       return lock(
         <div>
-          <h4 classname="label"><span>you have {count} objekt{count !== 1 ? "s" : ""}.</span></h4>
-          <h5 classname="label"><span>each 100 objekt unlocks an autobuyer, and each other objekt speeds up the corresponding autobuyer.</span></h5>
-          <h5 classname="label"><span>each objekt also multiplies your sacrifice boost by 1.041.</span></h5>
+          <h4 className="label"><span>you have {count} objekt{count !== 1 ? "s" : ""}.</span></h4>
+          <h5 className="label"><span>each 100 objekt unlocks an autobuyer, and each other objekt speeds up the corresponding autobuyer.</span></h5>
+          <h5 className="label"><span>each objekt also multiplies your sacrifice boost by 1.041.</span></h5>
           <ObjektGrid season="Atom01" clss={subtab + 1} startNumber={0} stopNumber={8} />
         </div>
       )
-    case 3:
+    case 4:
       let milestoneCompletion = JSON.parse(localStorage.getItem("milestones"))
       let count1 = 0
       let count2 = 0
@@ -554,11 +566,11 @@ export function renderTab(tab, subtab) {
           })
         })
       } </div>
-    case 4:
+    case 5:
       return [...Array(autostory()[0] + 1).keys()].map(i => {
         return <Story num={i} />
       })
-    case 5:
+    case 6:
       switch (subtab) {
         case 0:
           return (
@@ -594,13 +606,13 @@ export function renderTab(tab, subtab) {
           break
       }
       break
-    case 6:
+    case 7:
       subobj = help[Object.keys(help)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
         return <Accordion num={getNextColor(ntab) + count - 1} head={i} body={subobj[i]} />
       })
-    case 7:
+    case 8:
       subobj = about[Object.keys(about)[subtab]]
       return Object.keys(subobj).map(i => {
         count++
@@ -636,25 +648,30 @@ export function changeColor(className, color) {
     const int = (color.length - 1) / 3
     const sep = [...Array(3).keys()].map((i) => {
       let val = parseInt(color.slice(i * int + 1, i * int + int + 1), 16)
-      if (int === 2) {
-        val /= 16
-      }
       return val
     })
 
     for (let i in items) {
       let item = items[i]
       if (typeof item === "object") {
-        item.style.border = `2px solid ${color}`
+        if (!item.classList.contains("noborder")) {
+          item.style.border = `2px solid ${color}`
+        }
         item.style.borderRadius = "5px"
         item.style.padding = "auto 5px"
         if (item.classList.contains("invert")) {
           item.style.backgroundColor = "black"
           item.style.color = color
         } else {
-          item.style.backgroundColor = color
+          if (item.classList.contains("translucent")) {
+            item.style.backgroundColor = 'rgba(' + sep.join(',') + ', 0.25)'
+          } else if (item.classList.contains("transparent")) {
+            item.style.backgroundColor = 'rgba(' + sep.join(',') + ', 0)'
+          } else {
+            item.style.backgroundColor = color
+          }
           let c = luminance(sep)
-          const blackBackground = (c + 0.05) / (0 + 0.05) >= (1 + 0.05) / (c + 0.05) / 19
+          const blackBackground = (c + 0.05) / (0 + 0.05) >= (1 + 0.05) / (c + 0.05)
           item.style.color = blackBackground ? "black" : "white"
         }
       }

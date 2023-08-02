@@ -282,7 +282,7 @@ export const help = {
   basics: {
     concept: "the concept of this game was based on antimatter dimensions, a game where each dimension creates the previous dimension. i wanted to make a tripleS parody so here it is! for credits, see `/credits`.",
     dimensions: "most dimensions usually produce the dimension one tier below them (S3 dimensions produce S2 dimensions, etc.) but S1 dimensions produce S, a special kind of energy with supernatural properties. buying a dimension also multiplies the dimension's overall production by 25/24.",
-    boosters: "boosters boost S1's production in most cases (other than some challenges like gdgc6). the main boosters you will notice are 8^(number of S - 1) and 24^(number of S8 dimensions)."
+    multipliers: "multipliers boost S1's production in most cases (other than some challenges like gdgc6). the main multipliers you will notice are 8^(number of S - 1) and 24^(number of S8 dimensions)."
   },
   gravity: {
     "grand gravity": "the first prestige layer. S is limted at 24^24, at which a grand gravity will occur. all gravity will be reset and one objekt and 2^(number of grand gravities including this one) como will be given.",
@@ -312,4 +312,30 @@ export const about = {
     "source code": "https://github.com/shuu-wasseo/generation.SSS",
     "releases": "https://github.com/shuu-wasseo/generation.SSS/releases/new"
   }
+}
+
+export const challenges = {
+  "grand gravity": [
+    ["first grand gravity", "reach 24^24 for the first time."],
+    ["generation (smol ver.)", "S1 dimension is heavily weakened but gets an exponentially increasing bonus."],
+    ["termination", "buying a dimension automatically erases all lower tier dimensions."],
+    ["triplequarterS", "S7 and S8 dimensions are unavailable."],
+    ["it's gold? or white?", "all dimension costs change base from 2 to 3."],
+    ["dimension shift", "all dimensions get a random multiplier from x0.24 to 8."],
+    ["two-system generation", "each dimension produces the dimension two tiers below. if not available, produces S."],
+    ["two-system generation\n(DIMENSION ver.)", "each dimension produces the nearest lower-tier dimension in the same subunit. if not available, produces S."]
+  ]
+}
+
+export const upgrades = {
+  "grand gravity": [
+    ["", "boost S generators"],
+    ["", "boost sacrifice"],
+    ["", "boost como"],
+    ["", "boost comodust production"],
+    ["", "boost comodust effect"],
+    ["", "boost objekt boost"],
+    ["", "boost challenge boost"],
+    ["", "boost milestone boost"]
+  ]
 }

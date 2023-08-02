@@ -198,7 +198,7 @@ function App() {
 
   let ntab = currentTab 
   if (!prestige.grandGravity.count && currentTab) {
-    ntab += 2
+    ntab += 3
   }
 
   const subTabs = getSubTabs(ntab)

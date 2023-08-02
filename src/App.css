@@ -122,6 +122,10 @@ hr {
   padding: 10px 20px 20px 20px;
 }
 
+.white {
+  color: white !important
+}
+
 .invert {
   background-color: white;
   color: black;
@@ -346,6 +350,29 @@ hr {
   border-radius: 10px;
   padding: 20px;
   position: relative;
+}
+
+.medium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 20px auto;
+  width: 50%;
+  min-width: 400px;
+  max-width: 800px;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.medium {
+  min-height: 100px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.lower {
+  z-index: -1
 }
 
 .reset-colors {
