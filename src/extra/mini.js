@@ -51,15 +51,16 @@ export function maxdim(currency = "S") {
 }
 
 export function tick(tickspeed) {
-  const dims = JSON.parse(localStorage.getItem('dimensions'));
-  const objekts = JSON.parse(localStorage.getItem('objekts'));
-  const currency = JSON.parse(localStorage.getItem('currency'));
-  const prestige = JSON.parse(localStorage.getItem('prestige'));
-  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'));
-  const inChallenge = JSON.parse(localStorage.getItem('inchallenge'));
-  const milestones = JSON.parse(localStorage.getItem('milestones'));
-  const times = JSON.parse(localStorage.getItem('times'));
-  const ggc6 = JSON.parse(localStorage.getItem('ggc6'));
+  const dims = JSON.parse(localStorage.getItem('dimensions'))
+  const objekts = JSON.parse(localStorage.getItem('objekts'))
+  const currency = JSON.parse(localStorage.getItem('currency'))
+  const prestige = JSON.parse(localStorage.getItem('prestige'))
+  const sacrifice = JSON.parse(localStorage.getItem('sacrifice'))
+  const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  const milestones = JSON.parse(localStorage.getItem('milestones'))
+  const times = JSON.parse(localStorage.getItem('times'))
+  const upgrades = JSON.parse(localStorage.getItem('upgrades'))
+  const ggc6 = JSON.parse(localStorage.getItem('ggc6'))
 
   const generatedCurrency = {
     S: "S",
@@ -273,8 +274,8 @@ export function getSubTabs(tab) {
   const subTabs = [
     ["S", "como"],
     ["grand gravity"],
+    ["grand gravity"],    
     ["single class"],
-    ["grand gravity"],
     ["part 1"],
     ["save", "options", "colors"],
     Object.keys(help),
@@ -408,6 +409,8 @@ export function reset() {
     localStorage.setItem("autobuyers", JSON.stringify(autobuyers))
 
     localStorage.setItem("alerts", JSON.stringify({start: {message: "press the '2 S' button to start!", time: Date.now() + 15000}}))
+
+    localStorage.setItem("upgrades", JSON.stringify({"grand gravity": [0, 0, 0, 0, 0, 0, 0, 0]}))
     window.location.reload()
   }
 }
