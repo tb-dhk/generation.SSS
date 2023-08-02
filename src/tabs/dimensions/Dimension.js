@@ -6,11 +6,18 @@ export function buyDim(type, num, max) {
   const thisDim = dims[type]["S" + num.toString()]
   const currencies = JSON.parse(localStorage.getItem('currency'))
   const inChallenge = JSON.parse(localStorage.getItem('inchallenge'))
+  const alerts = JSON.parse(localStorage.getItem('alerts'))
 
   function buyone() {
     thisDim.bought += 1
     if (!thisDim.total) {
       thisDim.total = 1
+      if (type === "como" && num > 4) {
+        alerts[`como-dim-${num}`] = {
+          message: `your S limit has now increased by ${format(24 ** 6)}! you can now have up to ${format(24 ** (6 * num))} S.`,
+          time: Date.now()
+        }
+      }
     } else {
       thisDim.total += 1
     }
@@ -26,6 +33,7 @@ export function buyDim(type, num, max) {
     }
 
     localStorage.setItem('dimensions', JSON.stringify(dims))
+    localStorage.setItem('alerts', JSON.stringify(alerts))
     localStorage.setItem('currency', JSON.stringify(currencies))  
   }
 
@@ -175,7 +183,7 @@ function Dimension({ type, num, tickspeed }) {
       <div className="dimension-container">
         <div className={`dimension`}>
           <div className={`name`}>dimension</div>
-          <div className={``}>boosts</div>
+          <div>boosts</div>
           <div className={`amount`}>total (bought)</div>
           <div className={`autobuy`}>autobuyer</div>
           <div className={`max`}>max</div>
