@@ -80,7 +80,7 @@ export function tick(tickspeed) {
     let defCurrencyGain = Number(dims[dim]["S1"].total) + ([7, 8].includes(inChallenge["grand gravity"]) ? Number(dims[dim]["S2"].total) : 0)
     defCurrencyGain *= boosts
     if (currency.comoDust) {
-      defCurrencyGain *= currency.comoDust ** (1 / 8)
+      defCurrencyGain *= currency.comoDust ** (1 / 8) * (11 ** upgrades["grand gravity"][4])
     }
     if (inChallenge["grand gravity"] === 2) {
       defCurrencyGain *= (24 ** ((Date.now() - times["grand gravity"]) / 1000000)) * 1 / 24
