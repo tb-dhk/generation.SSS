@@ -481,61 +481,59 @@ export function renderTab(tab, subtab) {
 
   switch (ntab) {
     case 0:
-      let finalDiv = <div></div>
-      if (currency.S < sLimit()) {
-        let limit = 8
-        if (inChallenge["grand gravity"] === 4) {
-          limit = 6
-        }
-        let progressBar = <div></div>
-        if (!subtab) {
-          progressBar = <ProgressBar
-            className="progress-bar"
-            completed={Number((Math.log(currency.S) / Math.log(sLimit()) * 100).toFixed(2))}
-            bgColor={colors["s" + (maxdim())]}
-            baseBgColor="white"
-            transitionDuration="0.5s"
-          />
-        }
-        let enableAutobuy = true
-        try {
-          enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
-        } catch { }
-
-        let enableAutobuyButton = <div></div>
-        if (!subtab) {
-          enableAutobuyButton = <button className={`s${getNextColor(ntab) + 1} sub-header`} onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
-        }
-
-        finalDiv = (
-          <div>
-            {enableAutobuyButton}
-            <button className={`s${getNextColor(ntab) + 2} sub-header`} onClick={() => {buyMax(subtab)}}>buy max</button>
-            <div className="dimension-container">
-              <Dimension type={getSubTabs(tab)[subtab]} num={0} tickspeed={tickspeed} />
-            </div>
-            {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
-              return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
-            })}
-            {!subtab && maxdim() >= 8 ? <Sacrifice /> : <div></div>} 
-            {progressBar}
-          </div>
-        )
-      } else {
-        const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
-        finalDiv = (
-          <div className="invert grandgrav">
-            <h3 className="invert">boom!</h3>
-            <h4 className="invert">too much S!</h4>
-            <button className="grandgrav-button" onClick={grandGravity}>grand gravity for {gainedComo} como!</button>
-          </div>
-        )
+      let limit = 8
+      if (inChallenge["grand gravity"] === 4) {
+        limit = 6
       }
-      if (subtab) {
-        return lock(finalDiv)
-      } else {
-        return finalDiv
+      let progressBar = <div></div>
+      if (!subtab) {
+        progressBar = <ProgressBar
+          className="progress-bar"
+          completed={Number((Math.log(currency.S) / Math.log(sLimit()) * 100).toFixed(2))}
+          bgColor={colors["s" + (maxdim())]}
+          baseBgColor="white"
+          transitionDuration="0.5s"
+        />
       }
+      let enableAutobuy = true
+      try {
+        enableAutobuy = JSON.parse(localStorage.getItem("enableAutobuy"))
+      } catch { }
+
+      let enableAutobuyButton = <div></div>
+      if (!subtab) {
+        enableAutobuyButton = <button className={`s${getNextColor(ntab) + 1} sub-header`} onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
+      }
+
+      const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
+      const grandGravDiv = (
+        <div className="invert grandgrav">
+          <h3 className="invert">{currency.S < sLimit() ? "hmm..." : "boom!"}</h3>
+          <h4 className="invert">{currency.S < sLimit() ? "you can do a grand gravity now!" : "too much S!"}</h4>
+          <button className="grandgrav-button" onClick={grandGravity}>grand gravity for {format(gainedComo)} como!</button>
+        </div>
+      )
+
+      const dimensions = (
+        <div>
+          {enableAutobuyButton}
+          <button className={`s${getNextColor(ntab) + 2} sub-header`} onClick={() => {buyMax(subtab)}}>buy max</button>
+          <div className="dimension-container">
+            <Dimension type={getSubTabs(tab)[subtab]} num={0} tickspeed={tickspeed} />
+          </div>
+          {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
+            return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
+          })}
+          {currency.S >= 24 ** 24 ? grandGravDiv : <div></div>}
+          {!subtab && maxdim() >= 8 ? <Sacrifice /> : <div></div>} 
+          {progressBar}
+        </div>
+      )
+
+    
+      return <div>
+        {currency.S < sLimit() ? dimensions : grandGravDiv}
+      </div>
     case 1:
       return lock(
         <div className="container label">
