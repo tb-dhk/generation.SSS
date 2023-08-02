@@ -22,7 +22,7 @@ function Sacrifice() {
   let currency = JSON.parse(localStorage.getItem("currency"))
   let objekts = JSON.parse(localStorage.getItem("objekts"))
   let upgrades = JSON.parse(localStorage.getItem("upgrades"))
-  let sacrificeUpgrade = upgrades["grand gravity"][1]
+  let sacrificeUpgrade = 3 ** upgrades["grand gravity"][1]
 
   let objektCount = 0
   for (let x in objekts.Atom01) {
