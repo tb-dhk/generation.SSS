@@ -1,15 +1,5 @@
 import { upgradeLines } from "../../extra/lines.js"
-import { format, invert } from "../../extra/mini.js"
-
-function buy(type, num) {
-  const currency = JSON.parse(localStorage.getItem("currency"))
-  const upgrades = JSON.parse(localStorage.getItem("upgrades"))
-  const thisUpgrade = upgrades[type][num-1]
-  currency.como -= 24 ** (thisUpgrade * num)
-  upgrades[type][num-1]++
-  localStorage.setItem("currency", JSON.stringify(currency))
-  localStorage.setItem("upgrades", JSON.stringify(upgrades))
-}
+import { format, invert, buyUpgrade } from "../../extra/mini.js"
 
 function Upgrade({ type, num }) {
   const currency = JSON.parse(localStorage.getItem("currency"))
@@ -22,7 +12,7 @@ function Upgrade({ type, num }) {
   return (
     <button 
       className={`s${num} medium ${transparency}`} 
-      onClick={() => {if (affordable) buy(type, num)}}
+      onClick={() => {if (affordable) buyUpgrade(type, num)}}
       onMouseEnter={(element) => invert(element, true, affordable)}
       onMouseLeave={(element) => invert(element, false, affordable)}
     >

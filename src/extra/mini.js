@@ -363,6 +363,42 @@ export function buyMax(subTab) {
   }
 }
 
+export function buyUpgrade(type, num) {
+  const currency = JSON.parse(localStorage.getItem("currency"))
+  const upgrades = JSON.parse(localStorage.getItem("upgrades"))
+  const thisUpgrade = upgrades[type][num-1]
+  currency.como -= 24 ** (thisUpgrade * num)
+  upgrades[type][num-1]++
+  localStorage.setItem("currency", JSON.stringify(currency))
+  localStorage.setItem("upgrades", JSON.stringify(upgrades))
+  console.log("bought", type, num)
+}
+
+function buyMaxUpgrades(category) {
+  let upgrades = JSON.parse(localStorage.getItem("upgrades"))
+  let currency = JSON.parse(localStorage.getItem("currency"))
+  let chosen = -1
+  let min = currency.como
+  const primes = [2, 3, 5, 7, 11, 13, 17, 19]
+  while (true) {
+    upgrades = JSON.parse(localStorage.getItem("upgrades"))
+    currency = JSON.parse(localStorage.getItem("currency"))
+    chosen = -1
+    min = currency.como
+    for (let i = 0; i < 8; i++) {
+      if (24 ** ((i + 1) * upgrades[category][i]) < min) {
+        min = 24 ** ((i + 1) * upgrades[category][i])
+        chosen = i
+      }
+    }
+    if (chosen === -1) {
+      break
+    } else {
+      buyUpgrade(category, chosen + 1)
+    }
+  }
+}
+
 const colors = {
   s1: "#22aeff",
   s2: "#9200ff",
@@ -578,6 +614,7 @@ export function renderTab(tab, subtab) {
     case 2:
       return lock(
         <div className="container label">
+          <button className={`s${getNextColor(ntab) + 1} sub-header`} onClick={() => buyMaxUpgrades("grand gravity")}>buy max</button>
           <div className="medium-grid"> {
             [...Array(8).keys()].map(i => {
               return <Upgrade type="grand gravity" num={i + 1} />
