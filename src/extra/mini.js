@@ -542,7 +542,7 @@ export function renderTab(tab, subtab) {
 
       const prestigeGrid = <div className="prestige-grid">
         {!subtab && maxdim() >= 8 && currency.S < sLimit() ? <Sacrifice /> : <div></div>}
-        {!subtab && currency.S >= 24 ** 24 ? grandGravDiv : <div></div>}
+        {currency.S >= 24 ** 24 ? grandGravDiv : <div></div>}
       </div>
 
 
@@ -562,7 +562,7 @@ export function renderTab(tab, subtab) {
       )
     
       return <div>
-        {currency.S < sLimit() ? dimensions : prestigeGrid}
+        {!(currency.S >= sLimit() && !subtab) ? dimensions : prestigeGrid}
       </div>
     case 1:
       return lock(
