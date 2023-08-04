@@ -32,7 +32,7 @@ function App() {
   const currency = useSelector((state) => state.currency.value)
   const inChallenge = useSelector((state) => state.inChallenge.value)
   const dispatch = useDispatch()
-  const alerts = JSON.parse(localStorage.getItem("alerts"))
+  let alerts = JSON.parse(localStorage.getItem("alerts"))
   const prestige = JSON.parse(localStorage.getItem('prestige'))
 
   try {
@@ -41,14 +41,14 @@ function App() {
     localStorage.setItem("upgrades", JSON.stringify({"grand gravity": [0, 0, 0, 0, 0, 0, 0, 0]}))
   }
 
-  let lastTick = Date.now()
+  const [lastTick, setLastTick] = useState(Date.now())
 
   /* ticks */
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(updateCurrency(JSON.parse(localStorage.getItem("currency"))))
       tick(Date.now() - lastTick)
-      lastTick = Date.now()
+      setLastTick(Date.now())
       dispatch(updateInChallenge(JSON.parse(localStorage.getItem("inchallenge"))))
       let colors = JSON.parse(localStorage.getItem("colors"))
       for (const color in colors) {
@@ -62,7 +62,7 @@ function App() {
       clearInterval(intervalId);
     };
 
-  }, [currency, dispatch, tickspeed, alerts, currentTab, subTab, tabs.length])
+  }, [lastTick, currency, dispatch, tickspeed, alerts, currentTab, subTab, tabs.length])
 
   /* keybinds */
   const keyMap = {
@@ -196,13 +196,17 @@ function App() {
 
   const subTabs = getSubTabs(ntab)
 
+  alerts = Object.keys(alerts).map(a => {alerts[a].id = a; return alerts[a]})
+  alerts.sort((a, b) => (a.time < b.time) ? 1 : -1)
+
   /* main structure */
   return (
     <HotKeys keyMap={keyMap} handlers={handlers} allowChanges={true} id="hotkeys">
       <div className={Object.keys(alerts).length ? "alerts" : ""}>
         {
           Object.keys(alerts).map(a => {
-            return <Alert alertId={a} message={alerts[a].message} />
+            console.log("alerts", a)
+            return <Alert alertId={alerts[a].id} message={alerts[a].message} />
           })
         }
       </div>

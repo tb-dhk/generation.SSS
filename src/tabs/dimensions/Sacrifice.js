@@ -1,4 +1,4 @@
-import { format, maxdim } from "../../extra/mini"
+import { format, maxdim, invert } from "../../extra/mini"
 
 function doSacrifice() {
   let dimensions = JSON.parse(localStorage.getItem('dimensions'))
@@ -35,12 +35,16 @@ function Sacrifice() {
   const newBonus = (Math.log(Number(currency.S)) / Math.log(8)) * ((25/24) ** objektCount)
 
   if (Number(dimensions.S.S8.total) > 0 && Number(currency.S) > sacrifice * 2) {
-    return <div className={`big sacrifice s${maxdim()}`}>
-      <h4 className={`s${maxdim()}`}>you can now sacrifice!</h4>
-      <h5 className={`s${maxdim()}`}>you currently have a sacrifice bonus of {format(currentBonus * sacrificeUpgrade)}.</h5>
-      <h5 className={`s${maxdim()}`}>when you sacrifice, your S8 dimensions will be boosted by {format(newBonus * sacrificeUpgrade)} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
-      <button className="round-corners challengebutton" onClick={doSacrifice}>sacrifice</button>
-    </div>
+    return <button
+        className="s9 translucent prestige" 
+        onClick={doSacrifice}
+        onMouseEnter={(element) => invert(element, true, true)}
+        onMouseLeave={(element) => invert(element, false, true)}
+    >
+      <h4 className="s10 white noborder lower transparent">sacrifice</h4>
+      <h5 className="s10 white noborder lower transparent">you currently have a sacrifice bonus of {format(currentBonus * sacrificeUpgrade)}.</h5>
+      <h5 className="s10 white noborder lower transparent">when you sacrifice, your S8 dimensions will be boosted by {format(newBonus * sacrificeUpgrade)} (increase of {format(newBonus / currentBonus)}), but all other dimensions will be reset to 0.</h5>
+    </button>
   }
 }
 

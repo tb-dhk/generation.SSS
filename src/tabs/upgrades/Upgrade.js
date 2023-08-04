@@ -1,26 +1,5 @@
 import { upgradeLines } from "../../extra/lines.js"
-import { format } from "../../extra/mini.js"
-
-const invert = (element, truth, affordable) => {
-  let button = element.currentTarget
-  if (affordable) {
-    if (truth) {
-      button.classList.remove("translucent")
-      for (let c in button.children) {
-        if (typeof button.children[c] === "object") {
-          button.children[c].classList.remove("white")
-        }
-      }
-    } else {
-      button.classList.add("translucent")
-      for (let c in button.children) {
-        if (typeof button.children[c] === "object") {
-          button.children[c].classList.add("white")
-        }
-      }
-    }
-  }
-}
+import { format, invert } from "../../extra/mini.js"
 
 function buy(type, num) {
   const currency = JSON.parse(localStorage.getItem("currency"))

@@ -45,7 +45,6 @@ export function maxdim(currency = "S", strict = false) {
   /* number of dimensions to render */
   for (let d = 1; d <= 24 - Number(strict); d++) {
     if ((!strict && !dims[currency]["S" + d].total) || (strict && !dims[currency]["S" + (d + 1)].total)) {
-      console.log(currency, d)
       return d
     }
   }
@@ -444,6 +443,28 @@ export function reset() {
   }
 }
 
+export function invert(element, truth, affordable) {
+  let button = element.currentTarget
+  if (affordable) {
+    if (truth) {
+      button.classList.remove("translucent")
+      for (let c in button.children) {
+        if (typeof button.children[c] === "object") {
+          button.children[c].classList.remove("white")
+        }
+      }
+    } else {
+      button.classList.add("translucent")
+      for (let c in button.children) {
+        if (typeof button.children[c] === "object") {
+          button.children[c].classList.add("white")
+        }
+      }
+    }
+  }
+}
+
+
 export function renderTab(tab, subtab) {
   const tickspeed = JSON.parse(localStorage.getItem('tickspeed'))
   const currency = JSON.parse(localStorage.getItem('currency'))
@@ -507,12 +528,23 @@ export function renderTab(tab, subtab) {
 
       const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
       const grandGravDiv = (
-        <div className="invert grandgrav">
-          <h3 className="invert">{currency.S < sLimit() ? "hmm..." : "boom!"}</h3>
-          <h4 className="invert">{currency.S < sLimit() ? "you can do a grand gravity now!" : "too much S!"}</h4>
-          <button className="grandgrav-button" onClick={grandGravity}>grand gravity for {format(gainedComo)} como!</button>
-        </div>
+        <button 
+          className="s10 translucent prestige" 
+          onClick={grandGravity}
+          onMouseEnter={(element) => invert(element, true, true)}
+          onMouseLeave={(element) => invert(element, false, true)}
+        >
+          <h4 className="s10 white noborder lower transparent">{currency.S < sLimit() ? "grand gravity" : "boom!"}</h4>
+          <h5 className="s10 white noborder lower transparent">{currency.S < sLimit() ? "you can do a grand gravity now!" : "too much S!"}</h5>
+          <h5 className="s10 white noborder lower transparent">when you grand gravity, you will lose all your dimensions and S for {format(gainedComo)} como.</h5>
+        </button>
       )
+
+      const prestigeGrid = <div className="prestige-grid">
+        {!subtab && maxdim() >= 8 && currency.S < sLimit() ? <Sacrifice /> : <div></div>}
+        {!subtab && currency.S >= 24 ** 24 ? grandGravDiv : <div></div>}
+      </div>
+
 
       const dimensions = (
         <div>
@@ -524,15 +556,13 @@ export function renderTab(tab, subtab) {
           {[...Array(renderDim < limit ? renderDim : limit).keys()].map(i => {
             return <Dimension type={getSubTabs(tab)[subtab]} num={i + 1} tickspeed={tickspeed} />
           })}
-          {currency.S >= 24 ** 24 ? grandGravDiv : <div></div>}
-          {!subtab && maxdim() >= 8 ? <Sacrifice /> : <div></div>} 
+          {prestigeGrid}
           {progressBar}
         </div>
       )
-
     
       return <div>
-        {currency.S < sLimit() ? dimensions : grandGravDiv}
+        {currency.S < sLimit() ? dimensions : prestigeGrid}
       </div>
     case 1:
       return lock(
