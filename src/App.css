@@ -356,6 +356,7 @@ hr {
 .medium-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   margin: 20px auto;
   width: 50%;
   min-width: 400px;

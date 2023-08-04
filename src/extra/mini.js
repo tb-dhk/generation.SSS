@@ -86,7 +86,7 @@ export function tick(tickspeed) {
 
   for (const dim of ["S", "como"]) {
     const maxDim = maxdim()
-    let boosts = 1 
+    let boosts = 9/8 * dims[dim]["S1"].bought
     let defCurrencyGain = Number(dims[dim]["S1"].total) + ([7, 8].includes(inChallenge["grand gravity"]) ? Number(dims[dim]["S2"].total) : 0)
     defCurrencyGain *= boosts
     if (currency.comoDust) {
@@ -124,7 +124,7 @@ export function tick(tickspeed) {
       boosts = (maxDim ** maxDim)
       const gen = parseInt(genName.slice(1))
       if (gen < 24 && (gen <= maxdim() || dim !== "S")) {
-        let boosts = (25 / 24) ** dims[dim]["S" + (gen + 1)].bought
+        let boosts = (9/8) ** dims[dim]["S" + (gen + 1)].bought
         boosts *= base ** upgrades["grand gravity"][unit]
         if (dim === "S" && gen === 8 - 1) {
           const sacrificeBonus = Math.log(sacrifice) / Math.log(8) * (3 ** upgrades["grand gravity"][1])
