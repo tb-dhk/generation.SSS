@@ -3,7 +3,9 @@ import { grandGravity } from "../../extra/prestige"
 import { challenges } from "../../extra/lines"
 
 function enterChallenge(type, num) {
-  grandGravity(false, false, num ? `you have entered challenge ${num}` : "you have exited the challenge")
+  const currency = JSON.parse(localStorage.getItem("currency"))
+
+  grandGravity(currency.S >= 24 ** 24, currency.S >= 24 ** 24, num ? `you have entered challenge ${num}` : "you have exited the challenge")
 
   if (!(type === "grand gravity" && num === 1)) {
     let currency = JSON.parse(localStorage.getItem('currency'))
