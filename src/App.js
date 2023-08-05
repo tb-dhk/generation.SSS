@@ -20,7 +20,7 @@ function App() {
   /* initialising */
   let started = localStorage.getItem("started")
   if (started === null) {
-    reset()
+    reset(true)
   }
 
   const [currentTab, setCurrentTab] = useState(0)

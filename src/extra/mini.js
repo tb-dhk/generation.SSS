@@ -416,8 +416,8 @@ const colors = {
   s15: "#d51312"
 }
 
-export function reset() {
-  if (window.confirm("are you sure you want to reset? all your progress will be completely wiped.")) {
+export function reset(force) {
+  if (force || window.confirm("are you sure you want to reset? all your progress will be completely wiped.")) {
     localStorage.clear()
 
     const types = ["S", "como", "comoDust", "sigma"]
