@@ -1,4 +1,4 @@
-import { format, maxdim, invert } from "../../extra/mini"
+import { format, invert } from "../../extra/mini"
 
 function doSacrifice() {
   let dimensions = JSON.parse(localStorage.getItem('dimensions'))

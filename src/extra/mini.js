@@ -379,7 +379,6 @@ function buyMaxUpgrades(category) {
   let currency = JSON.parse(localStorage.getItem("currency"))
   let chosen = -1
   let min = currency.como
-  const primes = [2, 3, 5, 7, 11, 13, 17, 19]
   while (true) {
     upgrades = JSON.parse(localStorage.getItem("upgrades"))
     currency = JSON.parse(localStorage.getItem("currency"))
@@ -584,6 +583,9 @@ export function renderTab(tab, subtab) {
 
       const dimensions = (
         <div>
+          <div className="container">
+            <span className="sub-header">{subtab === 1 ? `each como dimension from S5 onwards multiplies the S limit by ${format(24 ** 6)}.` : "each dimension you buy increases the production of that dimension by 1.125."}</span>
+          </div>
           {enableAutobuyButton}
           <button className={`s${getNextColor(ntab) + 2} sub-header`} onClick={() => {buyMax(subtab)}}>buy max</button>
           <div className="dimension-container">
