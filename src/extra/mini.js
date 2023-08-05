@@ -304,6 +304,7 @@ export function getSubTabs(tab) {
     ["grand gravity"],
     ["grand gravity"],    
     ["single class"],
+    ["grand gravity"],    
     ["part 1"],
     ["save", "options", "colors"],
     Object.keys(help),
@@ -561,7 +562,13 @@ export function renderTab(tab, subtab) {
         enableAutobuyButton = <button className={`s${getNextColor(ntab) + 1} sub-header`} onClick={toggleAutobuy}>toggle autobuyers: {inChallenge["grand gravity"] === 3 ? "locked" : (enableAutobuy ? "on" : "off")}</button>
       }
 
-      const gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
+      let gainedComo = 0
+      try {
+        gainedComo = 2 ** (prestige.grandGravity.count + 1) * (5 ** upgrades["grand gravity"][2]) * (Math.log(currency.S) / Math.log(24 ** 24))
+      } catch {
+        localStorage.setItem("upgrades", JSON.stringify({"grand gravity": [0, 0, 0, 0, 0, 0, 0, 0]}))
+        gainedComo = 2 ** (prestige.grandGravity.count + 1) * (Math.log(currency.S) / Math.log(24 ** 24))
+      }
       const grandGravDiv = (
         <button 
           className="s10 translucent prestige" 
