@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.f6ef892b.css",
-    "main.js": "/static/js/main.783ae4f1.js",
+    "main.js": "/static/js/main.5f06f067.js",
     "static/js/787.677c3017.chunk.js": "/static/js/787.677c3017.chunk.js",
     "static/media/jiwoo-1.png": "/static/media/jiwoo-1.330b9292f44eff32c4a2.png",
     "static/media/soomin-1.png": "/static/media/soomin-1.dc0da622c3eea675ad25.png",
@@ -24,11 +24,11 @@
     "static/media/close.png": "/static/media/close.6512609a998c4f95a408.png",
     "index.html": "/index.html",
     "main.f6ef892b.css.map": "/static/css/main.f6ef892b.css.map",
-    "main.783ae4f1.js.map": "/static/js/main.783ae4f1.js.map",
+    "main.5f06f067.js.map": "/static/js/main.5f06f067.js.map",
     "787.677c3017.chunk.js.map": "/static/js/787.677c3017.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f6ef892b.css",
-    "static/js/main.783ae4f1.js"
+    "static/js/main.5f06f067.js"
   ]
 }
